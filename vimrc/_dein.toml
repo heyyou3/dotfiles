@@ -1,0 +1,69 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+# インストールするVimプラグインを以下に記述
+# カラースキームhybrid
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+# ステータスラインの表示内容強化
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+# インデントの可視化
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+# 末尾の全角半角空白文字を赤くハイライト
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+# 構文エラーチェック
+[[plugins]]
+repo = 'scrooloose/syntastic'
+# 多機能セレクタ
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+# CtrlPの拡張プラグイン. 関数検索
+[[plugins]]
+repo = 'tacahiroy/ctrlp-funky'
+# CtrlPの拡張プラグイン. コマンド履歴検索
+[[plugins]]
+repo = 'suy/vim-ctrlp-commandline'
+# CtrlPの検索にagを使う
+[[plugins]]
+repo = 'rking/ag.vim'
+# プロジェクトに入ってるESLintを読み込む
+[[plugins]]
+repo = 'pmsorhaindo/syntastic-local-eslint.vim'
+
+# vimのlua機能が使える時だけ以下のVimプラグインをインストールする
+# コードの自動補完
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+# スニペットの補完機能
+[[plugins]]
+repo = 'Shougo/neosnippet'
+# スニペット集
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+# airline
+[[plugins]]
+repo    = 'vim-airline/vim-airline'
+depends = ['vim-airline-themes']
+
+# 依存関係を指定したからと言って、自動でインストールはされない（ここは NeoBundle と違う）
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+# splitjoin.vim plugin
+[[plugins]]
+repo = 'AndrewRadev/splitjoin.vim'
+# ultisnips plugin
+[[plugins]]
+repo = 'SirVer/ultisnips'
+# Markdownファイル用plugin
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+[[plugins]]
+repo = 'kannokanno/previm'
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+[[plugins]]
+repo = 'fatih/vim-go'
