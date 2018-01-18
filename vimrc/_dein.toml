@@ -67,4 +67,9 @@ repo = 'kannokanno/previm'
 repo = 'tyru/open-browser.vim'
 [[plugins]]
 repo = 'fatih/vim-go'
-
+# vim-quickrun
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+# Gitコマンド拡張プラグイン
+[[plugins]]
+repo = 'tpope/vim-fugitive'
