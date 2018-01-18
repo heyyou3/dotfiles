@@ -4,9 +4,9 @@ repo = 'Shougo/dein.vim'
 # カラースキームhybrid
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
-# ステータスラインの表示内容強化
-[[plugins]]
-repo = 'itchyny/lightline.vim'
+# # ステータスラインの表示内容強化
+# [[plugins]]
+# repo = 'itchyny/lightline.vim'
 # インデントの可視化
 [[plugins]]
 repo = 'Yggdroot/indentLine'
@@ -67,3 +67,4 @@ repo = 'kannokanno/previm'
 repo = 'tyru/open-browser.vim'
 [[plugins]]
 repo = 'fatih/vim-go'
+
