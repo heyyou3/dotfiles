@@ -73,3 +73,6 @@ repo = 'thinca/vim-quickrun'
 # Gitコマンド拡張プラグイン
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+# vim-pyenv導入
+[[plugins]]
+repo = 'davidhalter/jedi-vim'

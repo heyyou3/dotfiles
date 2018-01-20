@@ -2,6 +2,9 @@ set encoding=utf-8
 scriptencoding utf-8
 " フォント設定
 set guifont=cica:h14
+
+" 言語読み込み
+let g:python3_host_prog = expand('~/.anyenv/envs/pyenv/shims/python')
 " ビープ音をオフに設定
 set belloff=all
 " ↑1行目は読み込み時の文字コードの設定

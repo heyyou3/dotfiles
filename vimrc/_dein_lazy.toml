@@ -1,0 +1,3 @@
+# vim-pyenvの導入
+[[plugins]]
+repo = 'lambdalisue/vim-pyenv'
