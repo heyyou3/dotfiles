@@ -76,3 +76,5 @@ repo = 'tpope/vim-fugitive'
 # vim-pyenv導入
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
+# ファイラ導入
+repo = 'Shougo/denite.nvim'
