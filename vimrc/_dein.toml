@@ -3,7 +3,7 @@ repo = 'Shougo/dein.vim'
 # インストールするVimプラグインを以下に記述
 # カラースキームhybrid
 [[plugins]]
-repo = 'w0ng/vim-hybrid'
+repo = 'jacoborus/tender.vim'
 # # ステータスラインの表示内容強化
 # [[plugins]]
 # repo = 'itchyny/lightline.vim'
