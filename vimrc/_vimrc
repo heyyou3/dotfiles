@@ -1,7 +1,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 " フォント設定
-set guifont=cica:h14
+set guifont=cica:h12
 
 " 言語読み込み
 let g:python3_host_prog = expand('~/.anyenv/envs/pyenv/shims/python')
@@ -80,8 +80,8 @@ filetype plugin indent on
 "----------------------------------------------------------
 " カラースキーム
 "----------------------------------------------------------
-" colorscheme tender " カラースキームにtenderを設定する
-colorscheme tender
+" colorscheme dracula " カラースキームにdraculaを設定する
+colorscheme dracula
 set t_Co=256 " iTerm2など既に256色環境なら無くても良い
 syntax enable " 構文に色を付ける
 set  background=dark

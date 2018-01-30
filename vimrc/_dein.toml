@@ -1,7 +1,9 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 # インストールするVimプラグインを以下に記述
-# カラースキームhybrid
+# カラースキームdracula
+[[plugins]]
+repo = 'dracula/vim'
 [[plugins]]
 repo = 'jacoborus/tender.vim'
 # # ステータスラインの表示内容強化
