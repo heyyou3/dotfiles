@@ -1,7 +1,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 " フォント設定
-set guifont=cica:h12
+set guifont=Ricty_Diminished_Discord_for_Powerline:h14
 
 " 言語読み込み
 let g:python3_host_prog = expand('~/.anyenv/envs/pyenv/shims/python')
