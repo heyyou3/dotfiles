@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/char_chan/.oh-my-zsh
+export ZSH=/Users/bellocha/.oh-my-zsh
 #for zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -97,11 +97,11 @@ unset USERNAME
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/nishidayuuhei/.sdkman"
-[[ -s "/Users/nishidayuuhei/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/nishidayuuhei/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="/Users/bellocha/.sdkman"
+[[ -s "/Users/bellocha/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/bellocha/.sdkman/bin/sdkman-init.sh"
 
 # added by Miniconda3 4.3.21 installer
-export PATH="/Users/nishidayuuhei/miniconda3/bin:$PATH"
+export PATH="/Users/bellocha/miniconda3/bin:$PATH"
 
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
@@ -110,7 +110,7 @@ eval "$(anyenv init -)"
 # Go
 export GO_VERSION=1.9
 export GOROOT=$HOME/.anyenv/envs/goenv/versions/$GO_VERSION
-export GOPATH=/Users/char_chan/go_work
+export GOPATH=/Users/bellocha/go_work
 export PATH=$HOME/.anyenv/envs/goenv/shims/bin:$PATH
 export PATH=$GOROOT/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
