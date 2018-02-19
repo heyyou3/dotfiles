@@ -1,7 +1,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 " フォント設定
-set guifont=Ricty_Diminished_Discord_for_Powerline:h14
+set guifont=Hack:h14
 
 " 言語読み込み
 let g:python3_host_prog = expand('~/.anyenv/envs/pyenv/shims/python')
@@ -57,7 +57,7 @@ endif
 
 " airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'tender'
+let g:airline_theme = 'gruvbox'
 " Airline {{{1
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
@@ -79,11 +79,10 @@ filetype plugin indent on
 "----------------------------------------------------------
 " カラースキーム
 "----------------------------------------------------------
-" colorscheme dracula " カラースキームにdraculaを設定する
-colorscheme dracula
 set t_Co=256 " iTerm2など既に256色環境なら無くても良い
 syntax enable " 構文に色を付ける
 set  background=dark
+colorscheme gruvbox
 
 "----------------------------------------------------------
 " 文字
