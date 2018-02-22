@@ -84,7 +84,7 @@ highlight NonText ctermbg=NONE guibg=NONE
 highlight SpecialKey ctermbg=NONE guibg=NONE
 highlight EndOfBuffer ctermbg=NONE guibg=NONE
 if has('gui_macvim')
-    set  background=dark
+    set background=dark
     set transparency=20
 endif
 
