@@ -1,8 +1,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 " フォント設定
-set guifont=Hack:h14
-
+set guifont=Hack:h12
 " 言語読み込み
 let g:python3_host_prog = expand('~/.anyenv/envs/pyenv/shims/python')
 " ビープ音をオフに設定
@@ -83,7 +82,10 @@ set t_Co=256 " iTerm2など既に256色環境なら無くても良い
 syntax enable " 構文に色を付ける
 set  background=dark
 colorscheme gruvbox
-
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
 "----------------------------------------------------------
 " 文字
 "----------------------------------------------------------
@@ -136,7 +138,7 @@ endif
 "----------------------------------------------------------
 " 文字列検索
 "----------------------------------------------------------
-set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
+set incsearch " インクリメンタルサーチ. 1文字入力毎に検索を行う
 set ignorecase " 検索パターンに大文字小文字を区別しない
 set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
 set hlsearch " 検索結果をハイライト
@@ -159,6 +161,10 @@ nnoremap <up> gk
 
 " バックスペースキーの有効化
 set backspace=indent,eol,start
+
+" スペルチェック導入
+set spelllang+=cjk
+set spell
 
 "----------------------------------------------------------
 " カッコ・タグの対応
@@ -257,11 +263,6 @@ if executable('ag')
   let g:ctrlp_use_caching=0 " CtrlPのキャッシュを使わない
   let g:ctrlp_user_command='ag %s -i --hidden -g ""' " 「ag」の検索設定
 endif
-
-" Golang
-call plug#begin()
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-call plug#end()
 
 " vim-go tutorial settings
 set autowrite
