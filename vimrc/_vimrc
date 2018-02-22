@@ -78,12 +78,16 @@ filetype plugin indent on
 "----------------------------------------------------------
 set t_Co=256 " iTerm2など既に256色環境なら無くても良い
 syntax enable " 構文に色を付ける
-set  background=dark
 colorscheme gruvbox
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
 highlight SpecialKey ctermbg=NONE guibg=NONE
 highlight EndOfBuffer ctermbg=NONE guibg=NONE
+if has('gui_macvim')
+    set  background=dark
+    set transparency=20
+endif
+
 "----------------------------------------------------------
 " 文字
 "----------------------------------------------------------
