@@ -11,7 +11,6 @@ set belloff=all
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
-inoremap < <><LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 " --- dein.vim settings ---
@@ -62,7 +61,6 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:Powerline_symbols = 'fancy'
-set t_Co=256
 let g:airline_left_sep = '⮀'
 let g:airline_right_sep = '⮂'
 let g:airline_linecolumn_prefix = '⭡'
@@ -85,7 +83,8 @@ highlight SpecialKey ctermbg=NONE guibg=NONE
 highlight EndOfBuffer ctermbg=NONE guibg=NONE
 if has('gui_macvim')
     set background=dark
-    set transparency=20
+    set transparency=30
+    set guioptions=
 endif
 
 "----------------------------------------------------------
