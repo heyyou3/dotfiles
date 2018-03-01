@@ -2,8 +2,6 @@
 repo = 'Shougo/dein.vim'
 # インストールするVimプラグインを以下に記述
 [[plugins]]
-repo = 'morhetz/gruvbox'
-[[plugins]]
 repo = 'jacoborus/tender.vim'
 # # ステータスラインの表示内容強化
 # [[plugins]]
