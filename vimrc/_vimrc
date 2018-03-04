@@ -53,7 +53,7 @@ endif
 
 " airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'zenburn'
+let g:airline_theme = 'simple'
 " Airline {{{1
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
@@ -75,7 +75,7 @@ filetype plugin indent on
 " カラースキーム
 "----------------------------------------------------------
 set t_Co=256 " iTerm2など既に256色環境なら無くても良い
-colorscheme desert
+colorscheme murphy
 syntax enable " 構文に色を付ける
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
@@ -83,7 +83,6 @@ highlight SpecialKey ctermbg=NONE guibg=NONE
 highlight EndOfBuffer ctermbg=NONE guibg=NONE
 if has('gui_macvim')
     set background=dark
-    set transparency=30
     set guioptions=
 endif
 
@@ -299,6 +298,7 @@ let g:go_decls_includes = "func,type"
 let g:go_auto_type_info = 1
 set updatetime=100
 let g:go_auto_sameids = 1
+let g:go_gocode_unimported_packages = 1
 
 " markdownファイルの設定
 au BufRead,BufNewFile *.md set filetype=markdown
