@@ -6,6 +6,9 @@ repo = 'jacoborus/tender.vim'
 # # ステータスラインの表示内容強化
 # [[plugins]]
 # repo = 'itchyny/lightline.vim'
+# colorscheme
+[[plugins]]
+repo = 'liuchengxu/space-vim-dark'
 # インデントの可視化
 [[plugins]]
 repo = 'Yggdroot/indentLine'
