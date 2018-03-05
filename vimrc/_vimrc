@@ -7,12 +7,6 @@ set belloff=all
 " ↑1行目は読み込み時の文字コードの設定
 " ↑2行目はVim Script内でマルチバイトを使う場合の設定
 " Vim scritptにvimrcも含まれるので、日本語でコメントを書く場合は先頭にこの設定が必要になる
-" vimで中括弧を入力したら閉じるよう設定
-inoremap { {}<LEFT>
-inoremap [ []<LEFT>
-inoremap ( ()<LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
 " --- dein.vim settings ---
 " プラグインが実際にインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
@@ -161,10 +155,6 @@ nnoremap <up> gk
 
 " バックスペースキーの有効化
 set backspace=indent,eol,start
-
-" スペルチェック導入
-set spelllang+=cjk
-set spell
 
 "----------------------------------------------------------
 " カッコ・タグの対応

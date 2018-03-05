@@ -6,6 +6,8 @@ repo = 'jacoborus/tender.vim'
 # # ステータスラインの表示内容強化
 # [[plugins]]
 # repo = 'itchyny/lightline.vim'
+[[plugins]]
+repo = 'cohama/lexima.vim'
 # colorscheme
 [[plugins]]
 repo = 'liuchengxu/space-vim-dark'
