@@ -79,7 +79,7 @@ if has('gui_macvim')
     set background=dark
     set guioptions=
 endif
-
+let g:vim_json_syntax_conceal = 0
 "----------------------------------------------------------
 " 文字
 "----------------------------------------------------------

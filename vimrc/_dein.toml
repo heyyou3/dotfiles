@@ -80,6 +80,9 @@ repo = 'tpope/vim-fugitive'
 # vim-pyenv導入
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
-[[plugins]]
 # ファイラ導入
+[[plugins]]
 repo = 'Shougo/denite.nvim'
+# vim-json導入
+[[plugins]]
+repo='elzr/vim-json'
