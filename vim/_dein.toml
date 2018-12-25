@@ -59,3 +59,5 @@ repo = 'elzr/vim-json'
 repo = 'zchee/deoplete-jedi'
 [[plugins]]
 repo = 'dracula/vim'
+[[plugins]]
+repo = 'hashivim/vim-terraform'
