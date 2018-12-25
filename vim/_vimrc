@@ -1,6 +1,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 set belloff=all
+let mapleader = "\<Space>"
 
 let $PATH = "~/.anyenv/envs/pyenv/shims:".$PATH
 set pyxversion=3
@@ -167,3 +168,8 @@ let g:go_version_warning = 0
 
 " markdownファイルの設定
 au BufRead,BufNewFile *.md set filetype=markdown
+
+let g:terraform_align = 1
+let g:terraform_fold_sections = 1
+let g:terraform_remap_spacebar = 1
+let g:terraform_fmt_on_save = 1

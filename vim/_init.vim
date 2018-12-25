@@ -1,6 +1,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 set belloff=all
+let mapleader = "\<Space>"
 
 " Python3.6 path
 let g:python3_host_prog = expand('~/.anyenv/envs/pyenv/shims/python3.6')
@@ -148,3 +149,8 @@ nmap <leader>d :<C-u>Denite file_rec<CR>
 
 " clip board "
 set clipboard+=unnamedplus
+
+let g:terraform_align = 1
+let g:terraform_fold_sections = 1
+let g:terraform_remap_spacebar = 1
+let g:terraform_fmt_on_save = 1
