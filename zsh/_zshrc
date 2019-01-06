@@ -18,13 +18,21 @@ PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg_bold[blue]%}%~ $(git_prompt_inf
 
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
+for env in $(ls $HOME/.anyenv/envs); do
+  export PATH="$HOME/.anyenv/envs/$env/shims/:$PATH"
+  export PATH="$HOME/.anyenv/envs/$env/bin:$PATH"
+done
 # eval "$(anyenv init -)"
+# eval "$(goenv init -)"
+
+# Python
+export PYENV_ROOT=$HOME/.anyenv/envs/pyenv
 
 # Go
-export GO_VERSION=1.11
+export GO_VERSION=1.11.2
+export GO111MODULE=on
 export GOROOT=$HOME/.anyenv/envs/goenv/versions/$GO_VERSION
 export GOPATH=$HOME/go_work
-export PATH=$HOME/.anyenv/envs/goenv/shims/bin:$PATH
 export PATH=$GOROOT/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 alias gotest='(){go test -v -coverprofile=cover.out; go tool cover -html=cover.out}'
