@@ -46,8 +46,8 @@ filetype plugin indent on
 
 set t_Co=256
 syntax enable
-colorscheme dracula
 set background=dark
+colorscheme dracula
 highlight Normal ctermbg=none
 let g:vim_json_syntax_conceal = 0
 
