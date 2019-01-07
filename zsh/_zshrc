@@ -14,7 +14,7 @@ ENHANCD_FILTER=peco; export ENHANCD_FILTER
 
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ [%?])"
 
-PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg_bold[blue]%}%~ $(git_prompt_info)% %{$reset_color%}'
+PROMPT='${ret_status}%{$fg_bold[green]%}%p $(git_prompt_info)% %{$reset_color%}'
 
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
@@ -27,6 +27,11 @@ done
 
 # Python
 export PYENV_ROOT=$HOME/.anyenv/envs/pyenv
+
+# precmd
+precmd() {
+  tmux set -qg status-left "[#S] $(pwd)"
+}
 
 # Go
 export GO_VERSION=1.11.2
