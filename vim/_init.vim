@@ -97,7 +97,6 @@ nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 set number
 set cursorline
 
-set showmatch
 source $VIMRUNTIME/macros/matchit.vim
 
 if has('mouse')
