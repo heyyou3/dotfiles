@@ -2,6 +2,7 @@ set encoding=utf-8
 scriptencoding utf-8
 set belloff=all
 let mapleader = "\<Space>"
+autocmd InsertLeave * set nopaste
 
 " Python3.6 path
 let g:python3_host_prog = expand('~/.anyenv/envs/pyenv/shims/python3.6')
