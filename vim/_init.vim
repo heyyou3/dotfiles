@@ -4,7 +4,6 @@ set belloff=all
 let mapleader = "\<Space>"
 autocmd InsertLeave * set nopaste
 
-set guicursor=a:hor20
 set langmenu=en_US
 let $LANG = 'en_US'
 
