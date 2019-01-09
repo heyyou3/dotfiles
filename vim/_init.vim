@@ -4,6 +4,8 @@ set belloff=all
 let mapleader = "\<Space>"
 autocmd InsertLeave * set nopaste
 
+set guicursor=a:hor20
+
 " Python3.6 path
 let g:python3_host_prog = expand('~/.anyenv/envs/pyenv/shims/python3.6')
 
