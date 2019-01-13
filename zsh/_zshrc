@@ -41,7 +41,6 @@ export GOPATH=$HOME/go_work
 export PATH=$GOROOT/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 alias gotest='(){go test -v -coverprofile=cover.out; go tool cover -html=cover.out}'
-alias vim='nvim'
 alias tf='terraform'
 alias pvim='vim $(ls | peco)'
 alias less='less -X'
