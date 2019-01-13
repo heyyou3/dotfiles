@@ -10,7 +10,6 @@ let $LANG = 'en_US'
 nnoremap ; :
 nnoremap : ;
 
-" Python3.6 path
 let g:python3_host_prog = expand('/usr/local/bin/python3.7')
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -46,7 +45,6 @@ Plug 'tpope/vim-abolish'
 Plug 'airblade/vim-gitgutter'
 Plug 'zchee/deoplete-go'
 Plug 'elzr/vim-json'
-" Plug 'zchee/deoplete-jedi'
 Plug 'dracula/vim'
 Plug 'hashivim/vim-terraform'
 call plug#end()
@@ -81,18 +79,18 @@ set showmode
 set showcmd
 set ruler
 
-set wildmenu " コマンドモードの補完
-set history=5000 " 保存するコマンド履歴の数
+set wildmenu
+set history=5000
 
-set expandtab " タブ入力を複数の空白入力に置き換える
-set tabstop=2 " 画面上でタブ文字が占める幅
-set softtabstop=2 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set autoindent " 改行時に前の行のインデントを継続する
-set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=2 " smartindentで増減する幅
+set expandtab
+set tabstop=2
+set softtabstop=2
+set autoindent
+set smartindent
+set shiftwidth=2
 hi SpecialKey ctermfg=darkmagenta
 
-set list  " 不可視文字を表示する
+set list
 set listchars=tab:>.,trail:.,eol:↲,extends:>,precedes:<,nbsp:%
 
 function! ZenkakuSpace()
@@ -160,14 +158,9 @@ set updatetime=100
 let g:go_auto_sameids = 1
 let g:go_gocode_unimported_packages = 1
 
-" markdownファイルの設定
 au BufRead,BufNewFile *.md set filetype=markdown
 
-" グローバルキーマッピング
 nmap <leader>d ;<C-u>Denite file_rec<CR>
-
-" clip board "
-" set clipboard+=unnamedplus
 
 let g:terraform_align = 1
 let g:terraform_fold_sections = 1
