@@ -49,6 +49,8 @@ Plug 'dracula/vim'
 Plug 'hashivim/vim-terraform'
 call plug#end()
 
+set clipboard+=unnamed
+
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
