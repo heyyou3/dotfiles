@@ -127,7 +127,7 @@ let g:deoplete#enable_at_startup = 1
 
 set autowrite
 map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
+map <C-p> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 let g:go_list_type = "quickfix"
 function! s:build_go_files()
@@ -176,3 +176,5 @@ function! Jump(line, char)
 endfunction
 
 nmap <leader>f ;<C-u>Jump 
+
+autocmd QuickFixCmdPost *grep* cwindow
