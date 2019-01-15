@@ -11,7 +11,6 @@ nnoremap ; :
 nnoremap : ;
 map <C-n> ;cnext<CR>
 map <C-p> ;cprevious<CR>
-nnoremap <silent><Esc><Esc> ;<C-u>set nohlsearch!<CR>
 nmap <leader>d ;<C-u>Denite file_rec<CR>
 nmap <leader>f ;<C-u>Jump 
 nmap <leader>/ ;<C-u>Search 
@@ -178,5 +177,9 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 command! -nargs=* Search call Search(<f-args>)
 function! Search(pattern, ...)
-  execute "vim " . a:pattern . " " . get(a:, 1, "%")
+  if a:1 == "git"
+    execute "vim " . a:pattern . " " . "`git ls-files " . get(a:, 2, "") . "`"
+  else
+    execute "vim " . a:pattern . " " . get(a:, 1, "%")
+  endif
 endfunction
