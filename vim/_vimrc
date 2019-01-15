@@ -9,6 +9,13 @@ let $LANG = 'en_US'
 
 nnoremap ; :
 nnoremap : ;
+map <C-n> ;cnext<CR>
+map <C-p> ;cprevious<CR>
+nnoremap <silent><Esc><Esc> ;<C-u>set nohlsearch!<CR>
+nmap <leader>d ;<C-u>Denite file_rec<CR>
+nmap <leader>f ;<C-u>Jump 
+nmap <leader>/ ;<C-u>Search 
+nmap <leader>c ;<C-u>cclose<CR>
 
 let g:python3_host_prog = expand('/usr/local/bin/python3.7')
 let s:dein_dir = expand('~/.cache/dein')
@@ -111,9 +118,6 @@ set incsearch
 set ignorecase
 set smartcase
 set hlsearch
-
-nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
-
 set number
 set cursorline
 
@@ -126,9 +130,6 @@ endif
 let g:deoplete#enable_at_startup = 1
 
 set autowrite
-map <C-n> :cnext<CR>
-map <C-p> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
 let g:go_list_type = "quickfix"
 function! s:build_go_files()
     let l:file = expand('%')
@@ -162,8 +163,6 @@ let g:go_gocode_unimported_packages = 1
 
 au BufRead,BufNewFile *.md set filetype=markdown
 
-nmap <leader>d ;<C-u>Denite file_rec<CR>
-
 let g:terraform_align = 1
 let g:terraform_fold_sections = 1
 let g:terraform_remap_spacebar = 1
@@ -175,6 +174,9 @@ function! Jump(line, char)
   execute "normal " . "f" . a:char
 endfunction
 
-nmap <leader>f ;<C-u>Jump 
-
 autocmd QuickFixCmdPost *grep* cwindow
+
+command! -nargs=* Search call Search(<f-args>)
+function! Search(pattern, ...)
+  execute "vim " . a:pattern . " " . get(a:, 1, "%")
+endfunction
