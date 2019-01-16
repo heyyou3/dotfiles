@@ -57,8 +57,8 @@ call plug#end()
 
 call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-kMinus>', '<denite:do_action:split>', 'noremap')
-call denite#custom#map('insert', '<C-Bar>', '<denite:do_action:vsplit>', 'noremap')
+call denite#custom#map('insert', '<C-_>', '<denite:do_action:split>', 'noremap')
+call denite#custom#map('insert', '<C-\>', '<denite:do_action:vsplit>', 'noremap')
 
 set clipboard+=unnamed
 
