@@ -17,15 +17,9 @@ nmap <leader>/ ;<C-u>Search
 nmap <leader>c ;<C-u>cclose<CR>
 
 let g:python3_host_prog = expand('/usr/local/bin/python3.7')
-let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
+set spell
+set spelllang=en,cjk
 
 call plug#begin('~/.vim/plugged')
 Plug 'Shougo/deoplete.nvim'
@@ -41,7 +35,7 @@ Plug 'kannokanno/previm'
 Plug 'fatih/vim-go'
 Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-fugitive'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'Shougo/denite.nvim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mattn/emmet-vim'
@@ -71,7 +65,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 set nocompatible
 filetype plugin indent on
 
-set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
@@ -175,7 +168,7 @@ let g:terraform_fmt_on_save = 1
 command! -nargs=* Jump call Jump(<f-args>)
 function! Jump(line, char)
   execute "normal " . a:line . "G"
-  execute "normal " . "f" . a:char
+  execute "normal f" . a:char
 endfunction
 
 autocmd QuickFixCmdPost *grep* cwindow
