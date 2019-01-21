@@ -87,19 +87,19 @@ tabspaces: 8
 font:
   # Normal (roman) font face
   normal:
-    family: Myrica M
+    family: Cica
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
   bold:
-    family: Myrica M
+    family: Cica
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
   italic:
-    family: Myrica M
+    family: Cica
     # The `style` can be specified to pick a specific face.
     #style: Italic
 
