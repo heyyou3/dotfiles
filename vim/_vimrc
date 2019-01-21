@@ -1,20 +1,22 @@
 set encoding=utf-8
 scriptencoding utf-8
 set belloff=all
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+let $LANG = "en_US"
 autocmd InsertLeave * set nopaste
 
 set langmenu=en_US
-let $LANG = 'en_US'
 
 nnoremap ; :
 nnoremap : ;
-map <C-n> ;cnext<CR>
-map <C-p> ;cprevious<CR>
-nmap <leader>d ;<C-u>Denite file_rec<CR>
-nmap <leader>f ;<C-u>Jump 
-nmap <leader>/ ;<C-u>Search 
-nmap <leader>c ;<C-u>cclose<CR>
+nnoremap <leader>d :<C-u>Denite file_rec<CR>
+nnoremap <leader>f :<C-u>Jump 
+nnoremap <leader>/ :<C-u>Ag 
+nnoremap <leader>c :<C-u>cclose<CR>
+noremap <C-n> :cnext<CR>
+noremap <C-p> :cprevious<CR>
+noremap <C-_> :split<CR>
+noremap <C-\> :vsplit<CR>
 
 let g:python3_host_prog = expand('/usr/local/bin/python3.7')
 
@@ -172,12 +174,3 @@ function! Jump(line, char)
 endfunction
 
 autocmd QuickFixCmdPost *grep* cwindow
-
-command! -nargs=* Search call Search(<f-args>)
-function! Search(pattern, ...)
-  if get(a:, 1, "") == "git"
-    execute "vim " . a:pattern . " " . "`git ls-files " . get(a:, 2, "") . "`"
-  else
-    execute "vim " . a:pattern . " " . get(a:, 1, "%")
-  endif
-endfunction
