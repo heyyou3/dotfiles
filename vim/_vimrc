@@ -47,7 +47,7 @@ Plug 'tpope/vim-abolish'
 Plug 'airblade/vim-gitgutter'
 Plug 'zchee/deoplete-go'
 Plug 'elzr/vim-json'
-Plug 'dracula/vim'
+Plug 'crusoexia/vim-monokai'
 Plug 'hashivim/vim-terraform'
 call plug#end()
 
@@ -70,11 +70,11 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set t_Co=256
-colorscheme dracula
+syntax on
+colorscheme monokai
 set background=dark
 highlight Normal ctermbg=none
 let g:vim_json_syntax_conceal = 0
-syntax on
 
 set fileencoding=utf-8
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932
