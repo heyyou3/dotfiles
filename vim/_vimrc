@@ -98,7 +98,7 @@ set shiftwidth=2
 hi SpecialKey ctermfg=darkmagenta
 
 set list
-set listchars=tab:>.,trail:.,eol:↲,extends:>,precedes:<,nbsp:%
+set listchars=tab:>-,trail:-,eol:↲,extends:>,precedes:<,nbsp:%
 
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
