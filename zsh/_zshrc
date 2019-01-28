@@ -21,7 +21,7 @@ ENHANCD_FILTER=peco; export ENHANCD_FILTER
 
 local ret_status="%(?:%{$fg_bold[green]%}$ :%{$fg_bold[red]%}$ [%?])"
 
-PROMPT='${ret_status}%{$fg_bold[green]%}%p $(git_prompt_info)% %{$reset_color%}'
+PROMPT='${ret_status}%{$fg_bold[green]%}%C $(git_prompt_info)% %{$reset_color%}'
 
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
