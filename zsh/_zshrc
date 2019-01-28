@@ -35,11 +35,6 @@ done
 # Python
 export PYENV_ROOT=$HOME/.anyenv/envs/pyenv
 
-# precmd
-precmd() {
-  tmux set -qg status-left "[#S] $(pwd)"
-}
-
 # Go
 export GO_VERSION=1.11.2
 export GO111MODULE=on
