@@ -81,6 +81,7 @@ set t_Co=256
 syntax on
 colorscheme tender
 set background=dark
+set termguicolors
 highlight Normal ctermbg=none
 let g:vim_json_syntax_conceal = 0
 
