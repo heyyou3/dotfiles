@@ -47,7 +47,7 @@ Plug 'tpope/vim-abolish'
 Plug 'airblade/vim-gitgutter'
 Plug 'zchee/deoplete-go'
 Plug 'elzr/vim-json'
-Plug 'cocopon/iceberg.vim'
+Plug 'jacoborus/tender.vim'
 Plug 'hashivim/vim-terraform'
 call plug#end()
 
@@ -58,7 +58,7 @@ call denite#custom#map('insert', '<C-\>', '<denite:do_action:vsplit>', 'noremap'
 
 set clipboard+=unnamed
 
-let g:airline_theme='iceberg'
+let g:airline_theme='tender'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
@@ -72,7 +72,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set t_Co=256
 syntax on
-colorscheme iceberg
+colorscheme tender
 set background=dark
 highlight Normal ctermbg=none
 let g:vim_json_syntax_conceal = 0
@@ -99,7 +99,7 @@ set shiftwidth=2
 hi SpecialKey ctermfg=darkmagenta
 
 set list
-set listchars=tab:>-,trail:-,eol:↲,extends:>,precedes:<,nbsp:%
+set listchars=tab:»-,trail:-,nbsp:%,eol:↲
 
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
