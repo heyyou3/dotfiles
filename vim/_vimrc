@@ -7,16 +7,23 @@ autocmd InsertLeave * set nopaste
 
 set langmenu=en_US
 
-nnoremap ; :
-nnoremap : ;
-nnoremap <leader>d :<C-u>Denite file_rec<CR>
-nnoremap <leader>f :<C-u>Jump 
-nnoremap <leader>/ :<C-u>Ag 
-nnoremap <leader>c :<C-u>cclose<CR>
+noremap ; :
+noremap : ;
+noremap <leader>w <C-w>
 noremap <C-n> :cnext<CR>
 noremap <C-p> :cprevious<CR>
 noremap <C-_> :split<CR>
 noremap <C-\> :vsplit<CR>
+
+nnoremap <leader>d :<C-u>Denite file_rec<CR>
+nnoremap <leader>f :<C-u>Jump 
+nnoremap <leader>/ :<C-u>Ag 
+nnoremap <leader>c :<C-u>cclose<CR>
+
+inoremap { {}<Left>
+inoremap ( ()<Left>
+
+tnoremap <C-[> <C-w><S-n>
 
 let g:python3_host_prog = expand('/usr/local/bin/python3.7')
 
