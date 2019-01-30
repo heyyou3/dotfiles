@@ -1,9 +1,4 @@
-"=====
-"
-"t
-"
-"
-"START functions =========="
+"========== START functions =========="
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
 endfunction
@@ -16,6 +11,10 @@ endfunction
 "========== END functions =========="
 
 "========== START default settings =========="
+let g:mapleader = "\<Space>"
+let $LANG = 'en_US'
+let g:python3_host_prog = expand('/usr/local/bin/python3.7')
+
 set belloff=all
 set encoding=utf-8
 set spell
@@ -52,10 +51,6 @@ filetype plugin indent on
 highlight Normal ctermbg=none
 
 scriptencoding utf-8
-
-let g:mapleader = '\<Space>'
-let $LANG = 'en_US'
-let g:python3_host_prog = expand('/usr/local/bin/python3.7')
 
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd InsertLeave * set nopaste
@@ -94,7 +89,7 @@ tnoremap <C-[> <C-w><S-n>
 "========== END key binds =========="
 
 "========== START vim plugins settings =========="
-let s:vim_plug_file = $HOME.'/.vim/autoload/plug.vi'
+let s:vim_plug_file = $HOME.'/.vim/autoload/plug.vim'
 let s:vim_plug_dir = $HOME.'/.vim/plugged'
 if !filereadable(s:vim_plug_file)
   echo 'vim-plug is not installed...'
