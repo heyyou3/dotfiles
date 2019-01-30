@@ -75,7 +75,7 @@ noremap <leader>w <C-w>
 noremap <C-n> :cnext<CR>
 noremap <C-p> :cprevious<CR>
 noremap <C-_> :split<CR>
-noremap <C-\> :vsplit<CR>
+noremap <C-_><C-_> :vsplit<CR>
 
 nnoremap <leader>d :<C-u>Denite file_rec<CR>
 nnoremap <leader>f :<C-u>Jump 
