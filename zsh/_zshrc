@@ -46,3 +46,4 @@ alias gotest='(){go test -v -coverprofile=cover.out; go tool cover -html=cover.o
 alias tf='terraform'
 alias pvim='vim $(ls | peco)'
 alias less='less -X'
+alias tmux='TERM=screen-256color-bce tmux -u'
