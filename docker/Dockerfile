@@ -6,8 +6,11 @@ RUN apt-get update -y \
   git \
   tmux \
   curl \
-  zsh
+  zsh \
+  && git clone https://github.com/NishidaYuhei/dotfiles.git /root/dotfiles \
+  && git clone https://github.com/zplug/zplug /root/.zplug \
+  && /bin/bash /root/dotfiles/set_synbolic_link.sh
 
 WORKDIR /root
 
-CMD ["/bin/bash"]
+CMD ["/usr/bin/zsh"]
