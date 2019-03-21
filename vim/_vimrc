@@ -82,9 +82,6 @@ nnoremap <leader>f :<C-u>Jump
 nnoremap <leader>/ :<C-u>Ag 
 nnoremap <leader>c :<C-u>cclose<CR>
 
-inoremap { {}<Left>
-inoremap ( ()<Left>
-
 tnoremap <C-[> <C-w><S-n>
 "========== END key binds =========="
 
