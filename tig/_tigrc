@@ -1,0 +1,33 @@
+# H を押下すると、ファイルの履歴を表示する
+bind tree H >tig -- %(file)
+bind blob H >tig -- %(file)
+
+# S を押下すると、squash する
+bind main S !git rebase -i %(commit)
+
+# P を押下すると、 push する
+bind main P ?!sh -c "git push %(prompt Input upstream name:) $(git symbolic-ref --short HEAD)"
+
+# @@ を検索した結果に移動する
+bind diff <Ctrl-n> :/^@@
+bind diff <Ctrl-p> :?^@@
+bind log <Ctrl-n> :/^commit
+bind log <Ctrl-p> :?^commit
+bind stage <Ctrl-n> :/^@@
+bind stage <Ctrl-p> :?^@@
+
+# M を押下すると merge する
+bind main M ?!git merge %(commit)
+
+# merge commit の diff を表示する
+set diff-options = -m --first-parent
+
+# カレントブランチと指定コミットの差分を出力する
+bind main x ?>sh -c "tig $(git symbolic-ref --short HEAD)..%(commit)"
+
+# L を押下すると fetch する
+bind main L !git fetch
+
+# @ を押下すると指定したコミットまで戻す
+bind main @ ?git reset --hard %(commit)
+
