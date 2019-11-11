@@ -11,7 +11,6 @@ endfunction
 "========== END functions =========="
 
 "========== START default settings =========="
-let g:mapleader = "\<Space>"
 let $LANG = 'en_US'
 let g:python3_host_prog = expand('/usr/local/bin/python3.7')
 
@@ -69,9 +68,6 @@ endif
 "========== END default settings =========="
 
 "========== START key binds =========="
-noremap ; :
-noremap : ;
-noremap <leader>w <C-w>
 noremap <C-n> :cnext<CR>
 noremap <C-p> :cprevious<CR>
 noremap <C-_> :split<CR>
@@ -105,12 +101,10 @@ else
   Plug 'plasticboy/vim-markdown'
   Plug 'kannokanno/previm'
   Plug 'fatih/vim-go'
-  Plug 'thinca/vim-quickrun'
   Plug 'tpope/vim-fugitive'
   Plug 'Shougo/denite.nvim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'mattn/emmet-vim'
-  Plug 'dhruvasagar/vim-table-mode'
   Plug 'w0rp/ale'
   Plug 'tpope/vim-abolish'
   Plug 'airblade/vim-gitgutter'
@@ -118,7 +112,6 @@ else
   Plug 'elzr/vim-json'
   Plug 'jacoborus/tender.vim'
   Plug 'hashivim/vim-terraform'
-  " Plugin 'davidhalter/jedi-vim'
   call plug#end()
 
   set t_Co=256
