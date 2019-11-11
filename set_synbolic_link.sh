@@ -12,3 +12,4 @@ set_synbolic_link() {
 set_synbolic_link "$HOME/.vimrc" "$HOME/dotfiles/vim/_vimrc"
 set_synbolic_link "$HOME/.zshrc" "$HOME/dotfiles/zsh/_zshrc"
 set_synbolic_link "$HOME/.tmux.conf" "$HOME/dotfiles/tmux/_tmux.conf"
+set_synbolic_link "$HOME/.tigrc" "$HOME/dotfiles/tig/_tigrc"
