@@ -6,7 +6,7 @@ bind blob H >tig -- %(file)
 bind main S !git rebase -i %(commit)
 
 # P を押下すると、 push する
-bind main P ?!sh -c "git push %(prompt Input upstream name:) $(git symbolic-ref --short HEAD)"
+bind main P ?!git push "%(prompt Input upstream name:)" %(repo:head)
 
 # @@ を検索した結果に移動する
 bind diff <Ctrl-n> :/^@@
@@ -23,11 +23,26 @@ bind main M ?!git merge %(commit)
 set diff-options = -m --first-parent
 
 # カレントブランチと指定コミットの差分を出力する
-bind main x ?>sh -c "tig $(git symbolic-ref --short HEAD)..%(commit)"
+bind main x ?>tig %(repo:head)..%(commit)
 
-# L を押下すると fetch する
-bind main L !git fetch
+# Ctrl-f を押下すると fetch する
+bind main <Ctrl-f> !git fetch --all
+
+# L を押下すると pull する
+bind main L ?!git pull
 
 # @ を押下すると指定したコミットまで戻す
-bind main @ ?git reset --hard %(commit)
+bind main @ ?git reset --soft %(commit)
+
+# . で指定した commitID との diff を取得する
+bind main . ?sh -c "git diff %(commit)..%(prompt Enter commit ID: ) | tig"
+
+# ` で commit ID をクリップボードにコピー (Mac用)
+bind generic ` @bash -c "echo -n '%(commit)' | pbcopy"
+
+# ` でファイルパスをクリップボードにコピー (Mac用)
+bind stage  ` @bash -c "echo -n '%(file)' | pbcopy"
+bind status ` @bash -c "echo -n '%(file)' | pbcopy"
+bind tree   ` @bash -c "echo -n '%(file)' | pbcopy"
+bind blob   ` @bash -c "echo -n '%(file)' | pbcopy"
 
