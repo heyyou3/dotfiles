@@ -7,6 +7,7 @@ RUN apt-get update -y \
   tmux \
   curl \
   zsh \
+  gawk \
   && git clone https://github.com/NishidaYuhei/dotfiles.git /root/dotfiles \
   && git clone https://github.com/zplug/zplug /root/.zplug \
   && /bin/bash /root/dotfiles/set_synbolic_link.sh
