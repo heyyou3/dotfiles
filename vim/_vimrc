@@ -65,6 +65,10 @@ if has('syntax')
     augroup END
     call ZenkakuSpace()
 endif
+
+" git commit 時に差分を表示する
+autocmd FileType gitcommit DiffGitCached | wincmd x | resize 10
+
 "========== END default settings =========="
 
 "========== START key binds =========="
