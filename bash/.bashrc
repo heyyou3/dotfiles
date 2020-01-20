@@ -1,8 +1,12 @@
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-# User specific aliases and functions
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+# vi mode on
+set -o vi
+
+# display vi mode
+bind 'set show-mode-in-prompt on'
 
 source ~/dotfiles/bash/git-prompt.sh
 GIT_PS1_SHOWUPSTREAM=true
