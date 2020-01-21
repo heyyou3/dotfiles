@@ -1,6 +1,6 @@
 # H を押下すると、ファイルの履歴を表示する
-bind tree H >tig -- %(file)
-bind blob H >tig -- %(file)
+bind tree H <tig -- %(file)
+bind blob H <tig -- %(file)
 
 # S を押下すると、squash する
 bind main S !git rebase -i %(commit)
@@ -21,6 +21,8 @@ bind main M ?!git merge %(commit)
 
 # merge commit の diff を表示する
 set diff-options = -m --first-parent
+# 差分箇所を highlight する
+set diff-highlight = true
 
 # カレントブランチと指定コミットの差分を出力する
 bind main x ?>tig %(repo:head)..%(commit)
