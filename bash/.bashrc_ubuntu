@@ -1,0 +1,93 @@
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+# User specific aliases and functions
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+source ~/dotfiles/bash/git-prompt.sh
+GIT_PS1_SHOWUPSTREAM=true
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWDIRTYSTATE=true
+
+export TERM=xterm-256color
+
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
+# Go
+export GO_VERSION=1.13.4
+export GO111MODULE=on
+export GOROOT=$HOME/.anyenv/envs/goenv/versions/$GO_VERSION
+export GOPATH=$HOME/go
+export PATH=$GOROOT/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
+
+# alias
+alias gotest='(){go test -v -coverprofile=cover.out; go tool cover -html=cover.out}'
+alias tf='terraform'
+alias pvim='vim $(ls | peco)'
+alias less='less -X'
+alias tmux='TERM=screen-256color-bce tmux -u'
+alias g='git'
+alias repo='cd $(ghq list -p | peco)'
+alias tiga='tig --all'
+alias network-re='sudo systemctl restart network-manager.service'
+alias xrnorm='xrandr -o right'
+
+# Rust
+export PATH=$HOME/.cargo/bin:$PATH
+
+
+# コマンドを共有化
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+shopt -u histappend
+
+# Xmodmap を読み込み
+xmodmap ~/.Xmodmap
+
+# vi mode on
+set -o vi
+
+# display vi mode
+bind 'set show-mode-in-prompt on'
+
+
+# functions
+
+mo_to_gif() {
+  ffmpeg -i "$1" -r 10 "$2"
+}
+
+cdp() {
+  cd ${1:-~/work/}$(ls -la ${1:-~/work/} | peco | awk '{print $9}')
+}
+
