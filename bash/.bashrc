@@ -1,8 +1,12 @@
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-# User specific aliases and functions
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+# vi mode on
+set -o vi
+
+# display vi mode
+bind 'set show-mode-in-prompt on'
 
 source ~/dotfiles/bash/git-prompt.sh
 GIT_PS1_SHOWUPSTREAM=true
@@ -54,5 +58,22 @@ mo_to_gif() {
 
 cdp() {
   cd ${1:-~/work/}$(ls -la ${1:-~/work/} | peco | awk '{print $9}')
+}
+
+memo() {
+  WORK_LOG_BASE_PATH="$HOME/work/work_log"
+  YEAR=$(date +'%Y')
+  WORK_LOG_PATH="$WORK_LOG_BASE_PATH/$YEAR"
+  # 書き込む年のディレクトリが存在しなければ作成する
+  if ! [ -e "$WORK_LOG_PATH" ]; then
+    mkdir -p "$WORK_LOG_PATH"
+  fi
+
+  # 引数が存在しなければ今日の日付のみでファイルを作成、編集する
+  if [ -z $1 ]; then
+    vim -p "$WORK_LOG_PATH/$(date +'%m-%d').md"
+  else
+    vim -p "$WORK_LOG_PATH/$(date +'%m-%d')-$1.md"
+  fi
 }
 
