@@ -1,3 +1,4 @@
 shopt -s expand_aliases
-source ./.bash_aliases
-source ./.bash_functions
+DOT_FILES_PATH="$HOME/dotfiles"
+source "$DOT_FILES_PATH/bash/.bash_aliases"
+source "$DOT_FILES_PATH/bash/.bash_functions"
