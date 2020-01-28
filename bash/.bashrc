@@ -37,43 +37,13 @@ export GOPATH=$HOME/go_work
 export PATH=$GOROOT/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 
-# alias
-alias gotest='(){go test -v -coverprofile=cover.out; go tool cover -html=cover.out}'
-alias tf='terraform'
-alias pvim='vim $(ls | peco)'
-alias less='less -X'
-alias tmux='TERM=screen-256color-bce tmux -u'
-alias g='git'
-alias repo='cd $(ghq list -p | peco)'
-alias tiga='tig --all'
-
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
 
+# reading dotfiles
+DOT_FILES_PATH="$HOME/dotfiles/"
+
+# aliases
+source "$DOT_FILES_PATH/bash/.bash_aliases"
 # functions
-
-mo_to_gif() {
-  ffmpeg -i "$1" -r 10 "$2"
-}
-
-cdp() {
-  cd ${1:-~/work/}$(ls -la ${1:-~/work/} | peco | awk '{print $9}')
-}
-
-memo() {
-  WORK_LOG_BASE_PATH="$HOME/work/work_log"
-  YEAR=$(date +'%Y')
-  WORK_LOG_PATH="$WORK_LOG_BASE_PATH/$YEAR"
-  # 書き込む年のディレクトリが存在しなければ作成する
-  if ! [ -e "$WORK_LOG_PATH" ]; then
-    mkdir -p "$WORK_LOG_PATH"
-  fi
-
-  # 引数が存在しなければ今日の日付のみでファイルを作成、編集する
-  if [ -z $1 ]; then
-    vim -p "$WORK_LOG_PATH/$(date +'%m-%d').md"
-  else
-    vim -p "$WORK_LOG_PATH/$(date +'%m-%d')-$1.md"
-  fi
-}
-
+source "$DOT_FILES_PATH/bash/.bash_functions"
