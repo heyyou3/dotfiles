@@ -96,32 +96,31 @@ if !filereadable(s:vim_plug_file)
   endif
 else
   call plug#begin(s:vim_plug_dir)
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'rking/ag.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'SirVer/ultisnips'
   Plug 'kannokanno/previm'
   Plug 'fatih/vim-go'
   Plug 'tpope/vim-fugitive'
-  Plug 'Shougo/denite.nvim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'mattn/emmet-vim'
   Plug 'w0rp/ale'
   Plug 'tpope/vim-abolish'
   Plug 'airblade/vim-gitgutter'
-  Plug 'zchee/deoplete-go'
   Plug 'elzr/vim-json'
-  Plug 'jacoborus/tender.vim'
   Plug 'edkolev/tmuxline.vim'
+  Plug 'jacoborus/tender.vim'
+  Plug 'jremmen/vim-ripgrep'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
   call plug#end()
 
+  syntax on
   set t_Co=256
   set background=dark
   colorscheme tender
-  syntax on
 
   let g:tmuxline_powerline_separators = 0
   let g:tmuxline_preset = {
