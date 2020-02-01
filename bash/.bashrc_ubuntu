@@ -40,18 +40,6 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
-# Go
-export GO_VERSION=1.13.4
-export GO111MODULE=on
-export GOROOT=$HOME/.anyenv/envs/goenv/versions/$GO_VERSION
-export GOPATH=$HOME/go
-export PATH=$GOROOT/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
-
 # alias
 alias gotest='(){go test -v -coverprofile=cover.out; go tool cover -html=cover.out}'
 alias tf='terraform'
@@ -67,13 +55,24 @@ alias xrnorm='xrandr -o right'
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
 
-
 # コマンドを共有化
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 shopt -u histappend
 
-# Xmodmap を読み込み
-xmodmap ~/.Xmodmap
+if [ "$(hostname)" = 'heyyou-MiniBook' ]; then
+  # Xmodmap を読み込み
+  xmodmap ~/.Xmodmap
+  # anyenv
+  export PATH="$HOME/.anyenv/bin:$PATH"
+  eval "$(anyenv init)"
+  # Go
+  export GO_VERSION=1.13.4
+  export GO111MODULE=on
+  export GOROOT=$HOME/.anyenv/envs/goenv/versions/$GO_VERSION
+  export GOPATH=$HOME/go
+  export PATH=$GOROOT/bin:$PATH
+  export PATH=$GOPATH/bin:$PATH
+fi
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
