@@ -12,7 +12,6 @@ endfunction
 
 "========== START default settings =========="
 let $LANG = 'en_US'
-let g:python3_host_prog = expand('/usr/local/bin/python3.7')
 let $BASH_ENV = '~/dotfiles/bash/.bash_vim'
 
 set belloff=all
@@ -96,47 +95,41 @@ if !filereadable(s:vim_plug_file)
   endif
 else
   call plug#begin(s:vim_plug_dir)
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'rking/ag.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'SirVer/ultisnips'
   Plug 'kannokanno/previm'
   Plug 'fatih/vim-go'
   Plug 'tpope/vim-fugitive'
-  Plug 'Shougo/denite.nvim'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'mattn/emmet-vim'
   Plug 'w0rp/ale'
   Plug 'tpope/vim-abolish'
   Plug 'airblade/vim-gitgutter'
-  Plug 'zchee/deoplete-go'
   Plug 'elzr/vim-json'
-  Plug 'jacoborus/tender.vim'
   Plug 'edkolev/tmuxline.vim'
+  Plug 'jacoborus/tender.vim'
+  Plug 'jremmen/vim-ripgrep'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
   call plug#end()
 
+  syntax on
   set t_Co=256
   set background=dark
   colorscheme tender
-  syntax on
 
-  let g:tmuxline_powerline_separators = 0
+
   let g:tmuxline_preset = {
     \'a'    : '#S',
-    \'c'    : ['#{pane_current_path}'],
+    \'c'    : ['#{pane_current_path}[#(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD)]'],
     \'win'  : ['#I', '#W'],
     \'cwin' : ['#I', '#W', '#F'],
     \'x'    : '#(date)',
     \'y'    : [''],
-    \'z'    : '#(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD)'}
-
-  call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>', 'noremap')
-  call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>', 'noremap')
-  call denite#custom#map('insert', '<C-_>', '<denite:do_action:split>', 'noremap')
-  call denite#custom#map('insert', '<C-_><C-_>', '<denite:do_action:vsplit>', 'noremap')
+    \'z'    : ''}
 
   let g:airline_theme='tender'
   let g:airline_section_a = airline#section#create(['mode','','branch'])

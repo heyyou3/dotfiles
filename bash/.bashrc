@@ -47,3 +47,4 @@ DOT_FILES_PATH="$HOME/dotfiles/"
 source "$DOT_FILES_PATH/bash/.bash_aliases"
 # functions
 source "$DOT_FILES_PATH/bash/.bash_functions"
+[ -f ~/dotfiles/bash/.fzf.bash ] && source ~/dotfiles/bash/.fzf.bash
