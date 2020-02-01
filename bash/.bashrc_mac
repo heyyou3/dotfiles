@@ -9,6 +9,7 @@ set -o vi
 bind 'set show-mode-in-prompt on'
 
 source ~/dotfiles/bash/git-prompt.sh
+source ~/dotfiles/bash/git-completion
 GIT_PS1_SHOWUPSTREAM=true
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWSTASHSTATE=1
