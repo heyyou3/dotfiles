@@ -12,7 +12,6 @@ endfunction
 
 "========== START default settings =========="
 let $LANG = 'en_US'
-let g:python3_host_prog = expand('/usr/local/bin/python3.7')
 let $BASH_ENV = '~/dotfiles/bash/.bash_vim'
 
 set belloff=all
