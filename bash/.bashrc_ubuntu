@@ -74,6 +74,10 @@ shopt -u histappend
 # Xmodmap を読み込み
 xmodmap ~/.Xmodmap
 
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
 # vi mode on
 set -o vi
 
