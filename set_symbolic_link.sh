@@ -13,5 +13,11 @@ set_symbolic_link "$HOME/.vimrc" "$HOME/dotfiles/vim/.vimrc"
 set_symbolic_link "$HOME/.zshrc" "$HOME/dotfiles/zsh/.zshrc"
 set_symbolic_link "$HOME/.tmux.conf" "$HOME/dotfiles/tmux/.tmux.conf"
 set_symbolic_link "$HOME/.tigrc" "$HOME/dotfiles/tig/.tigrc"
-set_symbolic_link "$HOME/.bashrc" "$HOME/dotfiles/bash/.bashrc"
 set_symbolic_link "$HOME/.gitconfig" "$HOME/dotfiles/bash/.gitconfig"
+
+if [ "$(uname)" == 'Darwin' ]; then
+  set_symbolic_link "$HOME/.bashrc" "$HOME/dotfiles/bash/.bashrc_mac"
+elif [ "$(uname)" == 'Linux' ]; then
+  set_symbolic_link "$HOME/.bashrc" "$HOME/dotfiles/bash/.bashrc_ubuntu"
+fi
+

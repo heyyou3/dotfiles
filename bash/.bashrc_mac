@@ -27,8 +27,6 @@ eval "$(direnv hook bash)"
 # Python
 export PYENV_ROOT=$HOME/.anyenv/envs/pyenv
 
-source ~/.phpbrew/bashrc
-
 # Go
 export GO_VERSION=1.12.5
 export GO111MODULE=on
