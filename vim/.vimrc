@@ -89,10 +89,7 @@ tnoremap <C-[> <C-w><S-n>
 let s:vim_plug_file = $HOME.'/.vim/autoload/plug.vim'
 let s:vim_plug_dir = $HOME.'/.vim/plugged'
 if !filereadable(s:vim_plug_file)
-  echo 'vim-plug is not installed...'
-  if input('Would you like to install vim-plug yes or no?') == "yes"
-    call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-  endif
+  call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
 else
   call plug#begin(s:vim_plug_dir)
   Plug 'prabirshrestha/async.vim'
