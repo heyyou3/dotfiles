@@ -112,7 +112,7 @@ if !filereadable(s:vim_plug_file)
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
   call plug#end()
-  source %
+  finish
 endif
 
 call plug#begin(s:vim_plug_dir)
