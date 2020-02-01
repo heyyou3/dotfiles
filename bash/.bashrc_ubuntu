@@ -4,13 +4,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 
-source ~/dotfiles/bash/git-prompt.sh
-source ~/dotfiles/bash/git-completion
-GIT_PS1_SHOWUPSTREAM=true
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWDIRTYSTATE=true
-
 export TERM=xterm-256color
 
 case "$TERM" in
@@ -39,18 +32,6 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u:\w\$ '
 fi
 unset color_prompt force_color_prompt
-
-# alias
-alias gotest='(){go test -v -coverprofile=cover.out; go tool cover -html=cover.out}'
-alias tf='terraform'
-alias pvim='vim $(ls | peco)'
-alias less='less -X'
-alias tmux='TERM=screen-256color-bce tmux -u'
-alias g='git'
-alias repo='cd $(ghq list -p | peco)'
-alias tiga='tig --all'
-alias network-re='sudo systemctl restart network-manager.service'
-alias xrnorm='xrandr -o right'
 
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
@@ -84,14 +65,13 @@ set -o vi
 # display vi mode
 bind 'set show-mode-in-prompt on'
 
+source "$HOME/dotfiles/bash/.bash_aliases"
+source "$HOME/dotfiles/bash/.bash_functions"
 
-# functions
+source ~/dotfiles/bash/git-prompt.sh
+source ~/dotfiles/bash/git-completion
 
-mo_to_gif() {
-  ffmpeg -i "$1" -r 10 "$2"
-}
-
-cdp() {
-  cd ${1:-~/work/}$(ls -la ${1:-~/work/} | peco | awk '{print $9}')
-}
-
+GIT_PS1_SHOWUPSTREAM=true
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWDIRTYSTATE=true
