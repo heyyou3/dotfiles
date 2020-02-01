@@ -1,0 +1,16 @@
+[user]
+	name = heyyou
+	email = hey3you3@gmail.com
+[core]
+	autocrlf = input
+	editor = vim
+[commit]
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	cm = commit
+	df = diff
+	gr = grep
+[merge]
+	tool = vimdiff
