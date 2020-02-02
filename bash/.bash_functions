@@ -47,7 +47,7 @@ dev_env_attach() {
 
 dev_env_clean() {
   PROJECT_NAME=$(basename $(pwd))
-  cd $PORTABLE_DEV_ENV && docker-compose down --rmi all -v && cd -
+  cd $PORTABLE_DEV_ENV && PROJECT_NAME=$PROJECT_NAME docker-compose down --rmi all -v && cd -
   rm -rf ./$PORTABLE_DEV_ENV
 }
 
