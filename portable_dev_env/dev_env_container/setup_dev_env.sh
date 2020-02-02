@@ -19,7 +19,8 @@ apt install -y \
   tmux \
   curl \
   language-pack-ja-base \
-  language-pack-ja
+  language-pack-ja \
+  ripgrep
 
 git clone https://github.com/heyyou3/dotfiles.git "$HOME/dotfiles"
 
