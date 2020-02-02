@@ -23,3 +23,24 @@ memo() {
   fi
 }
 
+PORTABLE_DEV_ENV='portable_dev_env'
+
+dev_env_init() {
+  cp -r "$HOME/dotfiles/$PORTABLE_DEV_ENV" ./
+}
+
+dev_env_setup() {
+   PROJECT_NAME=$(basename $(pwd))
+   cd $PORTABLE_DEV_ENV && PROJECT_NAME=$PROJECT_NAME docker-compose build --no-cache && cd -
+}
+
+dev_env_up() {
+   PROJECT_NAME=$(basename $(pwd))
+   cd $PORTABLE_DEV_ENV && PROJECT_NAME=$PROJECT_NAME docker-compose up -d && cd -
+}
+
+dev_env_clean() {
+  cd $PORTABLE_DEV_ENV && docker-compose down --rmi all -v && cd -
+  rm -rf ./$PORTABLE_DEV_ENV
+}
+
