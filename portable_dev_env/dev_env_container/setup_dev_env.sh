@@ -24,6 +24,8 @@ apt install -y \
 git clone https://github.com/heyyou3/dotfiles.git "$HOME/dotfiles"
 
 ln -s "$HOME/dotfiles/git/diff-highlight" /usr/local/bin/diff-highlight
+chmod +x /usr/local/bin/diff-highlight
+
 
 cd "$HOME/dotfiles" && /bin/bash ./set_symbolic_link.sh
 
