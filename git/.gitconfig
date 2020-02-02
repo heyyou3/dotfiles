@@ -1,16 +1,17 @@
 [user]
-	name = heyyou
-	email = hey3you3@gmail.com
+  name = heyyou
+  email = hey3you3@gmail.com
 [core]
-	autocrlf = input
-	editor = vim
+  autocrlf = input
+  editor = vim
+  excludesfile = ~/.gitignore_global
 [commit]
 [alias]
-	st = status
-	co = checkout
-	br = branch
-	cm = commit
-	df = diff
-	gr = grep
+  st = status
+  co = checkout
+  br = branch
+  cm = commit
+  df = diff
+  gr = grep
 [merge]
-	tool = vimdiff
+  tool = vimdiff
