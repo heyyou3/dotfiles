@@ -39,6 +39,12 @@ dev_env_up() {
    cd $PORTABLE_DEV_ENV && PROJECT_NAME=$PROJECT_NAME docker-compose up -d && cd -
 }
 
+dev_env_attach() {
+   PROJECT_NAME=$(basename $(pwd))
+   echo "$PROJECT_NAME"_dev_env_container
+   docker exec -it "$PROJECT_NAME"_dev_env_container /bin/bash
+}
+
 dev_env_clean() {
   PROJECT_NAME=$(basename $(pwd))
   cd $PORTABLE_DEV_ENV && docker-compose down --rmi all -v && cd -
