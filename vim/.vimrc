@@ -89,7 +89,7 @@ function! LoadPlugins()
     Plug 'tpope/vim-abolish'
     Plug 'airblade/vim-gitgutter'
     Plug 'elzr/vim-json'
-"    Plug 'edkolev/tmuxline.vim'
+"   Plug 'edkolev/tmuxline.vim'
     Plug 'patstockwell/vim-monokai-tasty'
     Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -112,8 +112,8 @@ colorscheme vim-monokai-tasty
 
 
 " let g:tmuxline_preset = {
-"   \'a'    : '#{git_branch} #{git_upstream} #{git_status}',
-"   \'c'    : ['#{pane_current_path}'],
+"   \'a'    : ['#{pane_current_path}'],
+"   \'c'    : ['#{git_branch}', '#{git_upstream}', '#{git_status}'],
 "   \'win'  : ['#I', '#W'],
 "   \'cwin' : ['#I', '#W', '#F'],
 "   \'x'    : '#(date)',
