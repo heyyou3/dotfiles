@@ -71,26 +71,11 @@ autocmd FileType gitcommit DiffGitCached | wincmd x | resize 10
 
 "========== END default settings =========="
 
-"========== START key binds =========="
-noremap <C-n> :cnext<CR>
-noremap <C-p> :cprevious<CR>
-noremap <C-_> :split<CR>
-noremap <C-_><C-_> :vsplit<CR>
-
-nnoremap <leader>d :<C-u>Denite file_rec<CR>
-nnoremap <leader>f :<C-u>Jump 
-nnoremap <leader>/ :<C-u>Ag 
-nnoremap <leader>c :<C-u>cclose<CR>
-
-tnoremap <C-[> <C-w><S-n>
-"========== END key binds =========="
-
 "========== START vim plugins settings =========="
 let s:vim_plug_file = $HOME.'/.vim/autoload/plug.vim'
 let s:vim_plug_dir = $HOME.'/.vim/plugged'
 
-if !filereadable(s:vim_plug_file)
-  call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+function! LoadPlugins()
   call plug#begin(s:vim_plug_dir)
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
@@ -107,40 +92,25 @@ if !filereadable(s:vim_plug_file)
     Plug 'airblade/vim-gitgutter'
     Plug 'elzr/vim-json'
     Plug 'edkolev/tmuxline.vim'
-    Plug 'jacoborus/tender.vim'
+    Plug 'patstockwell/vim-monokai-tasty'
     Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
   call plug#end()
+endfunction
+
+if !filereadable(s:vim_plug_file)
+  call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+  call LoadPlugins()
   finish
 endif
 
-call plug#begin(s:vim_plug_dir)
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'vim-airline/vim-airline'
-Plug 'SirVer/ultisnips'
-Plug 'kannokanno/previm'
-Plug 'fatih/vim-go'
-Plug 'tpope/vim-fugitive'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'mattn/emmet-vim'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-abolish'
-Plug 'airblade/vim-gitgutter'
-Plug 'elzr/vim-json'
-Plug 'edkolev/tmuxline.vim'
-Plug 'jacoborus/tender.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-call plug#end()
+call LoadPlugins()
 
 syntax on
 set t_Co=256
 set background=dark
-colorscheme tender
+colorscheme vim-monokai-tasty
 
 
 let g:tmuxline_preset = {
@@ -152,7 +122,7 @@ let g:tmuxline_preset = {
   \'y'    : [''],
   \'z'    : ''}
 
-let g:airline_theme='tender'
+let g:airline_theme='monokai_tasty'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
