@@ -16,8 +16,6 @@ let $BASH_ENV = '~/dotfiles/bash/.bash_vim'
 
 set belloff=all
 set encoding=utf-8
-set spell
-set spelllang=en,cjk
 set langmenu=en_US
 set clipboard+=unnamed
 set fileencoding=utf-8
@@ -91,7 +89,7 @@ function! LoadPlugins()
     Plug 'tpope/vim-abolish'
     Plug 'airblade/vim-gitgutter'
     Plug 'elzr/vim-json'
-    Plug 'edkolev/tmuxline.vim'
+"    Plug 'edkolev/tmuxline.vim'
     Plug 'patstockwell/vim-monokai-tasty'
     Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -113,14 +111,14 @@ set background=dark
 colorscheme vim-monokai-tasty
 
 
-let g:tmuxline_preset = {
-  \'a'    : '#S',
-  \'c'    : ['#{pane_current_path}[#(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD)]'],
-  \'win'  : ['#I', '#W'],
-  \'cwin' : ['#I', '#W', '#F'],
-  \'x'    : '#(date)',
-  \'y'    : [''],
-  \'z'    : ''}
+" let g:tmuxline_preset = {
+"   \'a'    : '#{git_branch} #{git_upstream} #{git_status}',
+"   \'c'    : ['#{pane_current_path}'],
+"   \'win'  : ['#I', '#W'],
+"   \'cwin' : ['#I', '#W', '#F'],
+"   \'x'    : '#(date)',
+"   \'y'    : [''],
+"   \'z'    : '#S'}
 
 let g:airline_theme='monokai_tasty'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
