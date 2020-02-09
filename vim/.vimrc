@@ -113,7 +113,7 @@ colorscheme vim-monokai-tasty
 
 " let g:tmuxline_preset = {
 "   \'a'    : ['#{pane_current_path}'],
-"   \'c'    : ['#{git_branch}', '#{git_upstream}', '#{git_status}'],
+"   \'c'    : ['#(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD)', '#{git_upstream}', '#{git_status}'],
 "   \'win'  : ['#I', '#W'],
 "   \'cwin' : ['#I', '#W', '#F'],
 "   \'x'    : '#(date)',
