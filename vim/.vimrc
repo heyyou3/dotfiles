@@ -41,7 +41,7 @@ set hlsearch
 set number
 set cursorline
 set list
-set listchars=tab:»-,trail:-,nbsp:%,eol:↲
+set listchars=tab:»-,nbsp:%,eol:↲
 set autowrite
 
 filetype plugin indent on
@@ -77,6 +77,9 @@ function! LoadPlugins()
   call plug#begin(s:vim_plug_dir)
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'vim-airline/vim-airline'
     Plug 'SirVer/ultisnips'
@@ -89,7 +92,7 @@ function! LoadPlugins()
     Plug 'tpope/vim-abolish'
     Plug 'airblade/vim-gitgutter'
     Plug 'elzr/vim-json'
-"   Plug 'edkolev/tmuxline.vim'
+   "Plug 'edkolev/tmuxline.vim'
     Plug 'patstockwell/vim-monokai-tasty'
     Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -113,7 +116,7 @@ colorscheme vim-monokai-tasty
 
 " let g:tmuxline_preset = {
 "   \'a'    : ['#{pane_current_path}'],
-"   \'c'    : ['#(cd #{pane_current_path}; git rev-parse --abbrev-ref HEAD)', '#{git_upstream}', '#{git_status}'],
+"   \'c'    : ['#{git_status}'],
 "   \'win'  : ['#I', '#W'],
 "   \'cwin' : ['#I', '#W', '#F'],
 "   \'x'    : '#(date)',
@@ -168,4 +171,12 @@ let g:terraform_align = 1
 let g:terraform_fold_sections = 1
 let g:terraform_remap_spacebar = 1
 let g:terraform_fmt_on_save = 1
+
+if executable('css-languageserver')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+        \ 'whitelist': ['css', 'less', 'sass'],
+        \ })
+endif
 "========== END vim plugins settings =========="
