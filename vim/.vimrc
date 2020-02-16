@@ -82,7 +82,6 @@ function! LoadPlugins()
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'vim-airline/vim-airline'
-    Plug 'SirVer/ultisnips'
     Plug 'kannokanno/previm'
     Plug 'fatih/vim-go'
     Plug 'tpope/vim-fugitive'
@@ -115,12 +114,12 @@ colorscheme vim-monokai-tasty
 
 
 " let g:tmuxline_preset = {
-"   \'a'    : ['#{pane_current_path}'],
-"   \'c'    : ['#{git_status}'],
+"   \'a'    : ['#{git_status}'],
+"   \'c'    : [''],
 "   \'win'  : ['#I', '#W'],
 "   \'cwin' : ['#I', '#W', '#F'],
-"   \'x'    : '#(date)',
-"   \'y'    : [''],
+"   \'x'    : '',
+"   \'y'    : ['#{pane_current_path}'],
 "   \'z'    : '#S'}
 
 let g:airline_theme='monokai_tasty'
