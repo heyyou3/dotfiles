@@ -21,12 +21,16 @@ apt install -y \
   language-pack-ja-base \
   language-pack-ja \
   ripgrep
+git clone https://github.com/riywo/anyenv ~/.anyenv
+
+echo -e 'if [ -d $HOME/.anyenv ]\n then \n  \n export PATH="$HOME/.anyenv/bin:$PATH" \neval "$(anyenv init -)" \nfi' >> ~/.bashrc
+
+source ~/.bashrc
 
 git clone https://github.com/heyyou3/dotfiles.git "$HOME/dotfiles"
 
 ln -s "$HOME/dotfiles/git/diff-highlight" /usr/local/bin/diff-highlight
 chmod +x /usr/local/bin/diff-highlight
-
 
 cd "$HOME/dotfiles" && /bin/bash ./set_symbolic_link.sh
 
