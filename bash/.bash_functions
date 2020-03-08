@@ -7,6 +7,7 @@ cdp() {
 }
 
 memo() {
+  EXT='.adoc'
   WORK_LOG_BASE_PATH="$HOME/work/work_log"
   YEAR=$(date +'%Y')
   WORK_LOG_PATH="$WORK_LOG_BASE_PATH/$YEAR"
@@ -17,9 +18,9 @@ memo() {
 
   # 引数が存在しなければ今日の日付のみでファイルを作成、編集する
   if [ -z $1 ]; then
-    echo "$WORK_LOG_PATH/$(date +'%m-%d').md"
+    echo "$WORK_LOG_PATH/$(date +'%m-%d')$EXT"
   else
-    echo "$WORK_LOG_PATH/$(date +'%m-%d')-$1.md"
+    echo "$WORK_LOG_PATH/$(date +'%m-%d')-$1$EXT"
   fi
 }
 
