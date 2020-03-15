@@ -1,4 +1,3 @@
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 # User specific aliases and functions
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export LC_ALL=ja_JP.UTF-8
@@ -37,22 +36,14 @@ unset color_prompt force_color_prompt
 export PATH=$HOME/.cargo/bin:$PATH
 
 # コマンドを共有化
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -c; history -r"
 shopt -u histappend
 
 if [ "$(hostname)" = 'heyyou-MiniBook' ]; then
   # Xmodmap を読み込み
   xmodmap ~/.Xmodmap
-  # anyenv
   export PATH="$HOME/.anyenv/bin:$PATH"
-  eval "$(anyenv init)"
-  # Go
-  export GO_VERSION=1.13.4
-  export GO111MODULE=on
-  export GOROOT=$HOME/.anyenv/envs/goenv/versions/$GO_VERSION
-  export GOPATH=$HOME/go
-  export PATH=$GOROOT/bin:$PATH
-  export PATH=$GOPATH/bin:$PATH
+  eval "$(anyenv init -)"
 fi
 
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
@@ -71,9 +62,7 @@ source "$HOME/dotfiles/bash/.bash_functions"
 source ~/dotfiles/bash/git-prompt.sh
 source ~/dotfiles/bash/git-completion
 
-GIT_PS1_SHOWUPSTREAM=true
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWDIRTYSTATE=true
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+eval "$(starship init bash)"
+

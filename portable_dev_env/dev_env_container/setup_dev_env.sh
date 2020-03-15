@@ -20,8 +20,16 @@ apt install -y \
   curl \
   language-pack-ja-base \
   language-pack-ja \
-  ripgrep
+  ripgrep \
+  libffi-dev \
+  libssl-dev \
+  zlib1g-dev \
+  liblzma-dev \
+  libbz2-dev \
+  libreadline-dev \
+  libsqlite3-dev
 git clone https://github.com/riywo/anyenv ~/.anyenv
+curl -fsSL https://starship.rs/install.sh | bash
 
 echo -e 'if [ -d $HOME/.anyenv ]\n then \n  \n export PATH="$HOME/.anyenv/bin:$PATH" \neval "$(anyenv init -)" \nfi' >> ~/.bashrc
 
