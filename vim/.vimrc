@@ -32,7 +32,6 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set autoindent
-set smartindent
 set shiftwidth=2
 set incsearch
 set ignorecase
@@ -43,6 +42,7 @@ set cursorline
 set list
 set listchars=tab:»-,nbsp:%,eol:↲
 set autowrite
+set ttyfast
 
 filetype plugin indent on
 highlight Normal ctermbg=none
@@ -91,11 +91,15 @@ function! LoadPlugins()
     Plug 'tpope/vim-abolish'
     Plug 'airblade/vim-gitgutter'
     Plug 'elzr/vim-json'
-   "Plug 'edkolev/tmuxline.vim'
+    " Plug 'edkolev/tmuxline.vim'
     Plug 'patstockwell/vim-monokai-tasty'
+    Plug 'habamax/vim-asciidoctor'
     Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'dracula/vim', { 'as': 'dracula' }
   call plug#end()
 endfunction
 
@@ -110,7 +114,7 @@ call LoadPlugins()
 syntax on
 set t_Co=256
 set background=dark
-colorscheme vim-monokai-tasty
+colorscheme dracula
 
 
 " let g:tmuxline_preset = {
@@ -122,7 +126,7 @@ colorscheme vim-monokai-tasty
 "   \'y'    : ['#{pane_current_path}'],
 "   \'z'    : '#S'}
 
-let g:airline_theme='monokai_tasty'
+let g:airline_theme='dracula'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
@@ -178,4 +182,8 @@ if executable('css-languageserver')
         \ 'whitelist': ['css', 'less', 'sass'],
         \ })
 endif
+
+" 拡張子とファイルタイプの関連付け
+autocmd BufNewFile,BufRead *.{asciidoc,adoc,asc} set filetype=asciidoc
+let g:previm_open_cmd = 'open -a Google\ Chrome'
 "========== END vim plugins settings =========="
