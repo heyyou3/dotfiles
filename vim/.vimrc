@@ -77,13 +77,12 @@ function! LoadPlugins()
   call plug#begin(s:vim_plug_dir)
     Plug 'prabirshrestha/async.vim'
     Plug 'prabirshrestha/vim-lsp'
-    Plug 'mattn/vim-lsp-settings'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'vim-airline/vim-airline'
     Plug 'kannokanno/previm'
-    Plug 'fatih/vim-go'
+    Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
     Plug 'tpope/vim-fugitive'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'mattn/emmet-vim'
