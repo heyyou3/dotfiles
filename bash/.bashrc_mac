@@ -12,14 +12,6 @@ source ~/dotfiles/bash/git-prompt.sh
 source ~/dotfiles/bash/git-completion
 # anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
-for env in $(ls $HOME/.anyenv/envs); do
-  export PATH="$HOME/.anyenv/envs/$env/shims/:$PATH"
-  export PATH="$HOME/.anyenv/envs/$env/bin:$PATH"
-done
-eval "$(anyenv init -)"
-eval "$(goenv init -)"
-eval "$(pyenv init -)"
-eval "$(direnv hook bash)"
 # Python
 export PYENV_ROOT=$HOME/.anyenv/envs/pyenv
 
