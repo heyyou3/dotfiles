@@ -110,7 +110,7 @@ endif
 
 call LoadPlugins()
 
-syntax on
+syntax off
 set t_Co=256
 set background=dark
 colorscheme dracula
