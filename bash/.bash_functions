@@ -52,3 +52,26 @@ dev_env_clean() {
   rm -rf ./$PORTABLE_DEV_ENV
 }
 
+load_anyenv() {
+  for env in $(ls $HOME/.anyenv/envs); do
+    export PATH="$HOME/.anyenv/envs/$env/shims/:$PATH"
+    export PATH="$HOME/.anyenv/envs/$env/bin:$PATH"
+  done
+  eval "$(anyenv init -)"
+  eval "$(goenv init -)"
+  eval "$(pyenv init -)"
+  eval "$(direnv hook bash)"
+}
+
+acc_perl_test() {
+  for i in $(seq 1 $(ls tests/ | perl -nE 'END{say $./2}')); do diff -uw <(perl main.pl < ./tests/sample-$i.in) <(cat ./tests/sample-$i.out); done
+}
+
+acc_go_test() {
+  for i in $(seq 1 $(ls tests/ | perl -nE 'END{say $./2}')); do diff -uw <(go run main.go < ./tests/sample-$i.in) <(cat ./tests/sample-$i.out); if [ $? -ne 0 ]; then echo "$i 件目のテストが失敗"; fi; done
+}
+
+acc_rust_test() {
+  for i in $(seq 1 $(ls tests/ | perl -nE 'END{say $./2}')); do diff -uw <(cargo run src/main.rs < ./tests/sample-$i.in) <(cat ./tests/sample-$i.out); if [ $? -ne 0 ]; then echo "$i 件目のテストが失敗"; fi; done
+}
+
