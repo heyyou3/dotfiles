@@ -25,6 +25,7 @@ export PATH=$GOPATH/bin:$PATH
 
 # Rust
 export PATH=$HOME/.cargo/bin:$PATH
+export RUSTC_WRAPPER=$(which sccache)
 
 # reading dotfiles
 DOT_FILES_PATH="$HOME/dotfiles/"
