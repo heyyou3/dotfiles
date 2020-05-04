@@ -71,7 +71,13 @@ acc_go_test() {
   for i in $(seq 1 $(ls tests/ | perl -nE 'END{say $./2}')); do diff -uw <(go run main.go < ./tests/sample-$i.in) <(cat ./tests/sample-$i.out); if [ $? -ne 0 ]; then echo "$i 件目のテストが失敗"; fi; done
 }
 
-acc_rust_test() {
-  for i in $(seq 1 $(ls tests/ | perl -nE 'END{say $./2}')); do diff -uw <(cargo run src/main.rs < ./tests/sample-$i.in) <(cat ./tests/sample-$i.out); if [ $? -ne 0 ]; then echo "$i 件目のテストが失敗"; fi; done
+acrt() {
+  cargo fmt
+  cargo atcoder test $1
+}
+
+acrs() {
+  cargo fmt
+  cargo atcoder submit $1
 }
 
