@@ -2,12 +2,6 @@
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
 endfunction
-
-command! -nargs=* Jump call Jump(<f-args>)
-function! Jump(line, char)
-  execute 'normal ' . a:line . 'G'
-  execute 'normal f' . a:char
-endfunction
 "========== END functions =========="
 
 "========== START default settings =========="
@@ -42,6 +36,7 @@ set cursorline
 set list
 set listchars=tab:»-,nbsp:%,eol:↲
 set autowrite
+set relativenumber
 set ttyfast
 
 filetype plugin indent on
@@ -90,15 +85,14 @@ function! LoadPlugins()
     Plug 'tpope/vim-abolish'
     Plug 'airblade/vim-gitgutter'
     Plug 'elzr/vim-json'
-    " Plug 'edkolev/tmuxline.vim'
-    Plug 'patstockwell/vim-monokai-tasty'
     Plug 'habamax/vim-asciidoctor'
     Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'leafgarland/typescript-vim'
     Plug 'peitalin/vim-jsx-typescript'
-    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'morhetz/gruvbox'
+    " Plug 'edkolev/tmuxline.vim'
   call plug#end()
 endfunction
 
@@ -110,11 +104,10 @@ endif
 
 call LoadPlugins()
 
-syntax off
+syntax on
 set t_Co=256
 set background=dark
-colorscheme dracula
-
+colorscheme gruvbox
 
 " let g:tmuxline_preset = {
 "   \'a'    : ['#{git_status}'],
@@ -124,8 +117,9 @@ colorscheme dracula
 "   \'x'    : '',
 "   \'y'    : ['#{pane_current_path}'],
 "   \'z'    : '#S'}
+" let g:tmuxline_powerline_separators = 0
 
-let g:airline_theme='dracula'
+let g:airline_theme='gruvbox'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
@@ -186,3 +180,4 @@ endif
 autocmd BufNewFile,BufRead *.{asciidoc,adoc,asc} set filetype=asciidoc
 let g:previm_open_cmd = 'open -a Google\ Chrome'
 "========== END vim plugins settings =========="
+"
