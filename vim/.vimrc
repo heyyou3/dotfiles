@@ -5,39 +5,40 @@ endfunction
 "========== END functions =========="
 
 "========== START default settings =========="
-let $LANG = 'en_US'
+let $LANG = 'ja_JP'
 let $BASH_ENV = '~/dotfiles/bash/.bash_vim'
 
+set ambiwidth=double
+set autoindent
+set autoread
+set autowrite
 set belloff=all
-set encoding=utf-8
-set langmenu=en_US
 set clipboard+=unnamed
+set cursorline
+set encoding=utf-8
+set expandtab
 set fileencoding=utf-8
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
-set ambiwidth=double
-set laststatus=2
-set showmode
-set showcmd
-set ruler
-set wildmenu
 set history=5000
-set expandtab
-set tabstop=2
-set softtabstop=2
-set autoindent
-set shiftwidth=2
-set incsearch
-set ignorecase
-set smartcase
 set hlsearch
-set number
-set cursorline
+set ignorecase
+set incsearch
+set langmenu=en_US
+set laststatus=2
 set list
 set listchars=tab:»-,nbsp:%,eol:↲
-set autowrite
+set number
 set relativenumber
+set ruler
+set shiftwidth=2
+set showcmd
+set showmode
+set smartcase
+set softtabstop=2
+set tabstop=2
 set ttyfast
+set wildmenu
 
 filetype plugin indent on
 highlight Normal ctermbg=none
@@ -133,14 +134,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:deoplete#enable_at_startup = 1
 
 let g:go_list_type = 'quickfix'
-function! s:build_go_files()
-    let l:file = expand('%')
-    if l:file =~# '^\f\+_test\.go$'
-        call go#test#Test(0, 1)
-    elseif l:file =~# '^\f\+\.go$'
-        call go#cmd#Build(0)
-    endif
-endfunction
 let g:go_fmt_command = 'goimports'
 let g:go_textobj_include_function_doc = 0
 let g:go_fmt_fail_silently = 1
@@ -162,19 +155,6 @@ let g:go_auto_type_info = 1
 set updatetime=100
 let g:go_auto_sameids = 1
 let g:go_gocode_unimported_packages = 1
-
-let g:terraform_align = 1
-let g:terraform_fold_sections = 1
-let g:terraform_remap_spacebar = 1
-let g:terraform_fmt_on_save = 1
-
-if executable('css-languageserver')
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'css-languageserver',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
-        \ 'whitelist': ['css', 'less', 'sass'],
-        \ })
-endif
 
 " 拡張子とファイルタイプの関連付け
 autocmd BufNewFile,BufRead *.{asciidoc,adoc,asc} set filetype=asciidoc
