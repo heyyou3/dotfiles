@@ -63,6 +63,10 @@ load_anyenv() {
   eval "$(direnv hook bash)"
 }
 
+carun() {
+  cargo run $1
+}
+
 acc_perl_test() {
   for i in $(seq 1 $(ls tests/ | perl -nE 'END{say $./2}')); do diff -uw <(perl main.pl < ./tests/sample-$i.in) <(cat ./tests/sample-$i.out); done
 }
@@ -72,12 +76,10 @@ acc_go_test() {
 }
 
 acrt() {
-  cargo fmt
   cargo atcoder test $1
 }
 
 acrs() {
-  cargo fmt
   cargo atcoder submit $1
 }
 
