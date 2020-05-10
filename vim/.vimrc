@@ -38,7 +38,9 @@ set smartcase
 set softtabstop=2
 set tabstop=2
 set ttyfast
+set updatetime=100
 set wildmenu
+set hidden
 
 filetype plugin indent on
 highlight Normal ctermbg=none
@@ -48,6 +50,7 @@ scriptencoding utf-8
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd InsertLeave * set nopaste
 autocmd QuickFixCmdPost *grep* cwindow
+autocmd InsertEnter,WinEnter * checktime
 
 highlight SpecialKey ctermfg=darkmagenta
 
@@ -71,28 +74,32 @@ let s:vim_plug_dir = $HOME.'/.vim/plugged'
 
 function! LoadPlugins()
   call plug#begin(s:vim_plug_dir)
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    Plug 'bronson/vim-trailing-whitespace'
-    Plug 'vim-airline/vim-airline'
-    Plug 'kannokanno/previm'
-    Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-    Plug 'tpope/vim-fugitive'
-    Plug 'editorconfig/editorconfig-vim'
-    Plug 'mattn/emmet-vim'
-    Plug 'w0rp/ale'
-    Plug 'tpope/vim-abolish'
     Plug 'airblade/vim-gitgutter'
+    Plug 'bronson/vim-trailing-whitespace'
+    Plug 'editorconfig/editorconfig-vim'
     Plug 'elzr/vim-json'
+    Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
     Plug 'habamax/vim-asciidoctor'
     Plug 'jremmen/vim-ripgrep'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'kannokanno/previm'
     Plug 'leafgarland/typescript-vim'
-    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'mattn/emmet-vim'
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'prabirshrestha/vim-lsp'
     Plug 'morhetz/gruvbox'
+    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'rust-lang/rust.vim'
+    Plug 'tpope/vim-abolish'
+    Plug 'tpope/vim-fugitive'
+    Plug 'vim-airline/vim-airline'
+    Plug 'w0rp/ale'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
     " Plug 'edkolev/tmuxline.vim'
   call plug#end()
 endfunction
@@ -131,8 +138,6 @@ let g:vim_json_syntax_conceal = 0
 
 let g:vim_markdown_folding_disabled = 1
 
-let g:deoplete#enable_at_startup = 1
-
 let g:go_list_type = 'quickfix'
 let g:go_fmt_command = 'goimports'
 let g:go_textobj_include_function_doc = 0
@@ -152,12 +157,33 @@ let g:go_metalinter_deadline = '5s'
 let g:go_def_mode = 'godef'
 let g:go_decls_includes = 'func,type'
 let g:go_auto_type_info = 1
-set updatetime=100
 let g:go_auto_sameids = 1
 let g:go_gocode_unimported_packages = 1
 
 " 拡張子とファイルタイプの関連付け
 autocmd BufNewFile,BufRead *.{asciidoc,adoc,asc} set filetype=asciidoc
 let g:previm_open_cmd = 'open -a Google\ Chrome'
+
+set runtimepath+=~/dotfiles/vim/UltiSnips
+let g:UltiSnipsSnippetDirectories=[$HOME.'/dotfiles/vim/UltiSnips', 'UltiSnips']
+
+if executable('rls')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
+let g:rustfmt_autosave = 1
+
+if has('python3')
+  let g:UltiSnipsExpandTrigger="<tab>"
+  call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'whitelist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+endif
 "========== END vim plugins settings =========="
-"
