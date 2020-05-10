@@ -10,8 +10,9 @@ bind 'set show-mode-in-prompt on'
 
 source ~/dotfiles/bash/git-prompt.sh
 source ~/dotfiles/bash/git-completion
-# anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
+
+export PATH=$HOME/.anyenv/bin:$PATH
+eval "$(anyenv init - --no-rehash)"
 # Python
 export PYENV_ROOT=$HOME/.anyenv/envs/pyenv
 
