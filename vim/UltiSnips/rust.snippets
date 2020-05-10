@@ -1,0 +1,29 @@
+snippet match "match x {...}"
+match x {
+	_ => println!("{}", $1)
+}
+endsnippet
+
+snippet filter "filter(|x| {...})"
+.filter(|x| x )
+endsnippet
+
+snippet each "for_each(|x| {...})"
+.for_each(|x| {})
+endsnippet
+
+snippet fold "fold(|x| {...})"
+.fold(0, |sum, x| sum + x)
+endsnippet
+
+snippet find "find(|x| {...})"
+.find(|x| x )
+endsnippet
+
+snippet dedup "dedup()"
+.dedup();
+endsnippet
+
+snippet dedupb "dedup_by(|a, b| a > b)"
+.dedup_by(|a, b| a.eq_ignore_ascii_case(b));
+endsnippet
