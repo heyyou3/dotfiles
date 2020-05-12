@@ -87,3 +87,4 @@ name = "lang#sh"
 
 [[layers]]
 name = "lang#rust"
+format-autosave = true
