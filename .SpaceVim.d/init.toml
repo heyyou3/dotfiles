@@ -19,18 +19,18 @@
     enable_guicolors = true
     # Disable statusline separator, if you want to use other value, please
     # install nerd fonts
-    statusline_separator = "arrow"
-    statusline_inactive_separator = "arrow"
     buffer_index_type = 4
-    enable_tabline_filetype_icon = true
-    enable_statusline_mode = true
-    filetree_direction = 'left'
-    enable_vimfiler_gitstatus = true
-    relativenumber = false
     enable_cursorline = true
-    filetype_icon = true
+    enable_statusline_mode = true
     enable_tabline_filetype_icon = true
+    enable_tabline_filetype_icon = true
+    enable_vimfiler_gitstatus = true
     filemanager = "defx"
+    filetree_direction = 'left'
+    filetype_icon = true
+    relativenumber = false
+    statusline_inactive_separator = "arrow"
+    statusline_separator = "arrow"
 
 # Enable autocomplete layer
 [[layers]]
@@ -59,6 +59,7 @@ enable_sidebar = true
 
 [[layers]]
 name = "git"
+git-plugin = "fugitive"
 
 [[layers]]
 name = "github"
