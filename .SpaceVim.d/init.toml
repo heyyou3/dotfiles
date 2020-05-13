@@ -30,6 +30,7 @@
     enable_cursorline = true
     filetype_icon = true
     enable_tabline_filetype_icon = true
+    filemanager = "defx"
 
 # Enable autocomplete layer
 [[layers]]
