@@ -29,8 +29,8 @@
     filetree_direction = 'left'
     filetype_icon = true
     relativenumber = false
-    statusline_inactive_separator = "arrow"
-    statusline_separator = "arrow"
+    statusline_inactive_separator = "fire"
+    statusline_separator = "fire"
 
 # Enable autocomplete layer
 [[layers]]
