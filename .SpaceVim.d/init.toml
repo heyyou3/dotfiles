@@ -90,3 +90,7 @@ name = "lang#sh"
 [[layers]]
 name = "lang#rust"
 format-autosave = true
+
+[[layers]]
+name = "lang#typescript"
+
