@@ -34,63 +34,68 @@
 
 # Enable autocomplete layer
 [[layers]]
-name = 'autocomplete'
-auto-completion-return-key-behavior = "complete"
-auto-completion-tab-key-behavior = "smart"
+  name = 'autocomplete'
+  auto-completion-return-key-behavior = "complete"
+  auto-completion-tab-key-behavior = "smart"
 
 [[layers]]
-name = "lsp"
+  name = "lsp"
+  filetypes = [
+    "rust"
+  ]
+  [layers.override_cmd]
+  rust = ["rls"]
 
 [[layers]]
-name = 'shell'
-default_position = 'top'
-default_height = 30
+  name = 'shell'
+  default_position = 'top'
+  default_height = 30
 
 [[layers]]
-name = "japanese"
+  name = "japanese"
 
 [[layers]]
-name = "colorscheme"
+  name = "colorscheme"
 
 [[layers]]
-name = "ui"
-enable = true
-enable_sidebar = true
+  name = "ui"
+  enable = true
+  enable_sidebar = true
 
 [[layers]]
-name = "git"
-git-plugin = "fugitive"
+  name = "git"
+  git-plugin = "fugitive"
 
 [[layers]]
-name = "github"
+  name = "github"
 
 [[layers]]
-name = "fzf"
+  name = "fzf"
 
 [[layers]]
-name = "tools"
+  name = "tools"
 
 [[layers]]
-name = "lang#dockerfile"
+  name = "lang#dockerfile"
 
 [[layers]]
-name = "lang#go"
+  name = "lang#go"
 
 [[layers]]
-name = "lang#html"
+  name = "lang#html"
 
 [[layers]]
-name = "lang#javascript"
-auto_fix = true
-enable_flow_syntax = true
+  name = "lang#javascript"
+  auto_fix = true
+  enable_flow_syntax = true
 
 [[layers]]
-name = "lang#sh"
+  name = "lang#sh"
 
 [[layers]]
-name = "lang#rust"
-format-autosave = true
+  name = "lang#rust"
+  format-autosave = true
 
 [[layers]]
-name = "lang#typescript"
+  name = "lang#typescript"
 
