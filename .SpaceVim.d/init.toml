@@ -31,6 +31,7 @@
     relativenumber = false
     statusline_inactive_separator = "fire"
     statusline_separator = "fire"
+    vimcompatible = true
 
 # Enable autocomplete layer
 [[layers]]
