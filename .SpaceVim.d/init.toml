@@ -32,6 +32,8 @@
     statusline_inactive_separator = "fire"
     statusline_separator = "fire"
     vimcompatible = true
+    enable_neomake = false
+    enable_ale = true
 
 # Enable autocomplete layer
 [[layers]]
@@ -51,6 +53,9 @@
   name = 'shell'
   default_position = 'top'
   default_height = 30
+
+[[layers]]
+  name = "checkers"
 
 [[layers]]
   name = "japanese"
