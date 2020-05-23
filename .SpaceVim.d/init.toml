@@ -34,6 +34,8 @@
     vimcompatible = true
     enable_neomake = false
     enable_ale = true
+    bootstrap_before = "init#before"
+    bootstrap_after = "init#after"
 
 # Enable autocomplete layer
 [[layers]]
