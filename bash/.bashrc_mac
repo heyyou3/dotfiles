@@ -2,11 +2,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
-# vi mode on
-set -o vi
-
-# display vi mode
-bind 'set show-mode-in-prompt on'
 
 source ~/dotfiles/bash/git-prompt.sh
 source ~/dotfiles/bash/git-completion

@@ -50,12 +50,6 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
-# vi mode on
-set -o vi
-
-# display vi mode
-bind 'set show-mode-in-prompt on'
-
 source "$HOME/dotfiles/bash/.bash_aliases"
 source "$HOME/dotfiles/bash/.bash_functions"
 
