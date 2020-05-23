@@ -3,7 +3,8 @@ mo_to_gif() {
 }
 
 cdp() {
-  cd ${1:-~/work/}$(ls -la ${1:-~/work/} | peco | awk '{print $9}')
+  default_path=~/work/
+  cd ${1:-"$default_path"}$(ls -la ${1:-"$default_path"} | ruby -nle 'if $_[0]=="d" then puts $_ end' | peco | ruby -anle 'puts $F[8]' )
 }
 
 memo() {
