@@ -29,8 +29,8 @@
     filetree_direction = 'left'
     filetype_icon = true
     relativenumber = false
-    statusline_inactive_separator = "fire"
-    statusline_separator = "fire"
+    statusline_inactive_separator = "nil"
+    statusline_separator = "nil"
     vimcompatible = true
     enable_neomake = false
     enable_ale = true
