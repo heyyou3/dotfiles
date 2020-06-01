@@ -107,3 +107,9 @@
 [[layers]]
   name = "lang#typescript"
 
+[[layers]]
+  name = "lang#vue"
+
+[[layers]]
+  name = "lang#php"
+
