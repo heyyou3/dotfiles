@@ -88,16 +88,7 @@ set_tmux_env() {
   tmux setenv $1 $2 && eval $(tmux showenv $1)
 }
 
-set_vim_project() {
-  vim_project_conf=$(echo $1 | ruby -nle 'if $_[-1] == "/" then puts $_.chop; else puts $_; end')
-  set_tmux_env VIM_PROJECT_CONF $vim_project_conf
-}
-
-make_vim_project() {
-  if [ -z "$VIM_PROJECT_CONF" ]; then
-    echo "Run set_vim_project!!"
-  else
-    mkdir "$VIM_PROJECT_CONF/.vim_project_conf"
-  fi
+make_vim_settings() {
+  mkdir "$(pwd)/.vim_settings"
 }
 

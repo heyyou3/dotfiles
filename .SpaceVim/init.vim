@@ -8,3 +8,9 @@
 
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/main.vim'
 let $BASH_ENV = '~/dotfiles/bash/.bash_vim'
+
+let vim_settings_dir = getcwd().'/.vim_settings'
+
+if isdirectory(vim_settings_dir)
+  execute 'source '.vim_settings_dir.'/*.vim'
+endif

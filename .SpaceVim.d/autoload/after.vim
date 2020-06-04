@@ -4,10 +4,3 @@ if executable("rg")
 endif
 
 autocmd QuickFixCmdPost *grep* cwindow
-
-let vim_project_dir = '.vim_project_conf'
-
-if $VIM_PROJECT_CONF != "" && isdirectory($VIM_PROJECT_CONF.'/'.vim_project_dir)
-  execute 'source '.$VIM_PROJECT_CONF.'/'.vim_project_dir.'/*.vim'
-endif
-
