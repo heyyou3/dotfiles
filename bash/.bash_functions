@@ -89,6 +89,8 @@ set_tmux_env() {
 }
 
 make_vim_settings() {
-  mkdir "$(pwd)/.vim_settings"
+  target_dir="$(pwd)/.vim_settings"
+  mkdir $target_dir
+  touch "$target_dir/settings.vim"
 }
 
