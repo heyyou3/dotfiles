@@ -10,4 +10,4 @@ alias doc='docker'
 alias docc='docker-compose'
 alias rust_run='cargo fmt && cargo run'
 alias tmux_reload='tmux source ~/.tmux.conf'
-alias sv="nvim"
+alias sv="VIM_PROJECT_CONF=$VIM_PROJECT_CONF nvim"
