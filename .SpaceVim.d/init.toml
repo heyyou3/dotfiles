@@ -36,6 +36,7 @@
     enable_ale = true
     bootstrap_before = "init#before"
     bootstrap_after = "init#after"
+    project_rooter_automatically = 0
 
 # Enable autocomplete layer
 [[layers]]
