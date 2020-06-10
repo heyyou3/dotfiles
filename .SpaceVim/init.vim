@@ -24,7 +24,7 @@ endfunction
 function! s:make_curl_headers(cd_headers) abort
   let res = []
   for k in keys(a:cd_headers)
-    let res = add(res, '-H '.'\"'.k.':'.a:cd_headers[k].'\"')
+    let res = add(res, '-H '.''''.k.':'.a:cd_headers[k].'''')
   endfor
   return join(res, ' ').' '
 endfunction
@@ -47,7 +47,7 @@ endfunction
 
 function! s:make_curl_body(cd_body) abort
   let json_body = json_encode(a:cd_body)
-  return '-d '."\'".json_body."\'".' '
+  return '-d '.''''.json_body.''''.' '
 endfunction
 
 function! s:make_curl_method(cd_method) abort
