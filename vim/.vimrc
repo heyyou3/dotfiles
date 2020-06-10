@@ -101,6 +101,8 @@ function! LoadPlugins()
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
     " Plug 'edkolev/tmuxline.vim'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'lifepillar/vim-solarized8'
   call plug#end()
 endfunction
 
@@ -113,9 +115,9 @@ endif
 call LoadPlugins()
 
 syntax on
-set t_Co=256
+set t_Co=16
 set background=dark
-colorscheme gruvbox
+colorscheme solarized8
 
 " let g:tmuxline_preset = {
 "   \'a'    : ['#{git_status}'],
@@ -127,7 +129,8 @@ colorscheme gruvbox
 "   \'z'    : '#S'}
 " let g:tmuxline_powerline_separators = 0
 
-let g:airline_theme='gruvbox'
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
