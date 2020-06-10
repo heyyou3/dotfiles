@@ -77,3 +77,5 @@ function! Lruc() abort
         \ 'sink': function('s:sink')})
 endfunction
 
+call SpaceVim#custom#SPC('nnoremap', ['d', 'l'], 'call Lruc()', 'call Lruc', 1)
+
