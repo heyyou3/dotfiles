@@ -62,9 +62,9 @@ function! s:sink(candidate) abort
   let curl_queries = has_key(dict_candidate, 'queries') ? s:make_curl_queries(dict_candidate['queries']) : ''
   let curl_body = has_key(dict_candidate, 'body') ? s:make_curl_body(dict_candidate['body']) : ''
   let curl_path = dict_candidate['path']
-  let curl_cmd = 'curl -vvv '.curl_method.curl_headers.curl_body.'"'.s:global_conf['base_url'].curl_path.curl_queries.'"'
+  let curl_cmd = 'curl -vvv '.curl_method.curl_headers.curl_body.''''.s:global_conf['base_url'].curl_path.curl_queries.''''
 
-  execute 'new '.'curl_['.strftime("%Y%m%d-%H%M%S", localtime()).']'
+  execute 'new '.strftime('%Y%m%d-%H%M%S', localtime())
   execute 'r!echo '.curl_cmd
   execute 'r!'.curl_cmd
 endfunction
