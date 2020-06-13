@@ -2,9 +2,9 @@ mo_to_gif() {
   ffmpeg -i "$1" -r 10 "$2"
 }
 
-cdp() {
+cdf() {
   default_path=~/work/
-  cd ${1:-"$default_path"}$(ls -la ${1:-"$default_path"} | ruby -nle 'if $_[0]=="d" then puts $_ end' | peco | ruby -anle 'puts $F[8]' )
+  cd ${1:-"$default_path"}$(ls -la ${1:-"$default_path"} | ruby -nle 'if $_[0]=="d" then puts $_ end' | fzf | ruby -anle 'puts $F[8]' )
 }
 
 memo() {

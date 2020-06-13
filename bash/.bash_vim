@@ -1,4 +1,0 @@
-shopt -s expand_aliases
-DOT_FILES_PATH="$HOME/dotfiles"
-source "$DOT_FILES_PATH/bash/.bash_aliases"
-source "$DOT_FILES_PATH/bash/.bash_functions"

@@ -1,0 +1,10 @@
+alias tf='terraform'
+alias less='less -X'
+alias tmux='TERM=screen-256color-bce tmux -u'
+alias g='git'
+alias repo='cd $(ghq list -p | fzf)'
+alias tiga='tig --all'
+alias doc='docker'
+alias docc='docker-compose'
+alias tmreload='tmux source ~/.tmux.conf'
+alias sv="nvim"
