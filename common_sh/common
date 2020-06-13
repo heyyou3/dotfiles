@@ -1,0 +1,17 @@
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export LC_ALL=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
+
+export STARSHIP_CONFIG=$DOT_FILES_PATH/.starship/starship.toml
+
+if [ "$(uname)" = 'Darwin' ]; then
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+fi
+
+if [ "$(hostname)" = 'heyyou-MiniBook' ]; then
+  # Enter キーのキーコードが違うため Xmodmap を読み込む
+  xmodmap ~/.Xmodmap
+fi
+
+source "$DOT_FILES_PATH/common_sh/aliases"
+source "$DOT_FILES_PATH/common_sh/functions"
