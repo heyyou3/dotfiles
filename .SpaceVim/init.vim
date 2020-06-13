@@ -7,7 +7,7 @@
 "=============================================================================
 
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/main.vim'
-let $BASH_ENV = '~/dotfiles/bash/.bash_vim'
+:set shellcmdflag=-ic
 
 let vim_settings_dir = getcwd().'/.SpaceVim.d'
 
