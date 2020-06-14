@@ -13,5 +13,9 @@ if [ "$(hostname)" = 'heyyou-MiniBook' ]; then
   xmodmap ~/.Xmodmap
 fi
 
+if [ -d "$HOME/.cargo" ]; then
+  export PATH=$HOME/.cargo/bin:$PATH
+fi
+
 source "$DOT_FILES_PATH/common_sh/aliases"
 source "$DOT_FILES_PATH/common_sh/functions"
