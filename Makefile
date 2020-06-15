@@ -13,7 +13,7 @@ endef
 # SpaceVim
 # after init
 DOTFILES_PATH := "$(HOME)/dotfiles"
-space_vim_d := Makefile
+space_vim_d := .SpaceVim.d
 space_vim_init := .SpaceVim/init.vim
 bash_profile := .bash_profile
 bashrc := .bashrc
