@@ -12,11 +12,11 @@
     # set spacevim theme. by default colorscheme layer is not loaded,
     # if you want to use more colorscheme, please load the colorscheme
     # layer
-    colorscheme = "NeoSolarized"
+    colorscheme = "iceberg"
     colorscheme_bg = "dark"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
-    enable_guicolors = false
+    enable_guicolors = true
     # Disable statusline separator, if you want to use other value, please
     # install nerd fonts
     buffer_index_type = 4
@@ -65,6 +65,10 @@
 
 [[layers]]
   name = "colorscheme"
+
+[[custom_plugins]]
+  name = "cocopon/iceberg.vim"
+  merged = 0
 
 [[layers]]
   name = "ui"
