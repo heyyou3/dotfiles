@@ -8,5 +8,5 @@
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/main.vim'
 let g:python_host_skip_check = 1
 let g:python3_host_skip_check = 1
-:set shellcmdflag=-ic
+set shellcmdflag=-ic
 
