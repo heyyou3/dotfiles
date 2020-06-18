@@ -66,10 +66,6 @@
 [[layers]]
   name = "colorscheme"
 
-[[custom_plugins]]
-  name = "cocopon/iceberg.vim"
-  merged = 0
-
 [[layers]]
   name = "ui"
   enable = true
@@ -118,3 +114,10 @@
 [[layers]]
   name = "lang#php"
 
+[[custom_plugins]]
+  name = "cocopon/iceberg.vim"
+  merged = 0
+
+[[custom_plugins]]
+  name = "jceb/vim-orgmode"
+  merged = 0
