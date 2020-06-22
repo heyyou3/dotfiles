@@ -9,6 +9,10 @@ if [ "$(uname)" = 'Darwin' ]; then
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 fi
 
+if [ -f "$HOME/.org_sh" ]; then
+  source "$HOME/.org_sh"
+fi
+
 if [ "$(hostname)" = 'heyyou-MiniBook' ]; then
   # Enter キーのキーコードが違うため Xmodmap を読み込む
   xmodmap ~/.Xmodmap
