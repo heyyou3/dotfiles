@@ -1,4 +1,4 @@
-.PHONY: deploy
+.PHONY: common_deploy deploy
 
 define _ln
 	@ln -sfn $1 $2
@@ -27,7 +27,7 @@ zshrc := .zshrc
 zshenv := .zshenv
 alacritty := alacritty.yml
 
-deploy:
+common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/$(space_vim_d)","$(HOME)/$(space_vim_d)")
 	@$(call _ln,"$(DOTFILES_PATH)/$(space_vim_init)","$(HOME)/$(space_vim_init)")
 	@$(call _ln,"$(DOTFILES_PATH)/bash/$(bash_profile)","$(HOME)/$(bash_profile)")
@@ -42,6 +42,16 @@ deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshenv)","$(HOME)/$(zshenv)")
 	@sudo ln -sfn "$(DOTFILES_PATH)/git/$(diff_highlight)" "/usr/local/bin/$(diff_highlight)"
 
+xinitrc := .xinitrc
+
+ifeq ($(shell uname), Linux)
+deploy: common_deploy
+	@echo 'Linux only settings'
+	@$(call _ln,"$(DOTFILES_PATH)/$(xinitrc)","$(HOME)/$(xinitrc)")
+else
+deploy: common_deploy
+endif
+
 install:
 	@echo 'Install SpaceVim'
 	@curl -sLf https://spacevim.org/install.sh | bash
@@ -49,8 +59,9 @@ install:
 	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 	@echo 'Install starship'
 	@curl -fsSL https://starship.rs/install.sh | bash
-	@echo 'Install tig'
+	@echo 'Install tpm'
+	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@echo 'ArchLinux Install Command'
-	@echo 'pacman -Sy --noconfirm tig tmux'
+	@echo 'pacman -Sy --noconfirm tig tmux fzf xclip'
 	@echo 'Mac Install Command'
-	@echo 'brew install tig tmux'
+	@echo 'brew install tig tmux fzf'
