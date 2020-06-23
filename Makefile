@@ -47,7 +47,7 @@ xinitrc := .xinitrc
 ifeq ($(shell uname), Linux)
 deploy: common_deploy
 	@echo 'Linux only settings'
-	@$(call _ln,"$(DOTFILES_PATH)/$(xinitrc)","$(HOME)/$(xinitrc)")
+	@$(call _ln,"$(DOTFILES_PATH)/archlinux/$(xinitrc)","$(HOME)/$(xinitrc)")
 else
 deploy: common_deploy
 endif
