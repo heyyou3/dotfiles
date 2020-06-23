@@ -42,12 +42,12 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshenv)","$(HOME)/$(zshenv)")
 	@sudo ln -sfn "$(DOTFILES_PATH)/git/$(diff_highlight)" "/usr/local/bin/$(diff_highlight)"
 
-xinitrc := .xinitrc
+xprofile := .xprofile
 
 ifeq ($(shell uname), Linux)
 deploy: common_deploy
-	@echo 'Linux only settings'
-	@$(call _ln,"$(DOTFILES_PATH)/archlinux/$(xinitrc)","$(HOME)/$(xinitrc)")
+	@echo 'Set Linux settings'
+	@$(call _ln,"$(DOTFILES_PATH)/archlinux/$(xprofile)","$(HOME)/$(xprofile)")
 else
 deploy: common_deploy
 endif
