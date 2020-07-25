@@ -43,11 +43,13 @@ common_deploy:
 	@sudo ln -sfn "$(DOTFILES_PATH)/git/$(diff_highlight)" "/usr/local/bin/$(diff_highlight)"
 
 xprofile := .xprofile
+xmonad_hs := xmonad.hs
 
 ifeq ($(shell uname), Linux)
 deploy: common_deploy
 	@echo 'Set Linux settings'
 	@$(call _ln,"$(DOTFILES_PATH)/archlinux/$(xprofile)","$(HOME)/$(xprofile)")
+	@$(call _ln,"$(DOTFILES_PATH)/archlinux/.xmonad/$(xmonad_hs)","$(HOME)/.xmonad/$(xmonad_hs)")
 else
 deploy: common_deploy
 endif
@@ -62,6 +64,6 @@ install:
 	@echo 'Install tpm'
 	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@echo 'ArchLinux Install Command'
-	@echo 'pacman -Sy --noconfirm tig tmux fzf xclip neovim python-pip fcitx fcitx-mozc fcitx-configtool'
+	@echo 'pacman -Sy --noconfirm tig tmux fzf xclip neovim python-pip fcitx fcitx-mozc fcitx-configtool xmonad xmonad-contrib'
 	@echo 'Mac Install Command'
 	@echo 'brew install tig tmux fzf'
