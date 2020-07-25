@@ -62,6 +62,6 @@ install:
 	@echo 'Install tpm'
 	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@echo 'ArchLinux Install Command'
-	@echo 'pacman -Sy --noconfirm tig tmux fzf xclip'
+	@echo 'pacman -Sy --noconfirm tig tmux fzf xclip neovim python-pip fcitx fcitx-mozc fcitx-configtool'
 	@echo 'Mac Install Command'
 	@echo 'brew install tig tmux fzf'
