@@ -95,3 +95,13 @@ make_vim_settings() {
   touch "$target_dir/tasks.toml"
 }
 
+start_linux_scripts() {
+  xhost +SI:localuser:xkeysnail
+  sudo -u xkeysnail /opt/xkeysnail/bin/xkeysnail /opt/xkeysnail/config.py >/dev/null 2>/dev/null &
+  xmonad --replace >/dev/null 2>/dev/null &
+  sleep 3
+  xmodmap "${HOME}/dotfiles/archlinux/.Xmodmap"
+  xmodmap "${HOME}/dotfiles/archlinux/.Xmodmap"
+  xset r rate 300 99
+}
+
