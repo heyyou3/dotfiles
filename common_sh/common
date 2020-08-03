@@ -13,11 +13,6 @@ if [ -f "$HOME/.org_sh" ]; then
   source "$HOME/.org_sh"
 fi
 
-if [ "$(hostname)" = 'heyyou-MiniBook' ]; then
-  # Enter キーのキーコードが違うため Xmodmap を読み込む
-  xmodmap ~/.Xmodmap
-fi
-
 if [ -d "$HOME/.cargo" ]; then
   export PATH=$HOME/.cargo/bin:$PATH
 fi
