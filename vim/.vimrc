@@ -102,7 +102,7 @@ function! LoadPlugins()
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
     " Plug 'edkolev/tmuxline.vim'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'cocopon/iceberg.vim'
+    Plug 'srcery-colors/srcery-vim'
   call plug#end()
 endfunction
 
@@ -117,7 +117,7 @@ call LoadPlugins()
 syntax on
 set t_Co=256
 set background=dark
-colorscheme iceberg
+colorscheme srcery
 
 " let g:tmuxline_preset = {
 "   \'a'    : ['#{git_status}'],
@@ -127,9 +127,9 @@ colorscheme iceberg
 "   \'x'    : '',
 "   \'y'    : ['#{pane_current_path}'],
 "   \'z'    : '#S'}
-" let g:tmuxline_powerline_separators = 0
+" let g:tmuxline_powerline_separators = 1
 
-let g:airline_theme='iceberg'
+let g:airline_theme='srcery'
 let g:airline_solarized_bg='dark'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
