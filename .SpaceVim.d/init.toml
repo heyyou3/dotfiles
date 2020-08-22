@@ -114,6 +114,9 @@
 [[layers]]
   name = "lang#php"
 
+[[layers]]
+  name = "lang#julia"
+
 [[custom_plugins]]
   name = "jceb/vim-orgmode"
   merged = 0
