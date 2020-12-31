@@ -48,3 +48,5 @@ bind status ; @bash -c "echo -n '%(file)' | pbcopy"
 bind tree   ; @bash -c "echo -n '%(file)' | pbcopy"
 bind blob   ; @bash -c "echo -n '%(file)' | pbcopy"
 
+bind status C !git commit -v
+

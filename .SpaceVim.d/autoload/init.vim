@@ -9,3 +9,4 @@ function! init#after() abort
   execute 'source '.s:path.'/after.vim'
 endfunction
 
+call SpaceVim#custom#SPC('nnoremap', ['g', 't'], 'Tig', 'Tig', 1)

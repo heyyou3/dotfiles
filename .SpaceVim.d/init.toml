@@ -8,35 +8,35 @@
 #
 ## All SpaceVim option below [option] section
 [options]
-    automatic_update = true
-    # set spacevim theme. by default colorscheme layer is not loaded,
-    # if you want to use more colorscheme, please load the colorscheme
-    # layer
-    colorscheme = "nord"
-    colorscheme_bg = "dark"
-    # Disable guicolors in basic mode, many terminal do not support 24bit
-    # true colors
-    enable_guicolors = true
-    # Disable statusline separator, if you want to use other value, please
-    # install nerd fonts
-    buffer_index_type = 4
-    enable_cursorline = true
-    enable_statusline_mode = true
-    enable_tabline_filetype_icon = true
-    enable_tabline_filetype_icon = true
-    enable_vimfiler_gitstatus = true
-    filemanager = "defx"
-    filetree_direction = 'left'
-    filetype_icon = true
-    relativenumber = false
-    statusline_inactive_separator = "nil"
-    statusline_separator = "nil"
-    vimcompatible = true
-    enable_neomake = false
-    enable_ale = true
-    bootstrap_before = "init#before"
-    bootstrap_after = "init#after"
-    project_rooter_automatically = 0
+  automatic_update = true
+  # set spacevim theme. by default colorscheme layer is not loaded,
+  # if you want to use more colorscheme, please load the colorscheme
+  # layer
+  colorscheme = "nord"
+  colorscheme_bg = "dark"
+  # Disable guicolors in basic mode, many terminal do not support 24bit
+  # true colors
+  enable_guicolors = true
+  # Disable statusline separator, if you want to use other value, please
+  # install nerd fonts
+  buffer_index_type = 4
+  enable_cursorline = true
+  enable_statusline_mode = true
+  enable_tabline_filetype_icon = true
+  enable_tabline_filetype_icon = true
+  enable_vimfiler_gitstatus = true
+  filemanager = "defx"
+  filetree_direction = 'left'
+  filetype_icon = true
+  relativenumber = false
+  statusline_inactive_separator = "nil"
+  statusline_separator = "nil"
+  vimcompatible = true
+  enable_neomake = false
+  enable_ale = true
+  bootstrap_before = "init#before"
+  bootstrap_after = "init#after"
+  project_rooter_automatically = 0
 
 # Enable autocomplete layer
 [[layers]]
@@ -120,3 +120,7 @@
 [[custom_plugins]]
   name = "jceb/vim-orgmode"
   merged = 0
+
+[[custom_plugins]]
+  name = "iberianpig/tig-explorer.vim"
+
