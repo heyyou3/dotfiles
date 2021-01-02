@@ -40,6 +40,9 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/vim/$(vimrc)","$(HOME)/$(vimrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshrc)","$(HOME)/$(zshrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshenv)","$(HOME)/$(zshenv)")
+ifeq ($(shell uname), Linux)
+	@ln -sfn "$(DOTFILES_PATH)/git/$(diff_highlight)" "/usr/local/bin/$(diff_highlight)"
+endif
 	@sudo ln -sfn "$(DOTFILES_PATH)/git/$(diff_highlight)" "/usr/local/bin/$(diff_highlight)"
 
 xprofile := .xprofile
