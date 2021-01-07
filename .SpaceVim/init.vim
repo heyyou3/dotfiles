@@ -5,8 +5,9 @@
 " URL: https://spacevim.org
 " License: GPLv3
 "=============================================================================
+let g:python_host_prog = $PYENV_ROOT.'/shims/python'
+let g:python3_host_prog = $PYENV_ROOT.'/shims/python3'
+
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/main.vim'
-let g:python_host_skip_check = 1
-let g:python3_host_skip_check = 1
 set shellcmdflag=-ic
 set guifont=Cica:h16
