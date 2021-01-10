@@ -1,0 +1,2 @@
+[my-task]
+  command = 'echo $file'

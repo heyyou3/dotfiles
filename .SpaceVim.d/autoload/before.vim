@@ -1,7 +1,7 @@
 let vim_settings_dir = getcwd().'/.SpaceVim.d'
 
 if isdirectory(vim_settings_dir)
-  execute 'source '.vim_settings_dir.'/settings*.vim'
+  execute 'source '.vim_settings_dir.'/project_settings*.vim'
 endif
 
 let s:TOML = SpaceVim#api#import('data#toml')
