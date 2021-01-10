@@ -27,7 +27,8 @@ apt install -y \
   liblzma-dev \
   libbz2-dev \
   libreadline-dev \
-  libsqlite3-dev
+  libsqlite3-dev \
+  neovim
 git clone https://github.com/riywo/anyenv ~/.anyenv
 curl -fsSL https://starship.rs/install.sh > $HOME/starship_install.sh
 /bin/bash $HOME/starship_install.sh -y
@@ -39,13 +40,11 @@ git clone https://github.com/heyyou3/dotfiles.git "$HOME/dotfiles"
 ln -s "$HOME/dotfiles/git/diff-highlight" /usr/local/bin/diff-highlight
 chmod +x /usr/local/bin/diff-highlight
 
-mkdir "$HOME/.SpaceVim"
-mkdir "$HOME/.config"
+curl -sLf https://spacevim.org/install.sh | bash
+
 mkdir "$HOME/.xmonad"
 
 cd "$HOME/dotfiles" && make deploy
-
-curl -sLf https://spacevim.org/install.sh | bash
 
 git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 tmux start-server
