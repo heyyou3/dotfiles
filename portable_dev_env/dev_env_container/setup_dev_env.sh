@@ -29,7 +29,8 @@ apt install -y \
   libreadline-dev \
   libsqlite3-dev
 git clone https://github.com/riywo/anyenv ~/.anyenv
-curl -fsSL https://starship.rs/install.sh | bash
+curl -fsSL https://starship.rs/install.sh > $HOME/starship_install.sh
+/bin/bash $HOME/starship_install.sh -y
 
 echo -e 'if [ -d $HOME/.anyenv ]\n then \n  \n export PATH="$HOME/.anyenv/bin:$PATH" \neval "$(anyenv init -)" \nfi' >> ~/.bashrc
 
@@ -38,9 +39,13 @@ git clone https://github.com/heyyou3/dotfiles.git "$HOME/dotfiles"
 ln -s "$HOME/dotfiles/git/diff-highlight" /usr/local/bin/diff-highlight
 chmod +x /usr/local/bin/diff-highlight
 
-cd "$HOME/dotfiles" && /bin/bash ./set_symbolic_link.sh
+mkdir "$HOME/.SpaceVim"
+mkdir "$HOME/.config"
+mkdir "$HOME/.xmonad"
 
-vim +'PlugInstall --sync' +q +q
+cd "$HOME/dotfiles" && make deploy
+
+curl -sLf https://spacevim.org/install.sh | bash
 
 git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 tmux start-server
