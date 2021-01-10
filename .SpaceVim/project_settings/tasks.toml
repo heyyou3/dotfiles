@@ -1,2 +1,2 @@
 [my-task]
-  command = 'echo $file'
+  command = 'echo ${file}'
