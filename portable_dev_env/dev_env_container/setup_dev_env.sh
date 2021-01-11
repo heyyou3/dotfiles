@@ -31,7 +31,8 @@ apt install -y \
   libbz2-dev \
   libreadline-dev \
   libsqlite3-dev \
-  neovim
+  neovim \
+  fzf
 git clone https://github.com/riywo/anyenv ~/.anyenv
 curl -fsSL https://starship.rs/install.sh > $HOME/starship_install.sh
 /bin/bash $HOME/starship_install.sh -y
