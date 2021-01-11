@@ -1,10 +1,13 @@
 #!/bin/bash
 set -eux
 
+PYTHON_VERSION='3.9.0'
+
 apt update -y && \
 apt install software-properties-common -y && \
 add-apt-repository ppa:git-core/ppa && \
 add-apt-repository ppa:x4121/ripgrep && \
+add-apt-repository ppa:neovim-ppa/stable && \
 apt update -y && \
 apt install -y \
   build-essential \
@@ -33,18 +36,28 @@ git clone https://github.com/riywo/anyenv ~/.anyenv
 curl -fsSL https://starship.rs/install.sh > $HOME/starship_install.sh
 /bin/bash $HOME/starship_install.sh -y
 
-echo -e 'if [ -d $HOME/.anyenv ]\n then \n  \n export PATH="$HOME/.anyenv/bin:$PATH" \neval "$(anyenv init -)" \nfi' >> ~/.bashrc
-
 git clone https://github.com/heyyou3/dotfiles.git "$HOME/dotfiles"
-
-ln -s "$HOME/dotfiles/git/diff-highlight" /usr/local/bin/diff-highlight
-chmod +x /usr/local/bin/diff-highlight
 
 curl -sLf https://spacevim.org/install.sh | bash
 
 mkdir "$HOME/.xmonad"
 
 cd "$HOME/dotfiles" && make deploy
+
+chmod +x /usr/local/bin/diff-highlight
+
+. ~/dotfiles/bash/.bashrc
+
+yes | anyenv install --init
+anyenv install pyenv
+anyenv install goenv
+
+pyenv install $PYTHON_VERSION
+pyenv global $PYTHON_VERSION
+
+load_anyenv
+
+pip install neovim
 
 git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 tmux start-server

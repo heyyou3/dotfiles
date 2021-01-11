@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.anyenv/bin:$PATH
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 
