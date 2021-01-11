@@ -31,11 +31,13 @@ apt install -y \
   libbz2-dev \
   libreadline-dev \
   libsqlite3-dev \
-  neovim \
-  fzf
-git clone https://github.com/riywo/anyenv ~/.anyenv
+  neovim
+git clone https://github.com/riywo/anyenv $HOME/.anyenv
 curl -fsSL https://starship.rs/install.sh > $HOME/starship_install.sh
 /bin/bash $HOME/starship_install.sh -y
+
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+$HOME/.fzf/install
 
 git clone https://github.com/heyyou3/dotfiles.git "$HOME/dotfiles"
 
