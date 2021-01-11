@@ -1,8 +1,6 @@
 #!/bin/bash
 set -eux
 
-PYTHON_VERSION='3.9.0'
-
 apt update -y && \
 apt install software-properties-common -y && \
 add-apt-repository ppa:git-core/ppa && \
@@ -31,6 +29,8 @@ apt install -y \
   libbz2-dev \
   libreadline-dev \
   libsqlite3-dev \
+  python3 \
+  python3-pip \
   neovim
 git clone https://github.com/riywo/anyenv $HOME/.anyenv
 curl -fsSL https://starship.rs/install.sh > $HOME/starship_install.sh
@@ -49,18 +49,7 @@ cd "$HOME/dotfiles" && make deploy
 
 chmod +x /usr/local/bin/diff-highlight
 
-. ~/dotfiles/bash/.bashrc
-
-yes | anyenv install --init
-anyenv install pyenv
-anyenv install goenv
-
-pyenv install $PYTHON_VERSION
-pyenv global $PYTHON_VERSION
-
-load_anyenv
-
-pip install neovim
+pip3 install neovim
 
 git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 tmux start-server
