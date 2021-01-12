@@ -1,5 +1,8 @@
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let g:spacevim_disabled_plugins = ['vim-startify']
+let g:spacevim_guifont = 'Cica:h16'
+
+inoremap jk <Esc>
 
 function! init#before() abort
   execute 'source '.s:path.'/before.vim'
