@@ -37,6 +37,9 @@
   bootstrap_before = "init#before"
   bootstrap_after = "init#after"
   project_rooter_automatically = 0
+  autocomplete_method = "deoplete"
+  snippet_engine = "neosnippet"
+  autocomplete_parens = true
 
   # left sections of statusline
   statusline_left_sections = [
@@ -57,6 +60,7 @@
 # Enable autocomplete layer
 [[layers]]
   name = "autocomplete"
+  auto_completion_enable_snippets_in_popup = true
   auto-completion-return-key-behavior = "complete"
   auto-completion-tab-key-behavior = "smart"
 

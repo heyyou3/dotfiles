@@ -91,7 +91,7 @@ set_tmux_env() {
 make_vim_settings() {
   target_dir="$(pwd)/.SpaceVim.d"
   mkdir $target_dir
-  cp $HOME/dotfiles/.SpaceVim/project_settings/* "$target_dir/"
+  cp -r $HOME/dotfiles/.SpaceVim/project_settings/** "$target_dir/"
 }
 
 start_linux_scripts() {
