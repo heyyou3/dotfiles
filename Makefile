@@ -13,7 +13,6 @@ endef
 # SpaceVim
 # after init
 DOTFILES_PATH := "$(HOME)/dotfiles"
-space_vim_d := .SpaceVim.d
 space_vim_init := .SpaceVim/init.vim
 bash_profile := .bash_profile
 bashrc := .bashrc
@@ -28,7 +27,6 @@ zshenv := .zshenv
 alacritty := alacritty.yml
 
 common_deploy:
-	@$(call _ln,"$(DOTFILES_PATH)/$(space_vim_d)","$(HOME)/$(space_vim_d)")
 	@$(call _ln,"$(DOTFILES_PATH)/$(space_vim_init)","$(HOME)/$(space_vim_init)")
 	@$(call _ln,"$(DOTFILES_PATH)/bash/$(bash_profile)","$(HOME)/$(bash_profile)")
 	@$(call _ln,"$(DOTFILES_PATH)/bash/$(bashrc)","$(HOME)/$(bashrc)")
