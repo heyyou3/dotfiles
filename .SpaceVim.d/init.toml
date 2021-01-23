@@ -105,6 +105,9 @@
   name = "fzf"
 
 [[layers]]
+  name = "denite"
+
+[[layers]]
   name = "tools"
 
 [[layers]]
