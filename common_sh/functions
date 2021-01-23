@@ -102,3 +102,8 @@ start_linux_scripts() {
   xset r rate 300 99
 }
 
+git_init() {
+  git init
+  git commit --allow-empty -m 'Initial Commit'
+}
+
