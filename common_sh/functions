@@ -89,7 +89,24 @@ set_tmux_env() {
 }
 
 make_vim_settings() {
-  cp -r $HOME/dotfiles/.SpaceVim.d "$(pwd)/"
+  mkdir -p ./.SpaceVim.d/autoload
+  snip_path='.SpaceVim.d/snippets'
+  init_toml_path='.SpaceVim.d/init.toml'
+  autoload_init_path='.SpaceVim.d/autoload/init.vim'
+  autoload_before_path='.SpaceVim.d/autoload/before.vim'
+  autoload_after_path='.SpaceVim.d/autoload/after.vim'
+  autoload_pj_before_path='.SpaceVim.d/autoload/project_before.vim'
+  autoload_pj_after_path='.SpaceVim.d/autoload/project_after.vim'
+
+  ln -sfn $HOME/dotfiles/$autoload_init_path "$(pwd)/$autoload_init_path"
+  ln -sfn $HOME/dotfiles/$autoload_before_path "$(pwd)/$autoload_before_path"
+  ln -sfn $HOME/dotfiles/$autoload_after_path "$(pwd)/$autoload_after_path"
+
+  cp -r $HOME/dotfiles/$snip_path "$(pwd)/.SpaceVim.d"
+  cp $HOME/dotfiles/$init_toml_path "$(pwd)/$init_toml_path"
+  cp $HOME/dotfiles/.SpaceVim.d/sample_tasks.toml "$(pwd)/.SpaceVim.d"
+  cp $HOME/dotfiles/$autoload_pj_before_path "$(pwd)/$autoload_pj_before_path"
+  cp $HOME/dotfiles/$autoload_pj_after_path "$(pwd)/$autoload_pj_after_path"
 }
 
 start_linux_scripts() {

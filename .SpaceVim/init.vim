@@ -11,13 +11,3 @@ let g:python3_host_prog = $PYENV_ROOT.'/shims/python3'
 execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'
 set shellcmdflag=-ic
 
-augroup neosnippet_group
-  autocmd FileType neosnippet setlocal noexpandtab
-augroup END
-
-set list
-
-inoremap jk <Esc>
-
-call SpaceVim#custom#SPC('nnoremap', ['g', 't'], 'Tig', 'Tig', 1)
-
