@@ -150,3 +150,6 @@
 [[custom_plugins]]
   name = "iberianpig/tig-explorer.vim"
 
+[[custom_plugins]]
+  name = "heyyou3/my-todo-vim"
+
