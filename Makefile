@@ -38,8 +38,8 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/vim/$(vimrc)","$(HOME)/$(vimrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshrc)","$(HOME)/$(zshrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshenv)","$(HOME)/$(zshenv)")
-	@$(call _ln,"$(DOTFILES_PATH)/git/$(diff_highlight)","/usr/local/bin/$(diff_highlight)")
-	@$(call _ln,"$(DOTFILES_PATH)/tools/.todo.cfg","$(HOME)/.todo.cfg")
+	@$(call _ln,"$(DOTFILES_PATH)/todo/.todo.cfg","$(HOME)/.todo.cfg")
+	@sudo cp "$(DOTFILES_PATH)/git/$(diff_highlight)","/usr/local/bin/$(diff_highlight)"
 
 xprofile := .xprofile
 xmonad_hs := xmonad.hs
@@ -47,8 +47,8 @@ xmonad_hs := xmonad.hs
 ifeq ($(shell uname), Linux)
 deploy: common_deploy
 	@echo 'Set Linux settings'
-	@$(call _ln,"$(DOTFILES_PATH)/archlinux/$(xprofile)","$(HOME)/$(xprofile)")
-	@$(call _ln,"$(DOTFILES_PATH)/archlinux/.xmonad/$(xmonad_hs)","$(HOME)/.xmonad/$(xmonad_hs)")
+	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xprofile)","$(HOME)/$(xprofile)")
+	@$(call _ln,"$(DOTFILES_PATH)/linux/.xmonad/$(xmonad_hs)","$(HOME)/.xmonad/$(xmonad_hs)")
 else
 deploy: common_deploy
 endif

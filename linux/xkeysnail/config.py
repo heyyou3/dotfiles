@@ -7,3 +7,6 @@ define_multipurpose_modmap({
     # SandS
     Key.SPACE: [Key.SPACE, Key.LEFT_SHIFT],
 })
+define_modmap({
+    Key.CAPSLOCK: Key.LEFT_CTRL
+})
