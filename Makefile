@@ -39,7 +39,7 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshrc)","$(HOME)/$(zshrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshenv)","$(HOME)/$(zshenv)")
 	@$(call _ln,"$(DOTFILES_PATH)/todo/.todo.cfg","$(HOME)/.todo.cfg")
-	@sudo cp "$(DOTFILES_PATH)/git/$(diff_highlight)","/usr/local/bin/$(diff_highlight)"
+	@sudo cp "$(DOTFILES_PATH)/git/$(diff_highlight)" "/usr/local/bin/$(diff_highlight)"
 
 xprofile := .xprofile
 xmonad_hs := xmonad.hs
