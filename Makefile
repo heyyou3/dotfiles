@@ -13,18 +13,18 @@ endef
 # SpaceVim
 # after init
 DOTFILES_PATH := "$(HOME)/dotfiles"
-space_vim_init := .SpaceVim/init.vim
+alacritty := alacritty.yml
 bash_profile := .bash_profile
 bashrc := .bashrc
-gitignore_global := .gitignore_global
-git_config := .gitconfig
 diff_highlight := diff-highlight
+git_config := .gitconfig
+gitignore_global := .gitignore_global
+space_vim_init := .SpaceVim/init.vim
 tigrc := .tigrc
 tmux_conf := .tmux.conf
 vimrc := .vimrc
-zshrc := .zshrc
 zshenv := .zshenv
-alacritty := alacritty.yml
+zshrc := .zshrc
 
 common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/$(space_vim_init)","$(HOME)/$(space_vim_init)")
@@ -41,14 +41,16 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/todo/.todo.cfg","$(HOME)/.todo.cfg")
 	@sudo cp "$(DOTFILES_PATH)/git/$(diff_highlight)" "/usr/local/bin/$(diff_highlight)"
 
-xprofile := .xprofile
+xmobarrc := .xmobarrc
 xmonad_hs := xmonad.hs
+xprofile := .xprofile
 
 ifeq ($(shell uname), Linux)
 deploy: common_deploy
 	@echo 'Set Linux settings'
 	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xprofile)","$(HOME)/$(xprofile)")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.xmonad/$(xmonad_hs)","$(HOME)/.xmonad/$(xmonad_hs)")
+	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xmobarrc)","$(HOME)/$(xmobarrc)")
 else
 deploy: common_deploy
 endif
