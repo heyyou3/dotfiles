@@ -9,6 +9,10 @@ if [ "$(uname)" = 'Darwin' ]; then
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 fi
 
+if [ "$(uname)" = 'Linux' ]; then
+  source "$DOT_FILES_PATH/linux/rc.sh"
+fi
+
 if [ -f "$HOME/.org_sh" ]; then
   source "$HOME/.org_sh"
 fi
