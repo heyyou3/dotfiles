@@ -10,4 +10,3 @@ ps aux | grep 'xmobarrc' | perl -nlE 'if($_!~/grep/){say $_}' | perl -anlE 'syst
 sleep 1
 /usr/bin/xmobar $HOME/.xmobarrc &
 /usr/bin/xset r rate 300 99 &
-synclient TouchpadOff=1
