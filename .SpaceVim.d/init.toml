@@ -40,7 +40,6 @@
   autocomplete_method = "deoplete"
   snippet_engine = "neosnippet"
   autocomplete_parens = true
-
   # left sections of statusline
   statusline_left_sections = [
     "winnr",
@@ -48,7 +47,6 @@
     "version control info",
     "minor mode lighters"
   ]
-
   # right sections of statusline
   statusline_right_sections = [
     "fileformat",
@@ -56,6 +54,7 @@
     "cursorpos",
     "percentage"
   ]
+  project_rooter_patterns = ['.SpaceVim.d/']
 
 # Enable autocomplete layer
 [[layers]]
