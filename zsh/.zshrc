@@ -6,6 +6,7 @@ export SAVEHIST=100000
 setopt hist_ignore_dups
 setopt EXTENDED_HISTORY
 export ENHANCD_FILTER=fzf
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=60'
 
 export ZINIT_HOME=$HOME/.zinit
 if [ -d "$ZINIT_HOME" ]; then
