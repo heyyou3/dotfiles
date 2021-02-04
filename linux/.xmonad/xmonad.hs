@@ -6,9 +6,9 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Util.Run
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig
 
-    -- Layouts
+-- Layouts
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.GridVariants (Grid(Grid))
 import XMonad.Layout.NoBorders
@@ -19,7 +19,7 @@ import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 
-    -- Layouts modifiers
+-- Layouts modifiers
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
 import XMonad.Layout.Magnifier
@@ -36,11 +36,12 @@ import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
 import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
 import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
 
+-- Actions
+import XMonad.Actions.Warp
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
-
-
+import Data.Ratio
 
 ------------------------------------------------------------------------
 -- Terminal
@@ -203,6 +204,39 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
   ]
 
+-- | Number of windows in a possibly empty stack.
+windowCount :: Maybe (W.Stack Window) -> Int
+windowCount Nothing = 0
+windowCount (Just (W.Stack focus up dn)) = 1 + length up + length dn
+
+-- | Move the mouse cursor to the center of the current window.
+warp :: X ()
+warp = warpToWindow (1%2) (2%5)
+
+-- | Move the mouse cursor to the center of the current screen.
+warpScreen :: X ()
+warpScreen = do
+  ws <- gets windowset
+  let screen = W.screen . W.current $ ws
+  warpToScreen screen (1%2) (1%2)
+
+-- | Move the mouse cursor to the center of the current window. If
+-- there are no windows, center the cursor on the screen.
+warp' :: X ()
+warp' = do
+  windowCount <- currentWindowCount
+  if windowCount == 0
+    then warpScreen
+    else warp
+
+-- | Current workspace window stack.
+currentStack :: X (Maybe (W.Stack Window))
+currentStack = (W.stack . W.workspace . W.current) <$> gets windowset
+
+-- | Number of windows on the current workspace.
+currentWindowCount :: X Int
+currentWindowCount = windowCount <$> currentStack
+
 ------------------------------------------------------------------------
 -- Startup hook
 -- Perform an arbitrary action each time xmonad starts or is restarted
@@ -275,3 +309,6 @@ main = do
            , ppLayout = const "" -- to disable the layout info on xmobar
            }
      }
+     `additionalKeys` [
+        ((myModMask, xK_s), warp')
+     ]
