@@ -109,6 +109,10 @@ make_vim_settings() {
   cp $HOME/dotfiles/$autoload_pj_after_path "$(pwd)/$autoload_pj_after_path"
 }
 
+clean_vim_settings() {
+  rm -rf ./.SpaceVim.d
+}
+
 git_init() {
   git init
   git commit --allow-empty -m 'Initial Commit'
