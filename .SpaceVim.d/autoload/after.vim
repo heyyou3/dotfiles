@@ -4,3 +4,7 @@ if executable("rg")
 endif
 
 autocmd QuickFixCmdPost *grep* cwindow
+
+augroup neosnippet_group
+  autocmd FileType neosnippet setlocal noexpandtab
+augroup END

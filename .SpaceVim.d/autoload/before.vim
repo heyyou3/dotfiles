@@ -1,7 +1,3 @@
-augroup neosnippet_group
-  autocmd FileType neosnippet setlocal noexpandtab
-augroup END
-
 set list
 
 inoremap jk <Esc>
