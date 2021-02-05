@@ -23,3 +23,7 @@ sleep 0.2
 
 # Run compton
 compton --config $HOME/dotfiles/linux/compton.conf &
+
+# Run fcitx
+ps aux | grep 'fcitx' | perl -nlE 'if($_!~/grep/){say $_}' | perl -anlE 'system("kill $F[1]")'
+fcitx -d
