@@ -1,6 +1,7 @@
 set list
 
 inoremap jk <Esc>
+inoremap ｊｋ <Esc>
 
 function! TranslateGoogle(country) abort
   exec "'<,'>!trans -b ".a:country

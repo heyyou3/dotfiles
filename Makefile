@@ -51,6 +51,7 @@ deploy: common_deploy
 	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xprofile)","$(HOME)/$(xprofile)")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.xmonad/$(xmonad_hs)","$(HOME)/.xmonad/$(xmonad_hs)")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xmobarrc)","$(HOME)/$(xmobarrc)")
+	@$(call _ln,"$(DOTFILES_PATH)/linux/fcitx/config","$(HOME)/.config/fcitx/config")
 else
 deploy: common_deploy
 endif
