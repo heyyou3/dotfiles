@@ -178,6 +178,8 @@ myBorderWidth = 2
 -- "windows key" is usually mod4Mask.
 --
 myModMask = mod4Mask
+toggleStructsKey :: XConfig t -> (KeyMask, KeySym)
+toggleStructsKey XConfig { XMonad.modMask = modMask } = ( modMask, xK_b )
 
 ------------------------------------------------------------------------
 -- Mouse bindings
@@ -282,7 +284,6 @@ defaults = def {
     normalBorderColor = myNormalBorderColor,
     focusedBorderColor = myFocusedBorderColor,
 
-    -- key bindings
     mouseBindings = myMouseBindings,
 
     -- hooks, layouts
@@ -291,24 +292,28 @@ defaults = def {
     startupHook = myStartupHook
 }
 
+myConfig = defaults {
+  manageHook = manageDocks <+> manageHook defaults,
+  layoutHook = myLayoutHook,
+  logHook = do
+    xmproc0 <- spawnPipe "pkill 'xmobar'"
+    xmproc1 <- spawnPipe "sleep 0.2; xmobar $HOME/dotfiles/linux/.xmobarrc"
+    dynamicLogWithPP $ xmobarPP
+       {
+          ppTitle = xmobarColor "#657b83" "" . shorten 100,
+          ppCurrent = xmobarColor "#c0c0c0" "" . wrap "" "",
+          ppSep     = xmobarColor "#c0c0c0" "" " | ",
+          ppUrgent  = xmobarColor "#ff69b4" "",
+          ppLayout = const "",
+          ppOutput = hPutStrLn xmproc1
+       }
+}
+
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
 --
 --main = xmonad =<< xmobar defaultConfig { terminal = "urxvt" }
 
+
 main = do
- xmonad $ defaults
-      { manageHook = manageDocks <+> manageHook defaults
-      , layoutHook = myLayoutHook
-      , logHook = dynamicLogWithPP xmobarPP
-           {
-           ppTitle = xmobarColor "#657b83" "" . shorten 100
-           , ppCurrent = xmobarColor "#c0c0c0" "" . wrap "" ""
-           , ppSep     = xmobarColor "#c0c0c0" "" " | "
-           , ppUrgent  = xmobarColor "#ff69b4" ""
-           , ppLayout = const "" -- to disable the layout info on xmobar
-           }
-     }
-     `additionalKeys` [
-        ((myModMask, xK_s), warp')
-     ]
+  xmonad $ myConfig

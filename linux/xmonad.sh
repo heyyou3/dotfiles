@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-# Run xmobar
-ps aux | grep 'xmobarrc' | perl -nlE 'if($_!~/grep/){say $_}' | perl -anlE 'system("kill $F[1]")'
-sleep 0.2
-/usr/bin/xmobar $HOME/.xmobarrc &
-sleep 0.2
-
 # View wallpaper
 /usr/bin/feh --bg-fill $HOME/dotfiles/wallpaper.png
 
