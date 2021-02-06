@@ -294,19 +294,7 @@ defaults = def {
 
 myConfig = defaults {
   manageHook = manageDocks <+> manageHook defaults,
-  layoutHook = myLayoutHook,
-  logHook = do
-    xmproc0 <- spawnPipe "pkill 'xmobar'"
-    xmproc1 <- spawnPipe "sleep 0.2; xmobar $HOME/dotfiles/linux/.xmobarrc"
-    dynamicLogWithPP $ xmobarPP
-       {
-          ppTitle = xmobarColor "#657b83" "" . shorten 100,
-          ppCurrent = xmobarColor "#c0c0c0" "" . wrap "" "",
-          ppSep     = xmobarColor "#c0c0c0" "" " | ",
-          ppUrgent  = xmobarColor "#ff69b4" "",
-          ppLayout = const "",
-          ppOutput = hPutStrLn xmproc1
-       }
+  layoutHook = myLayoutHook
 }
 
 ------------------------------------------------------------------------
@@ -316,4 +304,4 @@ myConfig = defaults {
 
 
 main = do
-  xmonad $ myConfig
+  xmonad =<< xmobar myConfig
