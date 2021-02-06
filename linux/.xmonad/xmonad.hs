@@ -5,6 +5,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.FadeInactive
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
 
@@ -18,6 +19,7 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.IndependentScreens
 
 -- Layouts modifiers
 import XMonad.Layout.LayoutModifier
@@ -297,11 +299,28 @@ myConfig = defaults {
   layoutHook = myLayoutHook
 }
 
+myLogHook :: X()
+myLogHook = fadeInactiveLogHook fadeAmount
+  where fadeAmount = 0.9
+
+
 ------------------------------------------------------------------------
 -- Run xmonad with all the defaults we set up.
 --
 --main = xmonad =<< xmobar defaultConfig { terminal = "urxvt" }
-
-
 main = do
-  xmonad =<< xmobar myConfig
+  n <- countScreens
+  xmprocs <- mapM (\i -> spawnPipe $ "xmobar $HOME/dotfiles/linux/.xmobarrc" ++ " -x " ++ show i) [0..n-1]
+  xmonad $ myConfig {
+    logHook = mapM_ (\handle -> dynamicLogWithPP $ xmobarPP {
+      ppOutput = hPutStrLn handle
+        , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
+        , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
+        , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
+        , ppHiddenNoWindows = xmobarColor "#F07178" ""        -- Hidden workspaces (no windows)
+        , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60     -- Title of active window in xmobar
+        , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
+        , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
+        , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+    }) xmprocs
+  }
