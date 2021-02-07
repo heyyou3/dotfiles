@@ -56,7 +56,7 @@ myTerminal = "/usr/local/bin/alacritty"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["one","two","three","four","five"] ++ map show [6..9]
+myWorkspaces = ["A","B","C","D","E","F","G","H","I"]
 
 ------------------------------------------------------------------------
 -- Layouts
@@ -160,16 +160,14 @@ tabs     = renamed [Replace "tabs"]
            -- add spacing between window and tabs which looks bad.
            $ tabbed shrinkText myTabTheme
 
-
-
 -- Color of current window title in xmobar.
-xmobarTitleColor = "green"
+xmobarTitleColor = "#859900"
 
 -- Color of current workspace in xmobar.
 xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 -- Width of the window border in pixels.
-myBorderWidth = 1
+myBorderWidth = 3
 
 ------------------------------------------------------------------------
 -- Key bindings
