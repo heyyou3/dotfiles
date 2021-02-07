@@ -1,6 +1,6 @@
 Config {
    -- appearance
-   font = "xft:Cica:size=9:bold:antialias=true"
+   font = "xft:Cica:size=11:bold:antialias=true"
    , bgColor = "#002b36"
    , fgColor = "#657b83"
    , border = NoBorder
