@@ -104,7 +104,7 @@ tall     = renamed [Replace "tall"]
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (Simplest)
            $ limitWindows 12
-           $ mySpacing 8
+           $ mySpacing 10
            $ ResizableTall 1 (3/100) (1/2) []
 magnify  = renamed [Replace "magnify"]
            $ windowNavigation
@@ -112,7 +112,7 @@ magnify  = renamed [Replace "magnify"]
            $ subLayout [] (Simplest)
            $ magnifier
            $ limitWindows 12
-           $ mySpacing 8
+           $ mySpacing 10
            $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
            $ windowNavigation
@@ -136,21 +136,21 @@ spirals  = renamed [Replace "spirals"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (Simplest)
-           $ mySpacing' 8
+           $ mySpacing' 10
            $ spiral (6/7)
 threeCol = renamed [Replace "threeCol"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (Simplest)
            $ limitWindows 7
-           $ mySpacing' 4
+           $ mySpacing' 10
            $ ThreeCol 1 (3/100) (1/2)
 threeRow = renamed [Replace "threeRow"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (Simplest)
            $ limitWindows 7
-           $ mySpacing' 4
+           $ mySpacing' 10
            -- Mirror takes a layout and rotates it by 90 degrees.
            -- So we are applying Mirror to the ThreeCol layout.
            $ Mirror
@@ -169,7 +169,7 @@ xmobarTitleColor = "green"
 xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 -- Width of the window border in pixels.
-myBorderWidth = 2
+myBorderWidth = 1
 
 ------------------------------------------------------------------------
 -- Key bindings
