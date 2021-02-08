@@ -167,7 +167,7 @@ xmobarTitleColor = "#859900"
 xmobarCurrentWorkspaceColor = "#CEFFAC"
 
 -- Width of the window border in pixels.
-myBorderWidth = 3
+myBorderWidth = 2
 
 ------------------------------------------------------------------------
 -- Key bindings
