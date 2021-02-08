@@ -66,7 +66,7 @@ install:
 	@echo 'Install tpm'
 	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@echo 'LinuxMint Install Command'
-	@echo 'sudo apt install tig tmux fzf xclip neovim fcitx fcitx-mozc xmonad xmobar compton feh'
-	@echo 'sudo pip3 install xkeysnail'
+	@echo 'sudo apt install -y git tig tmux fzf xclip neovim fcitx fcitx-mozc xmonad xmobar compton feh breeze-cursor-theme'
+	@echo 'sudo pip3 install neovim pynvim xkeysnail'
 	@echo 'Mac Install Command'
 	@echo 'brew install tig tmux fzf'
