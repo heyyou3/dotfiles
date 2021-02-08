@@ -20,6 +20,10 @@ if [ -d "$ZINIT_HOME" ]; then
     zsh-users/zsh-autosuggestions
 fi
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+
 source "$DOT_FILES_PATH/common_sh/common"
 
 eval "$(starship init zsh)"
