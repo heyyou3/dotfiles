@@ -27,7 +27,6 @@ import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
 import XMonad.Layout.Magnifier
 import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), (??))
 import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
-import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
 import XMonad.Layout.ShowWName
 import XMonad.Layout.Simplest
@@ -67,7 +66,7 @@ myWorkspaces = ["A","B","C","D","E","F","G","H","I"]
 --
 -- The available layouts. Note that each layout is separated by |||,
 -- which denotes layout choice.
-myFont = "Cica"
+myFont = "xft:RictyDiminished-Regular:size=10:bold:antialias=true"
 
 ------------------------------------------------------------------------
 -- Colors and borders
@@ -102,14 +101,14 @@ mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 tall     = renamed [Replace "tall"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
-           $ subLayout [] (Simplest)
+           $ subLayout [] Simplest
            $ limitWindows 12
            $ mySpacing 10
            $ ResizableTall 1 (3/100) (1/2) []
 magnify  = renamed [Replace "magnify"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
-           $ subLayout [] (Simplest)
+           $ subLayout [] Simplest
            $ magnifier
            $ limitWindows 12
            $ mySpacing 10
@@ -117,17 +116,12 @@ magnify  = renamed [Replace "magnify"]
 monocle  = renamed [Replace "monocle"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
-           $ subLayout [] (Simplest)
+           $ subLayout [] Simplest
            $ limitWindows 20 Full
-floats   = renamed [Replace "floats"]
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (Simplest)
-           $ limitWindows 20 simplestFloat
 grid     = renamed [Replace "grid"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
-           $ subLayout [] (Simplest)
+           $ subLayout [] Simplest
            $ limitWindows 12
            $ mySpacing 0
            $ mkToggle (single MIRROR)
@@ -135,20 +129,20 @@ grid     = renamed [Replace "grid"]
 spirals  = renamed [Replace "spirals"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
-           $ subLayout [] (Simplest)
+           $ subLayout [] Simplest
            $ mySpacing' 10
            $ spiral (6/7)
 threeCol = renamed [Replace "threeCol"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
-           $ subLayout [] (Simplest)
+           $ subLayout [] Simplest
            $ limitWindows 7
            $ mySpacing' 10
            $ ThreeCol 1 (3/100) (1/2)
 threeRow = renamed [Replace "threeRow"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
-           $ subLayout [] (Simplest)
+           $ subLayout [] Simplest
            $ limitWindows 7
            $ mySpacing' 10
            -- Mirror takes a layout and rotates it by 90 degrees.
@@ -189,19 +183,19 @@ toggleStructsKey XConfig { XMonad.modMask = modMask } = ( modMask, xK_b )
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 
-myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
+myMouseBindings XConfig {XMonad.modMask = modMask} = M.fromList
   [
     -- mod-button1, Set the window to floating mode and move by dragging
     ((modMask, button1),
-     (\w -> focus w >> mouseMoveWindow w))
+     \w -> focus w >> mouseMoveWindow w)
 
     -- mod-button2, Raise the window to the top of the stack
     , ((modMask, button2),
-       (\w -> focus w >> windows W.swapMaster))
+       \w -> focus w >> windows W.swapMaster)
 
     -- mod-button3, Set the window to floating mode and resize by dragging
     , ((modMask, button3),
-       (\w -> focus w >> mouseResizeWindow w))
+       \w -> focus w >> mouseResizeWindow w)
 
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
   ]
@@ -233,7 +227,7 @@ warp' = do
 
 -- | Current workspace window stack.
 currentStack :: X (Maybe (W.Stack Window))
-currentStack = (W.stack . W.workspace . W.current) <$> gets windowset
+currentStack = W.stack . W.workspace . W.current <$> gets windowset
 
 -- | Number of windows on the current workspace.
 currentWindowCount :: X Int
@@ -253,13 +247,11 @@ myStartupHook = do
 -- Floats all windows in a certain workspace.
 
 -- The layout hook
-myLayoutHook = avoidStruts $ windowArrange $ T.toggleLayouts floats
-               $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
+myLayoutHook = avoidStruts $ windowArrange $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                myDefaultLayout =     tall
                                  ||| magnify
                                  ||| noBorders monocle
-                                 ||| floats
                                  ||| noBorders tabs
                                  ||| grid
                                  ||| spirals
