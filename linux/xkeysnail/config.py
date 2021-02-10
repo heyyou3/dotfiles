@@ -12,6 +12,7 @@ define_modmap({
     Key.MUHENKAN: Key.LEFT_META,
     Key.HENKAN: Key.RIGHT_ALT,
     Key.KATAKANAHIRAGANA: Key.RIGHT_ALT,
+    Key.RIGHT_META: Key.RIGHT_ALT
 })
 define_keymap(None, {
     K('key_0'): K('Shift-key_0'),
