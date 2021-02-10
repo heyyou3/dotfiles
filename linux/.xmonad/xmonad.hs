@@ -94,7 +94,6 @@ mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 mySpacing' :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
-
 -- Defining a bunch of layouts, many that I don't use.
 -- limitWindows n sets maximum number of windows displayed for layout.
 -- mySpacing n sets the gap size around the windows.
@@ -116,6 +115,7 @@ magnify  = renamed [Replace "magnify"]
 monocle  = renamed [Replace "monocle"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
+           $ noBorders
            $ subLayout [] Simplest
            $ limitWindows 20 Full
 grid     = renamed [Replace "grid"]
@@ -174,6 +174,11 @@ myBorderWidth = 2
 myModMask = mod4Mask
 toggleStructsKey :: XConfig t -> (KeyMask, KeySym)
 toggleStructsKey XConfig { XMonad.modMask = modMask } = ( modMask, xK_b )
+
+myKeys = [
+    ("M-s", warp'),
+    ("M-f", sendMessage (T.Toggle "monocle"))
+  ]
 
 ------------------------------------------------------------------------
 -- Mouse bindings
@@ -247,11 +252,11 @@ myStartupHook = do
 -- Floats all windows in a certain workspace.
 
 -- The layout hook
-myLayoutHook = avoidStruts $ windowArrange $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
+myLayoutHook = avoidStruts $ windowArrange $ T.toggleLayouts monocle $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                myDefaultLayout =     tall
                                  ||| magnify
-                                 ||| noBorders monocle
+                                 ||| monocle
                                  ||| noBorders tabs
                                  ||| grid
                                  ||| spirals
@@ -287,7 +292,7 @@ defaults = def {
 myConfig = defaults {
   manageHook = manageDocks <+> manageHook defaults,
   layoutHook = myLayoutHook
-}
+} `additionalKeysP` myKeys
 
 myLogHook :: X()
 myLogHook = fadeInactiveLogHook fadeAmount
