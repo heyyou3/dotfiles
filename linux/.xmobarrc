@@ -1,6 +1,6 @@
 Config {
    -- appearance
-   font = "xft:Cica:size=10:bold:antialias=true"
+   font = "xft:RictyDiminished-Regular:size=10:bold:antialias=true"
    , bgColor = "#002b36"
    , fgColor = "#657b83"
    , border = NoBorder
@@ -10,7 +10,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% }{ %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %date% | %kbd% "
+   , template = "%StdinReader% }{ %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% | %date%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -90,12 +90,9 @@ Config {
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
+        , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10,
 
         -- keyboard layout indicator
-        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
-                             , ("us"         , "<fc=#8B0000>US</fc>")
-                             ],
         Run StdinReader
         ]
    }
