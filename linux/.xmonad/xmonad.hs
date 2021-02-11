@@ -177,7 +177,8 @@ toggleStructsKey XConfig { XMonad.modMask = modMask } = ( modMask, xK_b )
 
 myKeys = [
     ("M-s", warp'),
-    ("M-f", sendMessage (T.Toggle "monocle"))
+    ("M-f", sendMessage (T.Toggle "monocle")),
+    ("M-p", spawn "rofi -show drun")
   ]
 
 ------------------------------------------------------------------------

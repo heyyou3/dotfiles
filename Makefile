@@ -49,8 +49,10 @@ ifeq ($(shell uname), Linux)
 deploy: common_deploy
 	@echo 'Set Linux settings'
 	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xprofile)","$(HOME)/$(xprofile)")
+	@mkdir "$(HOME)/.xmonad"
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.xmonad/$(xmonad_hs)","$(HOME)/.xmonad/$(xmonad_hs)")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xmobarrc)","$(HOME)/$(xmobarrc)")
+	@mkdir "$(HOME)/.config/fcitx"
 	@$(call _ln,"$(DOTFILES_PATH)/linux/fcitx/config","$(HOME)/.config/fcitx/config")
 else
 deploy: common_deploy
@@ -67,12 +69,11 @@ install:
 	@echo 'Install tpm'
 	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@sudo apt update -y
-	@sudo apt install -y git tig tmux fzf xclip neovim fcitx fcitx-mozc xmonad xmobar compton feh breeze-cursor-theme make curl build-essential python3-pip python3 fonts-ricty-diminished cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev zsh
+	@sudo apt install -y git tig tmux fzf xclip neovim fcitx fcitx-mozc xmonad xmobar compton feh breeze-cursor-theme make curl build-essential python3-pip python3 fonts-ricty-diminished cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev zsh rofi
 	@sudo pip3 install neovim pynvim xkeysnail
 	@curl https://sh.rustup.rs -sSf | sh
 	@mkdir $(HOME)/work
 	@git clone https://github.com/alacritty/alacritty $(HOME)/work/alacritty
-	# cd $HOME/work/alacritty && cargo build --release && sudo cp ./target/release/alacritty /usr/local/bin
 	@chsh -s zsh
 else
 install:
