@@ -56,6 +56,7 @@ else
 deploy: common_deploy
 endif
 
+ifeq ($(shell uname), Linux)
 install:
 	@echo 'Install SpaceVim'
 	@curl -sLf https://spacevim.org/install.sh | bash
@@ -65,8 +66,25 @@ install:
 	@curl -fsSL https://starship.rs/install.sh | bash
 	@echo 'Install tpm'
 	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	@echo 'LinuxMint Install Command'
-	@echo 'sudo apt install -y git tig tmux fzf xclip neovim fcitx fcitx-mozc xmonad xmobar compton feh breeze-cursor-theme'
-	@echo 'sudo pip3 install neovim pynvim xkeysnail'
+	@sudo apt update -y
+	@sudo apt install -y git tig tmux fzf xclip neovim fcitx fcitx-mozc xmonad xmobar compton feh breeze-cursor-theme make curl build-essential python3-pip python3 fonts-ricty-diminished cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev zsh
+	@sudo pip3 install neovim pynvim xkeysnail
+	@curl https://sh.rustup.rs -sSf | sh
+	@mkdir $(HOME)/work
+	@git clone https://github.com/alacritty/alacritty $(HOME)/work/alacritty
+	# cd $HOME/work/alacritty && cargo build --release && sudo cp ./target/release/alacritty /usr/local/bin
+	@chsh -s zsh
+else
+install:
+	@echo 'Install SpaceVim'
+	@curl -sLf https://spacevim.org/install.sh | bash
+	@echo 'Install zinit'
+	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+	@echo 'Install starship'
+	@curl -fsSL https://starship.rs/install.sh | bash
+	@echo 'Install tpm'
+	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	@curl https://sh.rustup.rs -sSf | sh
 	@echo 'Mac Install Command'
 	@echo 'brew install tig tmux fzf'
+endif
