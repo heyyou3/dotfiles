@@ -72,7 +72,7 @@ myFont = "xft:RictyDiminished-Regular:size=10:bold:antialias=true"
 -- Colors and borders
 --
 myNormalBorderColor = "#002b36"
-myFocusedBorderColor = "#657b83"
+myFocusedBorderColor = "#6c71c4"
 
 -- Colors for text and backgrounds of each tab when in "Tabbed" layout.
 myTabTheme = def {
