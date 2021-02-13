@@ -8,3 +8,8 @@ autocmd QuickFixCmdPost *grep* cwindow
 augroup neosnippet_group
   autocmd FileType neosnippet setlocal noexpandtab
 augroup END
+
+augroup anyware_group
+  autocmd!
+  autocmd BufWritePost *.anyware exec ":!cat % | xclip -selection c"
+augroup END
