@@ -5,7 +5,7 @@ Config {
    , fgColor = "#657b83"
    , border = NoBorder
    , borderColor = "black"
-   , position = TopW C 75
+   , position = TopW C 90
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
