@@ -176,10 +176,11 @@ toggleStructsKey :: XConfig t -> (KeyMask, KeySym)
 toggleStructsKey XConfig { XMonad.modMask = modMask } = ( modMask, xK_b )
 
 myKeys = [
-    ("M-s", warp'),
+    ("M-a", warp'),
     ("M-f", sendMessage (T.Toggle "monocle")),
     ("M-p", spawn "rofi -show drun"),
-    ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\"")
+    ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\""),
+    ("M-S-s", spawn "$HOME/dotfiles/linux/screenshot.sh")
   ]
 ------------------------------------------------------------------------
 -- Mouse bindings

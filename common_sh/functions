@@ -2,11 +2,6 @@ mo_to_gif() {
   ffmpeg -i "$1" -r 10 "$2"
 }
 
-cdf() {
-  default_path=~/work/
-  cd ${1:-"$default_path"}$(ls -la ${1:-"$default_path"} | ruby -nle 'if $_[0]=="d" then puts $_ end' | fzf | ruby -anle 'puts $F[8]' )
-}
-
 memo() {
   EXT='.adoc'
   WORK_LOG_BASE_PATH="$HOME/work/work_log"
@@ -66,22 +61,6 @@ load_anyenv() {
 
 carun() {
   cargo run $1
-}
-
-acc_perl_test() {
-  for i in $(seq 1 $(ls tests/ | perl -nE 'END{say $./2}')); do diff -uw <(perl main.pl < ./tests/sample-$i.in) <(cat ./tests/sample-$i.out); done
-}
-
-acc_go_test() {
-  for i in $(seq 1 $(ls tests/ | perl -nE 'END{say $./2}')); do diff -uw <(go run main.go < ./tests/sample-$i.in) <(cat ./tests/sample-$i.out); if [ $? -ne 0 ]; then echo "$i 件目のテストが失敗"; fi; done
-}
-
-acrt() {
-  cargo atcoder test $1
-}
-
-acrs() {
-  cargo atcoder submit $1
 }
 
 set_tmux_env() {
