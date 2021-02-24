@@ -65,10 +65,10 @@
 [[layers]]
   name = "lsp"
   filetypes = [
-    "rust"
+# "rust"
   ]
   [layers.override_cmd]
-  rust = ["rls"]
+#  rust = ["rls"]
 
 [[layers]]
   name = "shell"
