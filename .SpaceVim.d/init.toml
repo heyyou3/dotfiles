@@ -142,3 +142,6 @@
 [[custom_plugins]]
   name = "heyyou3/my-todo-vim"
 
+[[custom_plugins]]
+  name = "heyyou3/vim-sonictemplate"
+
