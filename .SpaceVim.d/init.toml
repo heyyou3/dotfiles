@@ -86,7 +86,7 @@
 
 [[layers]]
   name = "git"
-  git-plugin = "fugitive"
+  git-plugin = "gina"
 
 [[layers]]
   name = "VersionControl"
