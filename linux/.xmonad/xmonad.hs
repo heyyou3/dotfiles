@@ -209,7 +209,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
 
     -- quit, or restart
-    , ((modMask              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
+    -- , ((modMask              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
 
     , ((modMask .|. shiftMask, xK_slash ), helpCommand) -- %! Run xmessage with a summary of the default keybindings (useful for beginners)
     -- repeat the binding for non-American layout keyboards
@@ -235,6 +235,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
 myKeys = [
     ("M-c", kill),
     ("M-a", warp'),
+    ("M-q", warp'), -- Do not use
     ("M-f", sendMessage (T.Toggle "monocle")),
     ("M-/", spawn "rofi -show drun"),
     ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\""),
@@ -242,7 +243,8 @@ myKeys = [
     ("M-n", nextWS),
     ("M-p", prevWS),
     ("M-<Tab>", nextScreen),
-    ("M-C-<Tab>", prevScreen)
+    ("M-C-<Tab>", prevScreen),
+    ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
   ]
 
 help :: String
