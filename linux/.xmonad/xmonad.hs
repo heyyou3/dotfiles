@@ -1,48 +1,53 @@
-import System.IO
-import System.Exit
-import XMonad
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.SetWMName
-import XMonad.Hooks.FadeInactive
-import XMonad.Util.Run
-import XMonad.Util.EZConfig
+import           System.Exit
+import           System.IO
+import           XMonad
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.FadeInactive
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName
+import           XMonad.Util.EZConfig
+import           XMonad.Util.Run
 
 -- Layouts
-import XMonad.Layout.Fullscreen
-import XMonad.Layout.GridVariants (Grid(Grid))
-import XMonad.Layout.NoBorders
-import XMonad.Layout.PerWorkspace(onWorkspace)
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.SimplestFloat
-import XMonad.Layout.Spiral
-import XMonad.Layout.Tabbed
-import XMonad.Layout.ThreeColumns
-import XMonad.Layout.IndependentScreens
+import           XMonad.Layout.Fullscreen
+import           XMonad.Layout.GridVariants          (Grid (Grid))
+import           XMonad.Layout.IndependentScreens
+import           XMonad.Layout.NoBorders
+import           XMonad.Layout.PerWorkspace          (onWorkspace)
+import           XMonad.Layout.ResizableTile
+import           XMonad.Layout.SimplestFloat
+import           XMonad.Layout.Spiral
+import           XMonad.Layout.Tabbed
+import           XMonad.Layout.ThreeColumns
 
 -- Layouts modifiers
-import XMonad.Layout.LayoutModifier
-import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
-import XMonad.Layout.Magnifier
-import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), (??))
-import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
-import XMonad.Layout.Renamed
-import XMonad.Layout.ShowWName
-import XMonad.Layout.Simplest
-import XMonad.Layout.Spacing
-import XMonad.Layout.SubLayouts
-import XMonad.Layout.WindowNavigation
-import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
-import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
-import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
+import           XMonad.Layout.LayoutModifier
+import           XMonad.Layout.LimitWindows          (decreaseLimit,
+                                                      increaseLimit,
+                                                      limitWindows)
+import           XMonad.Layout.Magnifier
+import           XMonad.Layout.MultiToggle           (EOT (EOT), mkToggle,
+                                                      single, (??))
+import qualified XMonad.Layout.MultiToggle           as MT (Toggle (..))
+import           XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL, NOBORDERS))
+import           XMonad.Layout.Renamed
+import           XMonad.Layout.ShowWName
+import           XMonad.Layout.Simplest
+import           XMonad.Layout.Spacing
+import           XMonad.Layout.SubLayouts
+import qualified XMonad.Layout.ToggleLayouts         as T (ToggleLayout (Toggle),
+                                                           toggleLayouts)
+import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..),
+                                                      windowArrange)
+import           XMonad.Layout.WindowNavigation
 
 -- Actions
-import XMonad.Actions.Warp
+import           XMonad.Actions.Warp
 
-import qualified XMonad.StackSet as W
-import qualified Data.Map as M
-import Data.Ratio
+import qualified Data.Map                            as M
+import           Data.Ratio
+import qualified XMonad.StackSet                     as W
 
 ------------------------------------------------------------------------
 -- Terminal
@@ -176,7 +181,7 @@ toggleStructsKey :: XConfig t -> (KeyMask, KeySym)
 toggleStructsKey XConfig { XMonad.modMask = modMask } = ( modMask, xK_b )
 
 myDefaultKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myDefaultKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $ [
+myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
   ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
@@ -313,7 +318,7 @@ myMouseBindings XConfig {XMonad.modMask = modMask} = M.fromList
 
 -- | Number of windows in a possibly empty stack.
 windowCount :: Maybe (W.Stack Window) -> Int
-windowCount Nothing = 0
+windowCount Nothing                      = 0
 windowCount (Just (W.Stack focus up dn)) = 1 + length up + length dn
 
 -- | Move the mouse cursor to the center of the current window.
