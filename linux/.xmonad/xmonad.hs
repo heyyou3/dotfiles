@@ -240,7 +240,9 @@ myKeys = [
     ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\""),
     ("M-S-s", spawn "$HOME/dotfiles/linux/screenshot.sh"),
     ("M-n", nextWS),
-    ("M-p", prevWS)
+    ("M-p", prevWS),
+    ("M-<Tab>", nextScreen),
+    ("M-C-<Tab>", prevScreen)
   ]
 
 help :: String
@@ -248,16 +250,15 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "",
     "-- launching and killing programs",
     "mod-Shift-Enter  Launch xterminal",
-    "mod-p            Launch dmenu",
-    "mod-Shift-p      Launch gmrun",
     "mod-c      Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-    "mod-n            Resize/refresh viewed windows to the correct size",
+    "mod-n            Next WorkSpace",
+    "mod-p            Previous WorkSpace",
     "",
     "-- move focus up or down the window stack",
-    "mod-Tab        Move focus to the next window",
-    "mod-Shift-Tab  Move focus to the previous window",
+    "mod-Tab        Move focus to the next Screen",
+    "mod-Control-Tab  Move focus to the previous Screen",
     "mod-j          Move focus to the next window",
     "mod-k          Move focus to the previous window",
     "mod-m          Move focus to the master window",
