@@ -43,6 +43,7 @@ import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..),
 import           XMonad.Layout.WindowNavigation
 
 -- Actions
+import           XMonad.Actions.CycleWS
 import           XMonad.Actions.Warp
 
 import qualified Data.Map                            as M
@@ -186,11 +187,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
 
-    , ((modMask,               xK_n     ), refresh) -- %! Resize viewed windows to the correct size
-
     -- move focus up or down the window stack
-    , ((modMask,               xK_Tab   ), windows W.focusDown) -- %! Move focus to the next window
-    , ((modMask .|. shiftMask, xK_Tab   ), windows W.focusUp  ) -- %! Move focus to the previous window
     , ((modMask,               xK_j     ), windows W.focusDown) -- %! Move focus to the next window
     , ((modMask,               xK_k     ), windows W.focusUp  ) -- %! Move focus to the previous window
     , ((modMask,               xK_m     ), windows W.focusMaster  ) -- %! Move focus to the master window
@@ -234,13 +231,16 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
     helpCommand :: X ()
     helpCommand = spawn ("echo " ++ show help ++ " | xmessage -file -")
 
+-- My Original Keybinds
 myKeys = [
     ("M-c", kill),
     ("M-a", warp'),
     ("M-f", sendMessage (T.Toggle "monocle")),
-    ("M-p", spawn "rofi -show drun"),
+    ("M-/", spawn "rofi -show drun"),
     ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\""),
-    ("M-S-s", spawn "$HOME/dotfiles/linux/screenshot.sh")
+    ("M-S-s", spawn "$HOME/dotfiles/linux/screenshot.sh"),
+    ("M-n", nextWS),
+    ("M-p", prevWS)
   ]
 
 help :: String
