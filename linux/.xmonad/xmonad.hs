@@ -43,6 +43,7 @@ import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..),
 import           XMonad.Layout.WindowNavigation
 
 -- Actions
+import           XMonad.Actions.CycleWS
 import           XMonad.Actions.Warp
 
 import qualified Data.Map                            as M
@@ -186,11 +187,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
 
-    , ((modMask,               xK_n     ), refresh) -- %! Resize viewed windows to the correct size
-
     -- move focus up or down the window stack
-    , ((modMask,               xK_Tab   ), windows W.focusDown) -- %! Move focus to the next window
-    , ((modMask .|. shiftMask, xK_Tab   ), windows W.focusUp  ) -- %! Move focus to the previous window
     , ((modMask,               xK_j     ), windows W.focusDown) -- %! Move focus to the next window
     , ((modMask,               xK_k     ), windows W.focusUp  ) -- %! Move focus to the previous window
     , ((modMask,               xK_m     ), windows W.focusMaster  ) -- %! Move focus to the master window
@@ -234,13 +231,18 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
     helpCommand :: X ()
     helpCommand = spawn ("echo " ++ show help ++ " | xmessage -file -")
 
+-- My Original Keybinds
 myKeys = [
     ("M-c", kill),
     ("M-a", warp'),
     ("M-f", sendMessage (T.Toggle "monocle")),
-    ("M-p", spawn "rofi -show drun"),
+    ("M-/", spawn "rofi -show drun"),
     ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\""),
-    ("M-S-s", spawn "$HOME/dotfiles/linux/screenshot.sh")
+    ("M-S-s", spawn "$HOME/dotfiles/linux/screenshot.sh"),
+    ("M-n", nextWS),
+    ("M-p", prevWS),
+    ("M-<Tab>", nextScreen),
+    ("M-C-<Tab>", prevScreen)
   ]
 
 help :: String
@@ -248,16 +250,15 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "",
     "-- launching and killing programs",
     "mod-Shift-Enter  Launch xterminal",
-    "mod-p            Launch dmenu",
-    "mod-Shift-p      Launch gmrun",
     "mod-c      Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-    "mod-n            Resize/refresh viewed windows to the correct size",
+    "mod-n            Next WorkSpace",
+    "mod-p            Previous WorkSpace",
     "",
     "-- move focus up or down the window stack",
-    "mod-Tab        Move focus to the next window",
-    "mod-Shift-Tab  Move focus to the previous window",
+    "mod-Tab        Move focus to the next Screen",
+    "mod-Control-Tab  Move focus to the previous Screen",
     "mod-j          Move focus to the next window",
     "mod-k          Move focus to the previous window",
     "mod-m          Move focus to the master window",
