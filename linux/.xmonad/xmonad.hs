@@ -233,18 +233,18 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
 
 -- My Original Keybinds
 myKeys = [
-    ("M-c", kill),
-    ("M-a", warp'),
-    ("M-q", warp'), -- Do not use
-    ("M-f", sendMessage (T.Toggle "monocle")),
     ("M-/", spawn "rofi -show drun"),
-    ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\""),
-    ("M-S-s", spawn "$HOME/dotfiles/linux/screenshot.sh"),
-    ("M-n", nextWS),
-    ("M-p", prevWS),
     ("M-<Tab>", nextScreen),
     ("M-C-<Tab>", prevScreen),
-    ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi")
+    ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
+    ("M-a", warp'),
+    ("M-c", kill),
+    ("M-f", sendMessage (T.Toggle "monocle")),
+    ("M-n", nextWS),
+    ("M-p", prevWS),
+    ("M-q", warp'), -- Do not use
+    ("M-s", spawn "rofi -dmenu | xargs -I{} google-chrome --new-window https://www.google.com/search?q={}"),
+    ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\"")
   ]
 
 help :: String
@@ -255,12 +255,8 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-c      Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-    "mod-n            Next WorkSpace",
-    "mod-p            Previous WorkSpace",
     "",
     "-- move focus up or down the window stack",
-    "mod-Tab        Move focus to the next Screen",
-    "mod-Control-Tab  Move focus to the previous Screen",
     "mod-j          Move focus to the next window",
     "mod-k          Move focus to the previous window",
     "mod-m          Move focus to the master window",
@@ -282,13 +278,20 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-period (mod-.)   Deincrement the number of windows in the master area",
     "",
     "-- quit, or restart",
-    "mod-q        Restart xmonad",
+    "mod-S-q        Restart xmonad",
     "",
     "-- Workspaces & screens",
     "mod-[1..9]         Switch to workSpace N",
     "mod-Shift-[1..9]   Move client to workspace N",
     "mod-{w,e,r}        Switch to physical/Xinerama screens 1, 2, or 3",
     "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3",
+    "mod-n            Next WorkSpace",
+    "mod-p            Previous WorkSpace",
+    "mod-Tab        Move focus to the next Screen",
+    "mod-Control-Tab  Move focus to the previous Screen",
+    "",
+    "-- Applications & Programs",
+    "mod-s Search Google"
     "",
     "-- Mouse bindings: default actions bound to mouse events",
     "mod-button1  Set the window to floating mode and move by dragging",
