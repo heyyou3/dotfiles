@@ -56,6 +56,11 @@ deploy: common_deploy
 	@$(call _ln,"$(DOTFILES_PATH)/linux/fcitx/config","$(HOME)/.config/fcitx/config")
 	@mkdir -p "$(HOME)/.config/rofi"
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/rofi/config.rasi","$(HOME)/.config/rofi/config.rasi")
+	@mkdir -p "$(HOME)/.config/ulauncher/user-themes"
+	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/ulauncher/user-themes/solarized-dark","$(HOME)/.config/ulauncher/user-themes/solarized-dark")
+	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/ulauncher/extensions.json","$(HOME)/.config/ulauncher/extensions.json")
+	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/ulauncher/settings.json","$(HOME)/.config/ulauncher/settings.json")
+	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/ulauncher/shortcuts.json","$(HOME)/.config/ulauncher/shortcuts.json")
 else
 deploy: common_deploy
 endif

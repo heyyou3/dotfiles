@@ -233,7 +233,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
 
 -- My Original Keybinds
 myKeys = [
-    ("M-/", spawn "rofi -show drun"),
+    ("M-/", spawn "ulauncher-toggle"),
     ("M-<Tab>", nextScreen),
     ("M-C-<Tab>", prevScreen),
     ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
@@ -243,7 +243,6 @@ myKeys = [
     ("M-n", nextWS),
     ("M-p", prevWS),
     ("M-q", warp'), -- Do not use
-    ("M-s", spawn "rofi -dmenu | xargs -I{} google-chrome --new-window https://www.google.com/search?q={}"),
     ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\"")
   ]
 
