@@ -49,11 +49,13 @@ ifeq ($(shell uname), Linux)
 deploy: common_deploy
 	@echo 'Set Linux settings'
 	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xprofile)","$(HOME)/$(xprofile)")
-	@mkdir "$(HOME)/.xmonad"
+	@mkdir -p "$(HOME)/.xmonad"
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.xmonad/$(xmonad_hs)","$(HOME)/.xmonad/$(xmonad_hs)")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xmobarrc)","$(HOME)/$(xmobarrc)")
-	@mkdir "$(HOME)/.config/fcitx"
+	@mkdir -p "$(HOME)/.config/fcitx"
 	@$(call _ln,"$(DOTFILES_PATH)/linux/fcitx/config","$(HOME)/.config/fcitx/config")
+	@mkdir -p "$(HOME)/.config/rofi"
+	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/rofi/config.rasi","$(HOME)/.config/rofi/config.rasi")
 else
 deploy: common_deploy
 endif
