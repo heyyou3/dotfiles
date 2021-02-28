@@ -291,7 +291,7 @@ help = unlines ["The default modifier key is 'Super'. Default keybindings:",
     "mod-Control-Tab  Move focus to the previous Screen",
     "",
     "-- Applications & Programs",
-    "mod-s Search Google"
+    "mod-s Search Google",
     "",
     "-- Mouse bindings: default actions bound to mouse events",
     "mod-button1  Set the window to floating mode and move by dragging",
