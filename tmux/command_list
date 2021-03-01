@@ -1,0 +1,3 @@
+#one liner perl default command#perl -nlE \'say $_\'
+#perl 行数表示#perl -nlE \'END{say $.}\'
+##ls -lah
