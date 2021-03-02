@@ -1,3 +1,4 @@
-#one liner perl default command#perl -nlE \'say $_\'
-#perl 行数表示#perl -nlE \'END{say $.}\'
+#perl one liner#perl -nlE 'say $_'
+#perl 行数表示#perl -nlE 'END{say $.}'
 ##ls -lah
+#find#find . -name "*.sh"
