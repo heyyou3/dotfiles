@@ -55,7 +55,7 @@ import qualified XMonad.StackSet                     as W
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "/usr/local/bin/alacritty"
+myTerminal = "alacritty"
 
 ------------------------------------------------------------------------
 -- Workspaces
@@ -233,7 +233,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
 
 -- My Original Keybinds
 myKeys = [
-    ("M-/", spawn "ulauncher-toggle"),
+    ("M-/", spawn "rofi -show drun"),
     ("M-<Tab>", nextScreen),
     ("M-C-<Tab>", prevScreen),
     ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
