@@ -95,3 +95,7 @@ install:
 	@echo 'Mac Install Command'
 	@echo 'brew install tig tmux fzf'
 endif
+
+nixos-build:
+	sudo cp ./nix_config/configuration.nix /etc/nixos/configuration.nix
+	sudo nixos-rebuild switch

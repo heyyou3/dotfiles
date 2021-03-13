@@ -8,7 +8,6 @@ let
   unstableTarball =
     fetchTarball
       https://github.com/heyyou3/nixpkgs/archive/add_xkeysnail.tar.gz;
-
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -26,8 +25,6 @@ in {
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.unmanaged = [ "*" "except:type:wwan" "except:type:gsm" ];
 
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
@@ -56,13 +53,7 @@ in {
 
   # Enable the X11 windowing system.
   services = {
-    gnome3.gnome-keyring.enable = true;
     upower.enable = true;
-    dbus = {
-      enable = true;
-      socketActivated = true;
-      packages = [ pkgs.gnome3.dconf ];
-    };
     xserver = {
       enable = true;
       startDbusSession = true;
@@ -70,29 +61,14 @@ in {
       libinput = {
         enable = true;
       };
-      displayManager = {
-        defaultSession = "none+xmonad";
-        lightdm.greeters.gtk.iconTheme = {
-          package = pkgs.gnome-breeze;
-          name = "Breeze-gtk";
-        };
-      };
-      windowManager.xmonad = {
-        enable = true;
-        enableContribAndExtras = true;
-        extraPackages = haskellPackages: [
-          haskellPackages.xmonad-contrib
-          haskellPackages.xmonad-extras
-          haskellPackages.xmonad
-        ];
-      };
+      windowManager.qtile.enable = true;
     };
   };
 
 
-  # Enable the GNOME 3 Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome3.enable = true;
+  # Enable the Plasma 5 Desktop Environment.
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
   
 
   # Configure keymap in X11
@@ -127,17 +103,35 @@ in {
       };
     };
   };
-  fonts.fonts = with pkgs; [ 
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts
-    dina-font
-    proggyfonts
-  ];
+  fonts = {
+    fonts = with pkgs; [ 
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
+      mplus-outline-fonts
+      proggyfonts
+      powerline-fonts
+      source-han-code-jp
+      hack-font
+    ];
+    fontconfig = {
+      defaultFonts = {
+        monospace = [
+          "Hack"
+          "SourceHanCodeJP"
+        ];
+        serif = [
+          "DejaVu Serif"
+          "SourceHanCodeJP"
+        ];
+        sansSerif = [
+          "DejaVu Sans"
+          "SourceHanCodeJP"
+        ];
+      };
+    };
+  };
   environment.systemPackages = with pkgs; [
     alacritty
     coreutils
@@ -145,23 +139,25 @@ in {
     firefox
     fzf
     gawk
+    gimp
     git
     gitAndTools.tig
+    gnome-breeze
     gnugrep
     gnumake
-    gnome-breeze
     gzip
+    imagemagick
+    lxappearance
     neovim
-    unstable.neovim-qt
     rofi
-    unstable.starship
     tmux
     ulauncher
     unstable.google-chrome
+    unstable.neovim-qt
+    unstable.starship
     unstable.xkeysnail
     vim
     wget
-    lxappearance
     xclip
     xmobar
     xorg.xhost
@@ -171,6 +167,12 @@ in {
     (python39.withPackages (ps: with ps; [
       pynvim pip setuptools evdev lib xlib inotify-simple fetchPypi buildPythonPackage appdirs
     ]))
+  ];
+
+  users.users.heyyou.packages = with pkgs;
+  [
+    lutris
+    vulkan-tools
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
