@@ -213,35 +213,61 @@ layouts = [
     layout.Floating(**layout_theme)
 ]
 
+colors = [["#282c34", "#282c34"], # panel background
+          ["#3d3f4b", "#434758"], # background for current screen tab
+          ["#ffffff", "#ffffff"], # font color for group names
+          ["#ff5555", "#ff5555"], # border line color for current tab
+          ["#74438f", "#74438f"], # border line color for 'other tabs' and color for 'odd widgets'
+          ["#4f76c7", "#4f76c7"], # color for the 'even widgets'
+          ["#e1acff", "#e1acff"]] # window name
+
 widget_defaults = dict(
-    font='sans',
+    font='SourceHanCodeJP',
     fontsize=12,
     padding=3,
+    background=colors[0],
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
-            ],
-            24,
+def init_widgets_list():
+    widgets_list = [
+        widget.CurrentLayout(),
+        widget.GroupBox(),
+        widget.Prompt(),
+        widget.WindowName(),
+        widget.Chord(
+            chords_colors={
+                'launch': ("#ff0000", "#ffffff"),
+            },
+            name_transform=lambda name: name.upper(),
         ),
-    ),
-]
+        widget.Systray(),
+        widget.Battery(format='{percent:2.0%}'),
+        widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+        widget.QuickExit(),
+    ]
+    return widgets_list
+
+def init_widgets_screen1():
+    widgets_screen1 = init_widgets_list()
+    return widgets_screen1
+
+def init_widgets_screen2():
+    widgets_screen2 = init_widgets_list()
+    return widgets_screen2
+
+def init_screens():
+    return [
+        Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20)),
+        Screen(top=bar.Bar(widgets=init_widgets_screen2(), opacity=1.0, size=20)),
+        Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20)),
+    ]
+
+if __name__ in ["config", "__main__"]:
+    screens = init_screens()
+    widgets_list = init_widgets_list()
+    widgets_screen1 = init_widgets_screen1()
+    widgets_screen2 = init_widgets_screen2()
 
 # Drag floating layouts.
 mouse = [
@@ -257,7 +283,7 @@ dgroups_app_rules = []  # type: List
 main = None
 follow_mouse_focus = False
 bring_front_click = True
-cursor_warp = False
+cursor_warp = True
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     {'wmclass': 'confirm'},
@@ -274,14 +300,14 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
-    # Match(wmname='Ulancher'),
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
 @hook.subscribe.startup
 def start_once():
-    subprocess.call(['/home/heyyou/dotfiles/linux/qtile/autostart.sh'])
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/dotfiles/linux/qtile/autostart.sh'])
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
