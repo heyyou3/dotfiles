@@ -61,7 +61,7 @@ myTerminal = "alacritty"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["A","B","C","D","E","F","G","H","I"]
+myWorkspaces = ["a","s","d","f","u","i","o","p"]
 
 ------------------------------------------------------------------------
 -- Layouts
@@ -219,7 +219,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
     -- mod-[1..9] %! Switch to workspace N
     -- mod-shift-[1..9] %! Move client to workspace N
     [((m .|. modMask, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_a, xK_s, xK_d, xK_f, xK_u, xK_i, xK_o, xK_p]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
     -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
@@ -237,11 +237,11 @@ myKeys = [
     ("M-<Tab>", nextScreen),
     ("M-C-<Tab>", prevScreen),
     ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
-    ("M-a", warp'),
+    ("M-n", warp'),
     ("M-c", kill),
-    ("M-f", sendMessage (T.Toggle "monocle")),
-    ("M-n", nextWS),
-    ("M-p", prevWS),
+    ("M-z", sendMessage (T.Toggle "monocle")),
+    ("M-]", nextWS),
+    ("M-[", prevWS),
     ("M-q", warp'), -- Do not use
     ("M-v", spawn "nvim-qt \"/tmp/$(date '+%Y%m%d%H%M%S').anyware\"")
   ]
