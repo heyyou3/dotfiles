@@ -140,6 +140,8 @@ in {
   };
   environment.systemPackages = with pkgs; [
     alacritty
+    appimage-run
+    compton
     coreutils
     feh
     firefox
@@ -153,17 +155,18 @@ in {
     gnumake
     gzip
     imagemagick
+    lutris
     lxappearance
     neovim
     rofi
     tmux
+    unzip
     vim
     wget
     xclip
     xmobar
     xorg.xhost
     zsh
-    unzip
 
     unstable.google-chrome
     unstable.neovim-qt
@@ -171,8 +174,6 @@ in {
     unstable.xkeysnail
     unstable.winetricks
     unstable.wineWowPackages.staging
-    lutris
-    appimage-run
 
     python39
     (python39.withPackages (ps: with ps; [
