@@ -60,6 +60,7 @@ deploy: common_deploy
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/ulauncher/extensions.json","$(HOME)/.config/ulauncher/extensions.json")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/ulauncher/settings.json","$(HOME)/.config/ulauncher/settings.json")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/ulauncher/shortcuts.json","$(HOME)/.config/ulauncher/shortcuts.json")
+	@$(call _ln,"$(DOTFILES_PATH)/linux/.Xresources","$(HOME)/.Xresources")
 else
 deploy: common_deploy
 endif
