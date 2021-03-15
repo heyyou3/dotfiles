@@ -21,7 +21,6 @@ in {
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -61,13 +60,21 @@ in {
       libinput = {
         enable = true;
       };
-      windowManager.qtile.enable = true;
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+        extraPackages = haskellPackages: [
+          haskellPackages.xmonad-contrib
+          haskellPackages.xmonad-extras
+          haskellPackages.xmonad
+        ];
+      };
     };
   };
 
 
   # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   
 
@@ -80,7 +87,6 @@ in {
 
   # Enable sound.
   # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -151,17 +157,22 @@ in {
     neovim
     rofi
     tmux
-    ulauncher
-    unstable.google-chrome
-    unstable.neovim-qt
-    unstable.starship
-    unstable.xkeysnail
     vim
     wget
     xclip
     xmobar
     xorg.xhost
     zsh
+    unzip
+
+    unstable.google-chrome
+    unstable.neovim-qt
+    unstable.starship
+    unstable.xkeysnail
+    unstable.winetricks
+    unstable.wineWowPackages.staging
+    lutris
+    appimage-run
 
     python39
     (python39.withPackages (ps: with ps; [

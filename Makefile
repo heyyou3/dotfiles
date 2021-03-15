@@ -99,3 +99,14 @@ endif
 nixos-build:
 	sudo cp ./nix_config/configuration.nix /etc/nixos/configuration.nix
 	sudo nixos-rebuild switch
+nixos-desktop-build:
+	sudo cp ./nix_config/configuration.nix /etc/nixos/configuration.nix
+	sudo cp ./nix_config/hardware_desktop.nix /etc/nixos/hardware-configuration.nix
+	sudo nixos-rebuild switch
+nixos-install:
+	@echo 'Install SpaceVim'
+	@curl -sLf https://spacevim.org/install.sh | bash
+	@echo 'Install zinit'
+	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+	@echo 'Install tpm'
+	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
