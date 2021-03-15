@@ -186,6 +186,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
   ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
+    , ((modMask, xK_n), refresh)
 
     -- move focus up or down the window stack
     , ((modMask,               xK_j     ), windows W.focusDown) -- %! Move focus to the next window
@@ -237,7 +238,7 @@ myKeys = [
     ("M-<Tab>", nextScreen),
     ("M-C-<Tab>", prevScreen),
     ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
-    ("M-n", warp'),
+    ("M-x", warp'),
     ("M-c", kill),
     ("M-z", sendMessage (T.Toggle "monocle")),
     ("M-]", nextWS),
