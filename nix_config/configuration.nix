@@ -150,7 +150,6 @@ in {
     gimp
     git
     gitAndTools.tig
-    gnome-breeze
     gnugrep
     gnumake
     gzip
@@ -158,7 +157,9 @@ in {
     lutris
     lxappearance
     neovim
+    obs-studio
     rofi
+    slack
     tmux
     unzip
     vim
@@ -171,9 +172,9 @@ in {
     unstable.google-chrome
     unstable.neovim-qt
     unstable.starship
-    unstable.xkeysnail
-    unstable.winetricks
     unstable.wineWowPackages.staging
+    unstable.winetricks
+    unstable.xkeysnail
 
     python39
     (python39.withPackages (ps: with ps; [
