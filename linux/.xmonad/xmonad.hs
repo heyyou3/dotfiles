@@ -239,7 +239,7 @@ myKeys = [
     ("M-C-<Tab>", prevScreen),
     ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
     ("M-x", warp'),
-    ("M-c", kill),
+    ("M-S-c", kill),
     ("M-z", sendMessage (T.Toggle "monocle")),
     ("M-]", nextWS),
     ("M-[", prevWS),
