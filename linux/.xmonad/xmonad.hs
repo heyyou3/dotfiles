@@ -183,12 +183,20 @@ toggleStructsKey XConfig { XMonad.modMask = modMask } = ( modMask, xK_b )
 
 myDefaultKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
-  ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
+    -- launching and killing programs
+    ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
+    -- , ((modMask,               xK_p     ), spawn "dmenu_run") -- %! Launch dmenu
+    -- , ((modMask .|. shiftMask, xK_p     ), spawn "gmrun") -- %! Launch gmrun
+    , ((modMask .|. shiftMask, xK_c     ), kill) -- %! Close the focused window
+
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
     , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
-    , ((modMask, xK_n), refresh)
+
+    , ((modMask,               xK_n     ), refresh) -- %! Resize viewed windows to the correct size
 
     -- move focus up or down the window stack
+    -- , ((modMask,               xK_Tab   ), windows W.focusDown) -- %! Move focus to the next window
+    -- , ((modMask .|. shiftMask, xK_Tab   ), windows W.focusUp  ) -- %! Move focus to the previous window
     , ((modMask,               xK_j     ), windows W.focusDown) -- %! Move focus to the next window
     , ((modMask,               xK_k     ), windows W.focusUp  ) -- %! Move focus to the previous window
     , ((modMask,               xK_m     ), windows W.focusMaster  ) -- %! Move focus to the master window
@@ -210,6 +218,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
 
     -- quit, or restart
+    -- , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- %! Quit xmonad
     -- , ((modMask              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
 
     , ((modMask .|. shiftMask, xK_slash ), helpCommand) -- %! Run xmessage with a summary of the default keybindings (useful for beginners)
@@ -238,8 +247,8 @@ myKeys = [
     ("M-<Tab>", nextScreen),
     ("M-C-<Tab>", prevScreen),
     ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
+    ("M-C-q", io (exitWith ExitSuccess)),
     ("M-x", warp'),
-    ("M-S-c", kill),
     ("M-z", sendMessage (T.Toggle "monocle")),
     ("M-]", nextWS),
     ("M-[", prevWS),
