@@ -97,12 +97,13 @@ install:
 	@echo 'brew install tig tmux fzf'
 endif
 
-nixos-build:
-	sudo cp ./nix_config/configuration.nix /etc/nixos/configuration.nix
-	sudo nixos-rebuild switch
-nixos-desktop-build:
+nixos-build-desktop:
 	sudo cp ./nix_config/configuration.nix /etc/nixos/configuration.nix
 	sudo cp ./nix_config/hardware_desktop.nix /etc/nixos/hardware-configuration.nix
+	sudo nixos-rebuild switch
+nixos-build-thinkpad:
+	sudo cp ./nix_config/configuration.nix /etc/nixos/configuration.nix
+	sudo cp ./nix_config/hardware_thinkpad.nix /etc/nixos/hardware-configuration.nix
 	sudo nixos-rebuild switch
 nixos-install:
 	@echo 'Install SpaceVim'
