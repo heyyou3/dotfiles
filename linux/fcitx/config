@@ -1,6 +1,6 @@
 [Hotkey]
 # Trigger Input Method
-TriggerKey=ALT_SPACE ALT_SPACE
+TriggerKey=SUPER_` SUPER_`
 # Use extra trigger key only after using it to inactivate
 # Available Value:
 # True False
@@ -33,7 +33,7 @@ TriggerKey=ALT_SPACE ALT_SPACE
 # Activate input method
 #ActivateKey=
 # Inactivate Input Method
-InactivateKey= ESCAPE CTRL_[
+InactivateKey=ESCAPE CTRL_[
 # Enable Hotkey to scroll Between Input Method
 # Available Value:
 # True False
