@@ -1,6 +1,6 @@
 Config {
    -- appearance
-   font = "xft:SourceHanCodeJP:size=10:bold:antialias=true"
+   font = "xft:HackGenNerd:size=10:bold:antialias=true"
    , bgColor = "#002b36"
    , fgColor = "#657b83"
    , border = NoBorder
@@ -61,7 +61,7 @@ Config {
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 50
-                          
+
         -- memory usage monitor
         , Run Memory         [ "--template" ,"Mem: <usedratio>%"
                              , "--Low"      , "20"        -- units: %

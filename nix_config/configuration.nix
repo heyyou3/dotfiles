@@ -7,7 +7,7 @@
 let
   unstableTarball =
     fetchTarball
-      https://github.com/heyyou3/nixpkgs/archive/add_xkeysnail.tar.gz;
+      https://github.com/heyyou3/nixpkgs/archive/refs/tags/hackgen_v1.0.3.tar.gz;
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -53,6 +53,7 @@ in {
   # Enable the X11 windowing system.
   services = {
     upower.enable = true;
+    blueman.enable = true;
     xserver = {
       enable = true;
       startDbusSession = true;
@@ -76,7 +77,6 @@ in {
   # Enable the Plasma 5 Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -110,7 +110,7 @@ in {
     };
   };
   fonts = {
-    fonts = with pkgs; [ 
+    fonts = with pkgs; [
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
@@ -120,20 +120,20 @@ in {
       powerline-fonts
       source-han-code-jp
       hack-font
+      fira-code
+      fira-code-symbols
+      unstable.hackgen
     ];
     fontconfig = {
       defaultFonts = {
         monospace = [
-          "Hack"
-          "SourceHanCodeJP"
+          "HackGenNerd"
         ];
         serif = [
-          "DejaVu Serif"
-          "SourceHanCodeJP"
+          "HackGenNerd"
         ];
         sansSerif = [
-          "DejaVu Sans"
-          "SourceHanCodeJP"
+          "HackGenNerd"
         ];
       };
     };
