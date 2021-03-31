@@ -61,7 +61,7 @@ myTerminal = "alacritty"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["a","s","d","f","u","i","o","p"]
+myWorkspaces = ["a","s","d","f","y","u","i","o"]
 
 ------------------------------------------------------------------------
 -- Layouts
@@ -229,7 +229,7 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
     -- mod-[1..9] %! Switch to workspace N
     -- mod-shift-[1..9] %! Move client to workspace N
     [((m .|. modMask, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_a, xK_s, xK_d, xK_f, xK_u, xK_i, xK_o, xK_p]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_a, xK_s, xK_d, xK_f, xK_y, xK_u, xK_i, xK_o]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     ++
     -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
@@ -244,8 +244,8 @@ myDefaultKeys conf@XConfig { XMonad.modMask = modMask } = M.fromList $ [
 -- My Original Keybinds
 myKeys = [
     ("M-/", spawn "rofi -show drun"),
-    ("M-<Tab>", nextScreen),
-    ("M-C-<Tab>", prevScreen),
+    ("M-n", nextScreen),
+    ("M-p", prevScreen),
     ("M-S-q", spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi"),
     ("M-C-q", io (exitWith ExitSuccess)),
     ("M-x", warp'),
