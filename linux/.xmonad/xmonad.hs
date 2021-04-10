@@ -61,7 +61,7 @@ myTerminal = "alacritty"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["search","com","sche","memo","term","w1","w2","w3"]
+myWorkspaces = ["sear","comm","sche","memo","term","wor1","wor2","wor3"]
 
 ------------------------------------------------------------------------
 -- Layouts
