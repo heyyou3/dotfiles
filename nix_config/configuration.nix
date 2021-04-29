@@ -142,6 +142,8 @@ in {
     alacritty
     appimage-run
     clang
+    gcc
+    cmake
     compton
     coreutils
     emacs
@@ -158,9 +160,11 @@ in {
     gzip
     imagemagick
     lutris
+    libtool
     lxappearance
     neovim
     obs-studio
+    ripgrep
     rofi
     slack
     tmux
