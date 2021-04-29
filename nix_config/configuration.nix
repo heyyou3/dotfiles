@@ -141,6 +141,7 @@ in {
   environment.systemPackages = with pkgs; [
     alacritty
     appimage-run
+    emacs
     compton
     coreutils
     feh
