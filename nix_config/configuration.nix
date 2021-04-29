@@ -141,9 +141,11 @@ in {
   environment.systemPackages = with pkgs; [
     alacritty
     appimage-run
-    emacs
+    clang
     compton
     coreutils
+    emacs
+    fd
     feh
     firefox
     fzf
