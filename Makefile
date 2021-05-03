@@ -39,6 +39,7 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshrc)","$(HOME)/$(zshrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshenv)","$(HOME)/$(zshenv)")
 	@$(call _ln,"$(DOTFILES_PATH)/todo/.todo.cfg","$(HOME)/.todo.cfg")
+	@$(call _ln,"$(DOTFILES_PATH)/.doom.d","$(HOME)/.doom.d")
 
 xmobarrc := .xmobarrc
 xmonad_hs := xmonad.hs
@@ -93,6 +94,8 @@ install:
 	@echo 'Install tpm'
 	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@curl https://sh.rustup.rs -sSf | sh
+	@echo 'Install doom-emacs'
+	@git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
 	@echo 'Mac Install Command'
 	@echo 'brew install tig tmux fzf'
 endif
