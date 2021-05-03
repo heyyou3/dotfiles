@@ -183,9 +183,9 @@ in {
     unstable.winetricks
     unstable.xkeysnail
 
-    python39
-    (python39.withPackages (ps: with ps; [
-      pynvim pip setuptools evdev lib xlib inotify-simple fetchPypi buildPythonPackage appdirs
+    python38
+    (python38.withPackages (ps: with ps; [
+      pip setuptools evdev lib xlib inotify-simple fetchPypi buildPythonPackage appdirs python-language-server
     ]))
   ];
 
