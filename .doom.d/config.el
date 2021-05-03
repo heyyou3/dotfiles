@@ -56,5 +56,4 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
-;; (setq doom-modeline-env-python-executable "/nix/store/xibghivp12jgk2xrwykpxxhy8wbmr5zi-python3-3.8.8/bin/python")
+(global-whitespace-mode 1)
