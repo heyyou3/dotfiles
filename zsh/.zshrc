@@ -37,3 +37,4 @@ bindkey '^xe' edit-command-line
 source "$DOT_FILES_PATH/common_sh/common"
 
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
