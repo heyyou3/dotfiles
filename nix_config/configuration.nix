@@ -146,6 +146,7 @@ in {
     cmake
     compton
     coreutils
+    direnv
     emacs
     fd
     feh
@@ -227,4 +228,3 @@ in {
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-
