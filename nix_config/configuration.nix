@@ -147,7 +147,6 @@ in {
     compton
     coreutils
     direnv
-    emacs
     fd
     feh
     firefox
@@ -183,6 +182,10 @@ in {
     unstable.wineWowPackages.staging
     unstable.winetricks
     unstable.xkeysnail
+
+    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+      epkgs.vterm
+    ]))
 
     python38
     (python38.withPackages (ps: with ps; [
