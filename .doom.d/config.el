@@ -57,3 +57,4 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (global-whitespace-mode 1)
+(setq-default fill-column 500)
