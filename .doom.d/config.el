@@ -60,8 +60,10 @@
 
 (setq-default fill-column 500)
 
+;; company
 (after! company
   (setq company-idle-delay 0.5
-        company-minimum-prefix-length 2)
-  (setq company-show-numbers t)
-  (add-hook 'evil-normal-state-entry-hook #'company-abort))
+        company-minimum-prefix-length 2))
+
+;; org-clock
+(setq org-clock-clocked-in-display 'frame-title)
