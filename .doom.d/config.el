@@ -33,7 +33,6 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil)
 (setq doom-font (font-spec :family "HackGenNerd" :size 16)
       doom-variable-pitch-font (font-spec :family "HackGenNerd")
       doom-unicode-font (font-spec :family "HackGenNerd")
@@ -71,5 +70,12 @@
 (setq org-clock-clocked-in-display 'frame-title)
 (setq org-clock-out-remove-zero-time-clocks nil)
 
-(setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
-(setq doom-modeline-indent-into t)
+(setq display-line-numbers-type nil)
+
+;; doom-modeline
+(setq doom-modeline-indent-info t)
+(after! doom-modeline
+  (remove-hook 'doom-modeline-mode-hook #'size-indication-mode) ; filesize in modeline
+  (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
+  (setq doom-modeline-percent-position nil)
+  )
