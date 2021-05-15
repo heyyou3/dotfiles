@@ -72,23 +72,37 @@ myWorkspaces = ["sear","comm","sche","memo","term","wor1","wor2","wor3"]
 --
 -- The available layouts. Note that each layout is separated by |||,
 -- which denotes layout choice.
-myFont = "xft:RictyDiminished-Regular:size=10:bold:antialias=true"
+myFont = "xft:HackGenNerd:size=10:bold:antialias=true"
 
 ------------------------------------------------------------------------
 -- Colors and borders
 --
-myNormalBorderColor = "#002b36"
-myFocusedBorderColor = "#6c71c4"
+-- | Dracula Theme
+backgroundColor    = "#282a36"
+currentLineColor   = "#44475a"
+selectionColor     = "#44475a"
+foregroundColor    = "#f8f8f2"
+commentColor       = "#6272a4"
+cyanColor          = "#8be9fd"
+greenColor         = "#50fa7b"
+orangeColor        = "#ffb86c"
+pinkColor          = "#ff79c6"
+purpleColor        = "#bd93f9"
+redColor           = "#ff5555"
+yellowColor        = "#f1fa8c"
+
+myNormalBorderColor = backgroundColor
+myFocusedBorderColor = currentLineColor
 
 -- Colors for text and backgrounds of each tab when in "Tabbed" layout.
 myTabTheme = def {
     fontName = myFont,
-    activeBorderColor = "#7C7C7C",
-    activeTextColor = "#CEFFAC",
-    activeColor = "#000000",
-    inactiveBorderColor = "#7C7C7C",
-    inactiveTextColor = "#EEEEEE",
-    inactiveColor = "#000000"
+    activeBorderColor = currentLineColor,
+    activeTextColor = commentColor,
+    activeColor = foregroundColor,
+    inactiveBorderColor = purpleColor,
+    inactiveTextColor = cyanColor,
+    inactiveColor = commentColor
 }
 
 --Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
@@ -436,13 +450,13 @@ main = do
   xmonad $ myConfig {
     logHook = mapM_ (\handle -> dynamicLogWithPP $ xmobarPP {
       ppOutput = hPutStrLn handle
-        , ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
-        , ppVisible = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
-        , ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""   -- Hidden workspaces in xmobar
-        , ppHiddenNoWindows = xmobarColor "#F07178" ""        -- Hidden workspaces (no windows)
-        , ppTitle = xmobarColor "#d0d0d0" "" . shorten 60     -- Title of active window in xmobar
-        , ppSep =  "<fc=#666666> | </fc>"                     -- Separators in xmobar
-        , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"  -- Urgent workspace
+        , ppCurrent = xmobarColor greenColor "" . wrap "[" "]" -- Current workspace in xmobar
+        , ppVisible = xmobarColor orangeColor ""                -- Visible but not current workspace
+        , ppHidden = xmobarColor foregroundColor "" . wrap "*" ""   -- Hidden workspaces in xmobar
+        , ppHiddenNoWindows = xmobarColor foregroundColor ""        -- Hidden workspaces (no windows)
+        , ppTitle = xmobarColor orangeColor "" . shorten 60     -- Title of active window in xmobar
+        , ppSep =  "<fc=#f8f8f2> | </fc>"                     -- Separators in xmobar
+        , ppUrgent = xmobarColor redColor "" . wrap "!" "!"  -- Urgent workspace
         , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
     }) xmprocs
   }
