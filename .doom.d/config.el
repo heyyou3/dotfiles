@@ -58,12 +58,18 @@
 ;; they are implemented.
 (global-whitespace-mode 1)
 
-(setq-default fill-column 500)
-
 ;; company
 (after! company
   (setq company-idle-delay 0.5
         company-minimum-prefix-length 2))
 
-;; org-clock
+(global-company-mode)
+(global-hl-line-mode 0)
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+(scroll-bar-mode -1)
+
 (setq org-clock-clocked-in-display 'frame-title)
+(setq org-clock-out-remove-zero-time-clocks nil)
+
+(setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
+(setq doom-modeline-indent-into t)
