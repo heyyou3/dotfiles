@@ -73,11 +73,10 @@
 (setq display-line-numbers-type nil)
 
 ;; doom-modeline
-(setq doom-modeline-indent-info t)
 (after! doom-modeline
   (remove-hook 'doom-modeline-mode-hook #'size-indication-mode) ; filesize in modeline
   (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
   (setq doom-modeline-percent-position nil)
+  (setq doom-modeline-indent-info t)
   )
 (advice-add #'doom-modeline-update-vcs-text :override (lambda () (setq doom-modeline--vcs-icon nil)))
-(setq vc-display-status nil)
