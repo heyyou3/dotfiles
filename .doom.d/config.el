@@ -79,3 +79,5 @@
   (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
   (setq doom-modeline-percent-position nil)
   )
+(advice-add #'doom-modeline-update-vcs-text :override (lambda () (setq doom-modeline--vcs-icon nil)))
+(setq vc-display-status nil)
