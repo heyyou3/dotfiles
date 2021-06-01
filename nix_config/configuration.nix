@@ -142,7 +142,6 @@ in {
     alacritty
     appimage-run
     clang
-    gcc
     cmake
     compton
     coreutils
@@ -152,6 +151,8 @@ in {
     firefox
     fzf
     gawk
+    gcc
+    go
     gimp
     git
     gitAndTools.tig
@@ -159,8 +160,8 @@ in {
     gnumake
     gzip
     imagemagick
-    lutris
     libtool
+    lutris
     lxappearance
     neovim
     obs-studio
@@ -171,6 +172,7 @@ in {
     unzip
     vim
     wget
+    wmname
     xclip
     xmobar
     xorg.xhost
@@ -182,6 +184,7 @@ in {
     unstable.wineWowPackages.staging
     unstable.winetricks
     unstable.xkeysnail
+    unstable.android-studio
 
     ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
       epkgs.vterm
@@ -199,6 +202,8 @@ in {
     vulkan-tools
   ];
 
+  users.users.heyyou.extraGroups = ["adbusers"];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -209,6 +214,7 @@ in {
   programs = {
     zsh.enable = true;
     dconf.enable = true;
+    adb.enable = true;
   };
 
   # List services that you want to enable:
