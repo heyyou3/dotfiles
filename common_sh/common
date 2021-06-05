@@ -1,4 +1,4 @@
-export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.anyenv/bin:$HOME/.local/bin
+export PATH=$PATH:$HOME/bin:/usr/local/bin:$HOME/.local/bin
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 
@@ -19,6 +19,11 @@ fi
 
 if [ -d "$HOME/.cargo" ]; then
   export PATH=$HOME/.cargo/bin:$PATH
+fi
+
+if [ -d "$HOME/go" ]; then
+  export GOBIN=$HOME/go/bin
+  export GO111MODULE=on
 fi
 
 source "$DOT_FILES_PATH/common_sh/aliases"

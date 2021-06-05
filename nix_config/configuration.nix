@@ -7,7 +7,7 @@
 let
   unstableTarball =
     fetchTarball
-      https://github.com/heyyou3/nixpkgs/archive/refs/tags/hackgen_v1.0.3.tar.gz;
+      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.4.tar.gz;
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -179,6 +179,7 @@ in {
     zsh
 
     unstable.google-chrome
+    unstable.vscode
     unstable.neovim-qt
     unstable.starship
     unstable.wineWowPackages.staging
