@@ -56,19 +56,12 @@ in {
     blueman.enable = true;
     xserver = {
       enable = true;
-      startDbusSession = true;
       layout = "us";
       libinput = {
         enable = true;
       };
-      windowManager.xmonad = {
+      windowManager.leftwm = {
         enable = true;
-        enableContribAndExtras = true;
-        extraPackages = haskellPackages: [
-          haskellPackages.xmonad-contrib
-          haskellPackages.xmonad-extras
-          haskellPackages.xmonad
-        ];
       };
     };
   };
@@ -138,9 +131,14 @@ in {
       };
     };
   };
+  environment.variables = {
+    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+  };
   environment.systemPackages = with pkgs; [
     alacritty
     appimage-run
+    binutils.bintools
+    rustup
     clang
     cmake
     compton
@@ -160,11 +158,16 @@ in {
     gnumake
     gzip
     imagemagick
+    leftwm
     libtool
     lutris
     lxappearance
     neovim
+    pkgconfig
+    picom
+    polybar
     obs-studio
+    openssl
     ripgrep
     rofi
     slack
@@ -176,6 +179,7 @@ in {
     xclip
     xmobar
     xorg.xhost
+    zlib
     zsh
 
     unstable.google-chrome
@@ -235,6 +239,6 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = "21.05"; # Did you read the comment?
 
 }
