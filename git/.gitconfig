@@ -3,7 +3,7 @@
   email = hey3you3@gmail.com
 [core]
   autocrlf = input
-	editor = nvim
+	editor = code --wait
   excludesfile = ~/.gitignore_global
 [commit]
 [alias]
