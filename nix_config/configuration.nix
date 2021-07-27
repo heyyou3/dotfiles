@@ -149,6 +149,7 @@ in {
     alacritty
     appimage-run
     binutils.bintools
+    blueman
     rustup
     clang
     cmake
