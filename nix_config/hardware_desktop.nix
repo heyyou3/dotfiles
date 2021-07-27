@@ -13,6 +13,8 @@
   hardware.pulseaudio.enable = true;
   hardware.opengl.driSupport32Bit = true;
 
+  hardware.bluetooth.enable = true;
+
   services.xserver.videoDrivers = ["nvidia"];
 
   fileSystems."/" =
