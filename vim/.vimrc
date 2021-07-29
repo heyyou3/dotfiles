@@ -78,31 +78,18 @@ function! LoadPlugins()
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'elzr/vim-json'
-    Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-    Plug 'habamax/vim-asciidoctor'
     Plug 'jremmen/vim-ripgrep'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-    Plug 'kannokanno/previm'
     Plug 'leafgarland/typescript-vim'
-    Plug 'mattn/emmet-vim'
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'prabirshrestha/vim-lsp'
-    Plug 'morhetz/gruvbox'
-    Plug 'peitalin/vim-jsx-typescript'
-    Plug 'rust-lang/rust.vim'
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
     Plug 'w0rp/ale'
-    Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    " Plug 'edkolev/tmuxline.vim'
+    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'edkolev/tmuxline.vim'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'srcery-colors/srcery-vim'
   call plug#end()
 endfunction
 
@@ -117,19 +104,19 @@ call LoadPlugins()
 syntax on
 set t_Co=256
 set background=dark
-colorscheme srcery
+colorscheme dracula
 
-" let g:tmuxline_preset = {
-"   \'a'    : ['#{git_status}'],
-"   \'c'    : [''],
-"   \'win'  : ['#I', '#W'],
-"   \'cwin' : ['#I', '#W', '#F'],
-"   \'x'    : '',
-"   \'y'    : ['#{pane_current_path}'],
-"   \'z'    : '#S'}
-" let g:tmuxline_powerline_separators = 1
+let g:tmuxline_preset = {
+  \'a'    : ['#{git_status}'],
+  \'c'    : [''],
+  \'win'  : ['#I', '#W'],
+  \'cwin' : ['#I', '#W', '#F'],
+  \'x'    : '',
+  \'y'    : ['#{pane_current_path}'],
+  \'z'    : '#S'}
+let g:tmuxline_powerline_separators = 1
 
-let g:airline_theme='srcery'
+let g:airline_theme='dracula'
 let g:airline_solarized_bg='dark'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
