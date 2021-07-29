@@ -194,14 +194,15 @@ in {
     zlib
     zsh
 
+    unstable.android-studio
     unstable.google-chrome
-    unstable.vscode
     unstable.neovim-qt
     unstable.starship
+    unstable.vivaldi
+    unstable.vscode
     unstable.wineWowPackages.staging
     unstable.winetricks
     unstable.xkeysnail
-    unstable.android-studio
 
     ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
       epkgs.vterm
