@@ -14,7 +14,6 @@ set autoread
 set autowrite
 set belloff=all
 set clipboard+=unnamed
-set cursorline
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
@@ -75,7 +74,6 @@ let s:vim_plug_dir = $HOME.'/.vim/plugged'
 function! LoadPlugins()
   call plug#begin(s:vim_plug_dir)
     Plug 'airblade/vim-gitgutter'
-    Plug 'bronson/vim-trailing-whitespace'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'elzr/vim-json'
     Plug 'jremmen/vim-ripgrep'
