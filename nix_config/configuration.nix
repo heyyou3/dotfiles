@@ -7,7 +7,7 @@
 let
   unstableTarball =
     fetchTarball
-      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.4.tar.gz;
+      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.5.tar.gz;
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -150,7 +150,6 @@ in {
     appimage-run
     binutils.bintools
     blueman
-    rustup
     clang
     cmake
     compton
@@ -162,26 +161,27 @@ in {
     fzf
     gawk
     gcc
-    go
     gimp
     git
     gitAndTools.tig
     gnugrep
     gnumake
+    go
     gzip
     imagemagick
     leftwm
     libtool
     lutris
     lxappearance
-    neovim
-    pkgconfig
-    picom
-    polybar
+    neofetch
     obs-studio
     openssl
+    picom
+    pkgconfig
+    polybar
     ripgrep
     rofi
+    rustup
     slack
     tmux
     unzip
@@ -200,6 +200,7 @@ in {
     unstable.starship
     unstable.vivaldi
     unstable.vscode
+    unstable.neovim
     unstable.wineWowPackages.staging
     unstable.winetricks
     unstable.xkeysnail
