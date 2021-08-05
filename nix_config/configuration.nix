@@ -145,75 +145,81 @@ in {
   environment.variables = {
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   };
-  environment.systemPackages = with pkgs; [
-    alacritty
-    appimage-run
-    binutils.bintools
-    blueman
-    clang
-    cmake
-    compton
-    coreutils
-    direnv
-    fd
-    feh
-    firefox
-    fzf
-    gawk
-    gcc
-    gimp
-    git
-    gitAndTools.tig
-    gnugrep
-    gnumake
-    go
-    gzip
-    imagemagick
-    leftwm
-    libtool
-    lutris
-    lxappearance
-    neofetch
-    obs-studio
-    openssl
-    picom
-    pkgconfig
-    polybar
-    ripgrep
-    rofi
-    rustup
-    slack
-    tmux
-    unzip
-    vim
-    wget
-    wmname
-    xclip
-    xmobar
-    xorg.xhost
-    zlib
-    zsh
+  environment.systemPackages = with pkgs;
+    let
+      polybar = pkgs.polybar.override {
+        i3Support = true;
+      };
+    in
+      [
+        alacritty
+        appimage-run
+        binutils.bintools
+        blueman
+        clang
+        cmake
+        compton
+        coreutils
+        direnv
+        fd
+        feh
+        firefox
+        fzf
+        gawk
+        gcc
+        gimp
+        git
+        gitAndTools.tig
+        gnugrep
+        gnumake
+        go
+        gzip
+        imagemagick
+        leftwm
+        libtool
+        lutris
+        lxappearance
+        neofetch
+        obs-studio
+        openssl
+        picom
+        pkgconfig
+        polybar
+        ripgrep
+        rofi
+        rustup
+        slack
+        tmux
+        unzip
+        vim
+        wget
+        wmname
+        xclip
+        xmobar
+        xorg.xhost
+        zlib
+        zsh
 
-    unstable.android-studio
-    unstable.google-chrome
-    unstable.neovim-qt
-    unstable.starship
-    unstable.vivaldi
-    unstable.vscode
-    unstable.neovim
-    unstable.wineWowPackages.staging
-    unstable.winetricks
-    unstable.xkeysnail
+        unstable.android-studio
+        unstable.google-chrome
+        unstable.neovim-qt
+        unstable.starship
+        unstable.vivaldi
+        unstable.vscode
+        unstable.neovim
+        unstable.wineWowPackages.staging
+        unstable.winetricks
+        unstable.xkeysnail
 
-    ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
-      epkgs.vterm
-    ]))
+        ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
+          epkgs.vterm
+        ]))
 
-    python38
-    (python38.withPackages (ps: with ps; [
-      pip setuptools evdev lib xlib inotify-simple fetchPypi buildPythonPackage appdirs python-language-server
-    ]))
-  ];
+        python38
+        (python38.withPackages (ps: with ps; [
+          pip setuptools evdev lib xlib inotify-simple fetchPypi buildPythonPackage appdirs python-language-server
+        ]))
+      ];
 
   users.users.heyyou.packages = with pkgs;
   [
