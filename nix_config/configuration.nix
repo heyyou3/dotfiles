@@ -125,9 +125,11 @@ in {
       hack-font
       fira-code
       fira-code-symbols
+      font-awesome
       unstable.hackgen
     ];
     fontconfig = {
+      enable = true;
       defaultFonts = {
         monospace = [
           "HackGenNerd"
