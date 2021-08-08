@@ -262,7 +262,7 @@ in {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
+  system.autoUpgrade.allowReboot = false;
   system.autoUpgrade.channel = https://nixos.org/channels/nixos-21.05;
   system.stateVersion = "21.05"; # Did you read the comment?
 }
