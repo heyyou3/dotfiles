@@ -196,6 +196,7 @@ in {
         vim
         wget
         wmname
+        xorg.xev
         xclip
         xmobar
         xorg.xhost
