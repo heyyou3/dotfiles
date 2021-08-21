@@ -86,7 +86,7 @@ function! LoadPlugins()
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
     Plug 'dracula/vim', { 'as': 'dracula' }
-    Plug 'edkolev/tmuxline.vim'
+    " Plug 'edkolev/tmuxline.vim'
     Plug 'vim-airline/vim-airline-themes'
   call plug#end()
 endfunction
@@ -104,15 +104,15 @@ set t_Co=256
 set background=dark
 colorscheme dracula
 
-let g:tmuxline_preset = {
-  \'a'    : ['#{git_status}'],
-  \'c'    : [''],
-  \'win'  : ['#I', '#W'],
-  \'cwin' : ['#I', '#W', '#F'],
-  \'x'    : '',
-  \'y'    : ['#{pane_current_path}'],
-  \'z'    : '#S'}
-let g:tmuxline_powerline_separators = 1
+" let g:tmuxline_preset = {
+"   \'a'    : ['#{git_status}'],
+"   \'c'    : [''],
+"   \'win'  : ['#I', '#W'],
+"   \'cwin' : ['#I', '#W', '#F'],
+"   \'x'    : '',
+"   \'y'    : ['#{pane_current_path}'],
+"   \'z'    : '#S'}
+" let g:tmuxline_powerline_separators = 1
 
 let g:airline_theme='dracula'
 let g:airline_solarized_bg='dark'
