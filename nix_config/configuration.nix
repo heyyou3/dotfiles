@@ -163,6 +163,7 @@ in {
         appimage-run
         binutils.bintools
         blueman
+        brave
         clang
         cmake
         compton
