@@ -132,19 +132,20 @@ in {
       fira-code
       fira-code-symbols
       font-awesome
+      ibm-plex
       unstable.hackgen
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
         monospace = [
-          "HackGenNerd"
+          "IBM Plex Mono"
         ];
         serif = [
-          "HackGenNerd"
+          "IBM Plex Serif"
         ];
         sansSerif = [
-          "HackGenNerd"
+          "IBM Plex Sans"
         ];
       };
     };

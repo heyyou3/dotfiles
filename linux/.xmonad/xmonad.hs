@@ -72,7 +72,7 @@ myWorkspaces = ["sear","comm","sche","memo","term","wor1","wor2","wor3"]
 --
 -- The available layouts. Note that each layout is separated by |||,
 -- which denotes layout choice.
-myFont = "xft:HackGenNerd:size=10:bold:antialias=true"
+myFont = "xft:IBM Plex Mono:size=10:bold:antialias=true"
 
 ------------------------------------------------------------------------
 -- Colors and borders
