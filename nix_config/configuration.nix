@@ -134,18 +134,19 @@ in {
       font-awesome
       ibm-plex
       unstable.hackgen
+      unstable.sarasa-gothic
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
         monospace = [
-          "IBM Plex Mono"
+          "Sarasa Fixed Slab J"
         ];
         serif = [
-          "IBM Plex Serif"
+          "Sarasa UI J"
         ];
         sansSerif = [
-          "IBM Plex Sans"
+          "Sarasa UI J"
         ];
       };
     };
