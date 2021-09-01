@@ -55,6 +55,7 @@ deploy: common_deploy
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/rofi/config.rasi","$(HOME)/.config/rofi/config.rasi")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.Xresources","$(HOME)/.Xresources")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/i3/config","$(HOME)/.config/i3/config")
+	@$(call _ln,"$(DOTFILES_PATH)/kitty/kitty.conf","$(HOME)/.config/kitty/kitty.conf")
 else
 deploy: common_deploy
 endif

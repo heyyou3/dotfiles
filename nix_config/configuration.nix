@@ -223,6 +223,7 @@ in {
         unstable.wineWowPackages.staging
         unstable.winetricks
         unstable.xkeysnail
+        unstable.kitty
 
         ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
           epkgs.vterm
