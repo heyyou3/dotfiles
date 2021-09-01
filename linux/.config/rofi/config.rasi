@@ -1,5 +1,5 @@
 configuration {
-  font: "IBM Plex Mono 13";
+  font: "Sarasa Fixed Slab J 13";
   terminal: "zsh";
   lines: 5;
 }
@@ -7,7 +7,7 @@ configuration {
 /*Dracula theme based on the Purple official rofi theme*/
 
 * {
-    font: "IBM Plex Mono 12";
+    font: "Sarasa Fixed Slab J 12";
     foreground: #f8f8f2;
     background-color: #282a36;
     active-background: #6272a4;

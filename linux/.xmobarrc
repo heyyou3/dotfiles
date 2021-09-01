@@ -1,6 +1,6 @@
 Config {
    -- appearance
-   font = "xft:IBM Plex Mono:size=10:bold:antialias=true"
+   font = "xft:Sarasa Fixed Slab J:size=10:bold:antialias=true"
    , bgColor = "#282a36"
    , fgColor = "#f8f8f2"
    , border = NoBorder
