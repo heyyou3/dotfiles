@@ -7,7 +7,7 @@
 let
   unstableTarball =
     fetchTarball
-      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.5.tar.gz;
+      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.8.tar.gz;
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -126,27 +126,24 @@ in {
       liberation_ttf
       mplus-outline-fonts
       proggyfonts
-      powerline-fonts
-      source-han-code-jp
       hack-font
-      fira-code
-      fira-code-symbols
       font-awesome
       ibm-plex
       unstable.hackgen
-      unstable.sarasa-gothic
+      unstable.firge
+      unstable.cica
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
         monospace = [
-          "Sarasa Fixed Slab J"
+          "FirgeNerd"
         ];
         serif = [
-          "Sarasa UI J"
+          "IBM Plex Sans JP"
         ];
         sansSerif = [
-          "Sarasa UI J"
+          "IBM Plex Sans JP"
         ];
       };
     };
