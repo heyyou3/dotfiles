@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [ 
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "sd_mod" "rtsx_pci_sdmmc" ];
@@ -13,6 +14,7 @@
 
   hardware.pulseaudio.enable = true;
   hardware.opengl.driSupport32Bit = true;
+  hardware.bluetooth.enable = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/fecde1e6-e4f2-476c-b36e-48aa4029c5db";
