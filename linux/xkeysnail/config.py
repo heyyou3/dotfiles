@@ -15,8 +15,6 @@ define_modmap({
     Key.RIGHT_META: Key.LEFT_CTRL,
     Key.LEFT_ALT: Key.LEFT_META,
     Key.LEFT_META: Key.LEFT_CTRL,
-    Key.PAGE_UP: Key.BTN_LEFT,
-    Key.PAGE_DOWN: Key.BTN_RIGHT,
 })
 define_keymap(None, {
     K('key_0'): K('Shift-key_0'),
