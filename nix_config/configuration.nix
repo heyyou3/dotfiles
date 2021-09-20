@@ -189,6 +189,7 @@ in {
       };
     in
       [
+        acpi
         alacritty
         appimage-run
         binutils.bintools
