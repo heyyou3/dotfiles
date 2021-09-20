@@ -109,7 +109,7 @@ split_tmux_pane() {
 
 set_project_nix() {
   echo 'use_nix' >> ./.envrc
-  touch ./default.nix
+  touch ./shell.nix
 }
 
 mkpk() {
