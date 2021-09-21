@@ -28,6 +28,9 @@
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+
   hardware.bluetooth.enable = true;
   hardware.bluetooth.settings = {
     General = {
