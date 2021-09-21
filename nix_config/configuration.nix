@@ -230,6 +230,7 @@ in {
         rustup
         slack
         tmux
+        tree
         unzip
         vim
         wget
