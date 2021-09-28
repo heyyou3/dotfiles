@@ -79,7 +79,16 @@ in {
       };
     };
 
-    tlp.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        START_CHARGE_THRESH_BAT0=65;
+        STOP_CHARGE_THRESH_BAT0=80;
+        RUNTIME_PM_BLACKLIST="\"08:00.3 08:00.4\"";
+        PCIE_ASPM_ON_AC="\"performance\"";
+        PCIE_ASPM_ON_BAT="\"performance\"";
+      };
+    };
 
     pipewire = {
       enable = true;
