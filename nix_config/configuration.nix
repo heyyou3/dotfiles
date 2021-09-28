@@ -231,7 +231,9 @@ in {
         libtool
         lutris
         lxappearance
+        pciutils
         neofetch
+        ntfs3g
         obs-studio
         openssl
         picom
@@ -251,6 +253,7 @@ in {
         xclip
         xmobar
         xorg.xhost
+        woeusb
         zlib
         zsh
 
