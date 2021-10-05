@@ -3,15 +3,25 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
 
-{
+let
+  unstable-pinned = import (builtins.fetchTarball {
+    name = "v1.0.9";
+    url = https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.9-beta1.tar.gz;
+  }) { config.allowUnfree = true; };
+in {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
+  nixpkgs.config.packageOverrides = pkgs: {
+    displaylink = unstable-pinned.displaylink;
+  };
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ rtw89 ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/3483c5f5-3883-4a53-b091-8acd1c731a7b";
@@ -42,7 +52,7 @@
 
   services = {
     xserver = {
-      videoDrivers = ["amdgpu"];
+      videoDrivers = ["amdgpu" "displaylink" "modesetting"];
     };
   };
 }

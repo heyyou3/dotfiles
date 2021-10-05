@@ -7,7 +7,7 @@
 let
   unstableTarball =
     fetchTarball
-      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.8.tar.gz;
+      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.9-beta1.tar.gz;
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -16,9 +16,6 @@ in {
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.extraModulePackages = with config.boot.kernelPackages; [ rtw89 ];
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -77,6 +74,13 @@ in {
           i3blocks #if you are planning on using i3blocks over i3status
         ];
       };
+      config = ''
+        Section "Device"
+          Identifier "DisplayLink"
+          Driver "modesetting"
+          Option "PageFlip" "false"
+        EndSection
+      '';
     };
 
     tlp = {
@@ -160,6 +164,7 @@ in {
   environment.pathsToLink = [ "/libexec" ];
   environment.variables = {
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    LIBGL_DRI3_DISABLE = "true";
   };
   environment.systemPackages = with pkgs;
     let
@@ -208,6 +213,7 @@ in {
         polybar
         ripgrep
         rofi
+        ruby
         rustup
         slack
         tmux
