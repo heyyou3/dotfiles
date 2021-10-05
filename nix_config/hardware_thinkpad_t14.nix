@@ -37,6 +37,7 @@
       Enable = "Source,Sink,Media,Socket";
     };
   };
+  hardware.pulseaudio.enable = true;
   hardware.enableAllFirmware = true;
 
   services = {
