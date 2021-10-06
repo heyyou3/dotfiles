@@ -170,7 +170,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec_always --no-startup-id $HOME/dotfiles/linux/polybar/dracula/launch.sh
 
 gaps inner 15
 
@@ -185,4 +184,5 @@ client.background       #F8F8F2
 
 focus_follows_mouse no
 
-exec_always /home/heyyou/dotfiles/linux/start.sh
+exec_always --no-startup-id $HOME/dotfiles/linux/polybar/nord/launch.sh
+exec_always $HOME/dotfiles/linux/start.sh

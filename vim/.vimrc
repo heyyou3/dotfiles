@@ -85,7 +85,7 @@ function! LoadPlugins()
     Plug 'w0rp/ale'
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'arcticicestudio/nord-vim'
     " Plug 'edkolev/tmuxline.vim'
     Plug 'vim-airline/vim-airline-themes'
   call plug#end()
@@ -102,19 +102,19 @@ call LoadPlugins()
 syntax on
 set t_Co=256
 set background=dark
-colorscheme dracula
+colorscheme nord
 
-" let g:tmuxline_preset = {
-"   \'a'    : ['#{git_status}'],
-"   \'c'    : [''],
-"   \'win'  : ['#I', '#W'],
-"   \'cwin' : ['#I', '#W', '#F'],
-"   \'x'    : '',
-"   \'y'    : ['#{pane_current_path}'],
-"   \'z'    : '#S'}
-" let g:tmuxline_powerline_separators = 1
+"let g:tmuxline_preset = {
+"  \'a'    : ['#{git_status}'],
+"  \'c'    : [''],
+"  \'win'  : ['#I', '#W'],
+"  \'cwin' : ['#I', '#W', '#F'],
+"  \'x'    : '',
+"  \'y'    : ['#{pane_current_path}'],
+"  \'z'    : '#S'}
+"let g:tmuxline_powerline_separators = 1
 
-let g:airline_theme='dracula'
+let g:airline_theme='nord'
 let g:airline_solarized_bg='dark'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
