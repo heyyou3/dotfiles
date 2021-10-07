@@ -14,6 +14,11 @@
   df = diff
   gr = grep
   ph = push origin HEAD
+  pl = pull
+  mr = merge
+  l  = log
+  a  = add
+
 [merge]
   tool = vimdiff
 [init]
