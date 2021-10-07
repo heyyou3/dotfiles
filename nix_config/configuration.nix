@@ -7,7 +7,7 @@
 let
   unstableTarball =
     fetchTarball
-      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.9-beta1.tar.gz;
+      https://github.com/heyyou3/nixpkgs/archive/refs/tags/v1.0.9.tar.gz;
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -174,6 +174,7 @@ in {
     in
       [
         acpi
+        authy
         alacritty
         appimage-run
         binutils.bintools
@@ -234,7 +235,6 @@ in {
         unstable.google-chrome
         unstable.neovim-qt
         unstable.starship
-        unstable.vivaldi
         unstable.vscode
         unstable.neovim
         unstable.wineWowPackages.staging
