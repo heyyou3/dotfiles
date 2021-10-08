@@ -1,9 +1,9 @@
-format = "$all"
+format = "$all$directory$character"
 right_format = ""
 add_newline = false
 
 [character]
 success_symbol = "[\\$](bold green)"
 error_symbol = "[\\$](bold red)"
-vicmd_symbol = "[\\$](bold green)"
+vicmd_symbol = "[<](bold green)"
 
