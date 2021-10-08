@@ -165,6 +165,7 @@ in {
   environment.variables = {
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     LIBGL_DRI3_DISABLE = "true";
+    EDITOR = "vim";
   };
   environment.systemPackages = with pkgs;
     let
