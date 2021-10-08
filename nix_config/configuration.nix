@@ -231,6 +231,7 @@ in {
         woeusb
         zlib
         zsh
+        ranger
 
         unstable.android-studio
         unstable.google-chrome
