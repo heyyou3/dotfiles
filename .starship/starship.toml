@@ -3,7 +3,7 @@ right_format = ""
 add_newline = false
 
 [character]
-success_symbol = "[\\$](bold green)"
-error_symbol = "[\\$](bold red)"
-vicmd_symbol = "[<](bold green)"
+success_symbol = "[\\[I\\]](bold green)"
+error_symbol = "[\\[I\\]](bold red)"
+vicmd_symbol = "[\\[N\\]](bold green)"
 
