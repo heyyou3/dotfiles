@@ -145,12 +145,13 @@ in {
       ibm-plex
       unstable.hackgen
       unstable.firge
+      unstable.cica
     ];
     fontconfig = {
       enable = true;
       defaultFonts = {
         monospace = [
-          "FirgeNerd"
+          "Cica"
         ];
         serif = [
           "IBM Plex Sans JP"

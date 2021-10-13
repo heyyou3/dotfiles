@@ -87,19 +87,19 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: "FirgeNerd"
+    family: "Cica"
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
   bold:
-    family: "FirgeNerd"
+    family: "Cica"
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
   italic:
-    family: "FirgeNerd"
+    family: "Cica"
     # The `style` can be specified to pick a specific face.
     #style: Italic
 
