@@ -220,7 +220,6 @@ in {
         rofi
         ruby
         rustup
-        slack
         tmux
         tree
         unzip
@@ -237,8 +236,10 @@ in {
         ranger
 
         unstable.android-studio
+        unstable.discord
         unstable.google-chrome
         unstable.neovim-qt
+        unstable.slack
         unstable.starship
         unstable.vscode
         unstable.neovim
