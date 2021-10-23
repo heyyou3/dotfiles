@@ -28,7 +28,6 @@ set laststatus=2
 set list
 set listchars=tab:»-,nbsp:%,eol:↲
 set number
-set relativenumber
 set ruler
 set shiftwidth=2
 set showcmd
@@ -85,7 +84,7 @@ function! LoadPlugins()
     Plug 'w0rp/ale'
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    Plug 'arcticicestudio/nord-vim'
+    Plug 'morhetz/gruvbox'
     " Plug 'edkolev/tmuxline.vim'
     Plug 'vim-airline/vim-airline-themes'
   call plug#end()
@@ -102,7 +101,7 @@ call LoadPlugins()
 syntax on
 set t_Co=256
 set background=dark
-colorscheme nord
+colorscheme gruvbox
 
 "let g:tmuxline_preset = {
 "  \'a'    : ['#{git_status}'],
@@ -114,7 +113,7 @@ colorscheme nord
 "  \'z'    : '#S'}
 "let g:tmuxline_powerline_separators = 1
 
-let g:airline_theme='nord'
+let g:airline_theme='gruvbox'
 let g:airline_solarized_bg='dark'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
