@@ -200,8 +200,10 @@ in {
         gnugrep
         gnumake
         go
+        graphviz
         gzip
         imagemagick
+        jre8
         leftwm
         libtool
         lutris
