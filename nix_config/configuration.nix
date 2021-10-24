@@ -117,7 +117,7 @@ in {
   users.extraUsers.heyyou = {
     isNormalUser = true;
     home = "/home/heyyou";
-    extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "audio" "sound" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
