@@ -281,6 +281,7 @@ in {
 
     unstable.android-studio
     unstable.discord
+    unstable.drawio
     unstable.neovim
     unstable.neovim-qt
     unstable.slack
