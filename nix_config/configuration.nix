@@ -208,8 +208,6 @@ in {
     in
       [
         acpi
-        authy
-        alacritty
         appimage-run
         binutils.bintools
         blueman
@@ -226,7 +224,6 @@ in {
         fzf
         gawk
         gcc
-        gimp
         git
         gitAndTools.tig
         gnugrep
@@ -236,20 +233,16 @@ in {
         gzip
         imagemagick
         jre8
-        leftwm
         libtool
-        lutris
         lxappearance
-        pciutils
         neofetch
         ntfs3g
-        obs-studio
         openssl
         pavucontrol
+        pciutils
+        polybar
         picom
         pkgconfig
-        polybar
-        ripgrep
         rofi
         ruby
         rustup
@@ -259,31 +252,15 @@ in {
         vim
         wget
         wmname
-        xorg.xev
+        woeusb
         xclip
         xmobar
+        xorg.xev
         xorg.xhost
-        woeusb
         zlib
         zsh
-        ranger
 
-        unstable.android-studio
-        unstable.discord
         unstable.google-chrome
-        unstable.neovim-qt
-        unstable.slack
-        unstable.starship
-        unstable.vscode
-        unstable.neovim
-        unstable.wineWowPackages.staging
-        unstable.winetricks
-        unstable.xkeysnail
-        unstable.kitty
-
-        ((emacsPackagesNgGen emacs).emacsWithPackages (epkgs: [
-          epkgs.vterm
-        ]))
 
         python38
         (python38.withPackages (ps: with ps; [
@@ -293,8 +270,25 @@ in {
 
   users.users.heyyou.packages = with pkgs;
   [
+    alacritty
+    authy
+    gimp
     lutris
+    obs-studio
+    ranger
+    ripgrep
     vulkan-tools
+
+    unstable.android-studio
+    unstable.discord
+    unstable.neovim
+    unstable.neovim-qt
+    unstable.slack
+    unstable.starship
+    unstable.vscode
+    unstable.wineWowPackages.staging
+    unstable.winetricks
+    unstable.xkeysnail
   ];
 
   users.users.heyyou.extraGroups = ["adbusers"];
