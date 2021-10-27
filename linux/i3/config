@@ -194,7 +194,12 @@ client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
 
-focus_follows_mouse no
+focus_follows_mouse on
+
+for_window [class="^.*"] border pixel 1
+new_window 1pixel
+default_border pixel 1
+default_floating_border pixel 1
 
 exec_always --no-startup-id $HOME/dotfiles/linux/polybar/gruvbox/launch.sh
 exec_always $HOME/dotfiles/linux/start.sh
