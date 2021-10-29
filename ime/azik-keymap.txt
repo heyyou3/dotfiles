@@ -1,3 +1,5 @@
+sgo	そこ
+mvd	まで
 dg	だが
 dti	だち
 dto	だと
