@@ -1,3 +1,4 @@
+dn	では
 sgo	そこ
 mvd	まで
 dg	だが
@@ -100,7 +101,6 @@ dj	づん
 dk	ぢん
 dl	どん
 dm	でも
-dn	だん
 do	ど
 dp	どう
 dq	だい
