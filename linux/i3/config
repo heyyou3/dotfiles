@@ -194,7 +194,7 @@ client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
 client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
 client.urgent           $red $red $white $red $red
 
-focus_follows_mouse on
+focus_follows_mouse off
 
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
