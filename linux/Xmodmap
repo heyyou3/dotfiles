@@ -1,0 +1,38 @@
+! CapsLock
+keycode 66 = Control_L
+add control = Control_L
+! Swap Modifier Key
+remove mod1 = Super_L
+remove mod4 = Alt_L
+keycode 64 = Super_L
+keycode 133 = Alt_L
+add mod1 = Alt_L
+
+! Colemak Programmer
+keycode 108 = Mode_switch
+! right
+keysym a = a A bracketleft
+keysym r = r R braceleft
+keysym s = s S equal
+keysym t = t T parenleft
+keysym d = d D asterisk
+keysym h = h H minus
+keysym n = n N parenright
+keysym e = e E underscore
+keysym i = i I braceright
+keysym o = o O bracketright
+keysym z = z Z asciitilde
+keysym x = x X grave
+! left
+keysym q = q Q exclam
+keysym w = w W at
+keysym f = f F numbersign
+keysym p = p P dollar
+keysym g = g G 
+keysym j = j J percent
+keysym l = l L asciicircum
+keysym u = u U ampersand
+keysym y = y Y plus
+! Sands
+keycode 255 = space
+keycode 65 = Shift_L

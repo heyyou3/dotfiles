@@ -253,10 +253,12 @@ in {
         wget
         wmname
         woeusb
+        xcape
         xclip
         xmobar
         xorg.xev
         xorg.xhost
+        xorg.xmodmap
         zlib
         zsh
 
