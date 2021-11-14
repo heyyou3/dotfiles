@@ -1,5 +1,5 @@
-dfi	でき
 dfa	では
+dfi	でき
 dfo	での
 dg	だが
 dno	どの
@@ -9,10 +9,12 @@ gra	がら
 gre	げる
 kc	かく
 kfd	けど
-kra	から
-kre	これ
 kgd	くだ
 kn	この
+kra	から
+kre	けれ
+kro	これ
+kru	くる
 kso	こそ
 kta	かた
 kte	きて
