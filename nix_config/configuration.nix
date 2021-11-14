@@ -240,9 +240,9 @@ in {
         openssl
         pavucontrol
         pciutils
-        polybar
         picom
         pkgconfig
+        polybar
         rofi
         ruby
         rustup
@@ -273,6 +273,7 @@ in {
   users.users.heyyou.packages = with pkgs;
   [
     alacritty
+    arandr
     authy
     gimp
     lutris
