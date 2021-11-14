@@ -91,6 +91,7 @@ in {
     xserver = {
       enable = true;
       layout = "us";
+      xkbVariant = "colemak";
       desktopManager = {
         xterm.enable = false;
         plasma5.enable = true;
@@ -132,7 +133,6 @@ in {
   };
 
   # Configure keymap in X11
-  # services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.
