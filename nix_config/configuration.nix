@@ -291,7 +291,6 @@ in {
     unstable.vscode
     unstable.wineWowPackages.staging
     unstable.winetricks
-    unstable.xkeysnail
   ];
 
   users.users.heyyou.extraGroups = ["adbusers"];
