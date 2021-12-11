@@ -18,9 +18,10 @@ function select_history() {
 zle -N select_history
 bindkey '^r' select_history
 
-export ZINIT_HOME=$HOME/.zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}}/.zinit/zinit.git"
 if [ -d "$ZINIT_HOME" ]; then
-  source "$ZINIT_HOME/bin/zinit.zsh"
+  source "${ZINIT_HOME}/zinit.zsh"
+
   zinit wait lucid for \
     zsh-users/zsh-syntax-highlighting \
     b4b4r07/enhancd
@@ -33,6 +34,7 @@ fi
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
+bindkey -v
 
 source "$DOT_FILES_PATH/common_sh/common"
 
