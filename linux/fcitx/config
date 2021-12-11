@@ -1,6 +1,6 @@
 [Hotkey]
 # Trigger Input Method
-TriggerKey=SUPER_; SUPER_;
+TriggerKey=SUPER_Space SUPER_Space
 # Use extra trigger key only after using it to inactivate
 # Available Value:
 # True False
