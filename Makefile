@@ -45,7 +45,6 @@ xprofile := .xprofile
 ifeq ($(shell uname), Linux)
 deploy: common_deploy
 	@echo 'Set Linux settings'
-	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xprofile)","$(HOME)/$(xprofile)")
 	@mkdir -p "$(HOME)/.xmonad"
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.xmonad/$(xmonad_hs)","$(HOME)/.xmonad/$(xmonad_hs)")
 	@$(call _ln,"$(DOTFILES_PATH)/linux/$(xmobarrc)","$(HOME)/$(xmobarrc)")
@@ -53,9 +52,6 @@ deploy: common_deploy
 	@$(call _ln,"$(DOTFILES_PATH)/linux/fcitx/config","$(HOME)/.config/fcitx/config")
 	@mkdir -p "$(HOME)/.config/rofi"
 	@$(call _ln,"$(DOTFILES_PATH)/linux/.config/rofi/config.rasi","$(HOME)/.config/rofi/config.rasi")
-	@$(call _ln,"$(DOTFILES_PATH)/linux/.Xresources","$(HOME)/.Xresources")
-	@$(call _ln,"$(DOTFILES_PATH)/linux/i3/config","$(HOME)/.config/i3/config")
-	@$(call _ln,"$(DOTFILES_PATH)/kitty/kitty.conf","$(HOME)/.config/kitty/kitty.conf")
 else
 deploy: common_deploy
 endif
@@ -63,7 +59,7 @@ endif
 ifeq ($(shell uname), Linux)
 install:
 	@echo 'Install zinit'
-	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 	@echo 'Install starship'
 	@curl -fsSL https://starship.rs/install.sh | bash
 	@echo 'Install tpm'
@@ -73,7 +69,8 @@ install:
 else
 install:
 	@echo 'Install zinit'
-	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+
 	@echo 'Install starship'
 	@curl -fsSL https://starship.rs/install.sh | bash
 	@echo 'Install tpm'
