@@ -75,7 +75,6 @@ function! LoadPlugins()
     Plug 'airblade/vim-gitgutter'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'elzr/vim-json'
-    Plug 'jremmen/vim-ripgrep'
     Plug 'leafgarland/typescript-vim'
     Plug 'prabirshrestha/vim-lsp'
     Plug 'tpope/vim-abolish'
