@@ -24,6 +24,7 @@ fi
 
 if [ -d "$HOME/.nix-profile" ]; then
   export PATH=$HOME/.nix-profile/bin:$PATH
+  export LOCALE_ARCHIVE="$(readlink ~/.nix-profile/lib/locale)/locale-archive"
 fi
 
 if [ -d "$HOME/go" ]; then
