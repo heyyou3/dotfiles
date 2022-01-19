@@ -116,3 +116,12 @@ mkpk() {
   mkdir $1
   echo "package $1" >> "$1/$1.go"
 }
+
+ranger() {
+  if [ -z "$RANGER_LEVEL" ]; then
+    $HOME/.nix-profile/bin/ranger "$@"
+  else
+    exit
+  fi
+}
+

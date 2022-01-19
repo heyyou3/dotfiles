@@ -37,6 +37,7 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshrc)","$(HOME)/$(zshrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshenv)","$(HOME)/$(zshenv)")
 	@$(call _ln,"$(DOTFILES_PATH)/todo/.todo.cfg","$(HOME)/.todo.cfg")
+	@$(call _ln,"$(DOTFILES_PATH)/ranger/rc.conf","$(HOME)/.config/ranger/rc.conf")
 
 xmobarrc := .xmobarrc
 xmonad_hs := xmonad.hs
