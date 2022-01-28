@@ -7,6 +7,7 @@ remove mod4 = Alt_L
 keycode 64 = Super_L
 keycode 133 = Alt_L
 add mod1 = Alt_L
+keycode 65 = space space space
 
 ! Colemak Programmer
 keycode 108 = Mode_switch
