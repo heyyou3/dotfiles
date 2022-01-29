@@ -4,8 +4,10 @@ add control = Control_L
 ! Swap Modifier Key
 remove mod1 = Super_L
 remove mod4 = Alt_L
+remove shift = Shift_R
 keycode 64 = Super_L
 keycode 133 = Alt_L
+keycode 62 = Alt_L
 add mod1 = Alt_L
 keycode 65 = space space space
 
