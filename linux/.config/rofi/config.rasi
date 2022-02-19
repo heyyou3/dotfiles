@@ -1,7 +1,7 @@
 configuration {
-  font: "FirgeNerd 13";
+  font: "HackGenNerdConsole 13";
   terminal: "zsh";
-  lines: 5;
+  sort: true;
 }
 
 /* ==========================================================================
