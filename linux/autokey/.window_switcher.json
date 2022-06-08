@@ -19,10 +19,9 @@
     },
     "hotkey": {
         "modifiers": [
-            "<ctrl>",
             "<super>"
         ],
-        "hotKey": "<tab>"
+        "hotKey": " "
     },
     "filter": {
         "regex": null,
