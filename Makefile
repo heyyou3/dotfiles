@@ -61,23 +61,10 @@ endif
 
 ifeq ($(shell uname), Linux)
 install:
-	@echo 'Install zinit'
-	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-	@echo 'Install starship'
-	@curl -fsSL https://starship.rs/install.sh | bash
-	@echo 'Install tpm'
-	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@sudo apt update -y
 	@curl https://sh.rustup.rs -sSf | sh
 else
 install:
-	@echo 'Install zinit'
-	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-
-	@echo 'Install starship'
-	@curl -fsSL https://starship.rs/install.sh | bash
-	@echo 'Install tpm'
-	@git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	@curl https://sh.rustup.rs -sSf | sh
 	@echo 'Mac Install Command'
 	@echo 'brew install tig tmux fzf'
