@@ -24,6 +24,7 @@ tmux_conf := .tmux.conf
 vimrc := .vimrc
 zshenv := .zshenv
 zshrc := .zshrc
+zimrc := .zimrc
 
 common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/bash/$(bash_profile)","$(HOME)/$(bash_profile)")
@@ -36,6 +37,7 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/vim/$(vimrc)","$(HOME)/$(vimrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshrc)","$(HOME)/$(zshrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/$(zshenv)","$(HOME)/$(zshenv)")
+	@$(call _ln,"$(DOTFILES_PATH)/zsh/zim/$(zimrc)","$(HOME)/$(zimrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/todo/.todo.cfg","$(HOME)/.todo.cfg")
 	@$(call _ln,"$(DOTFILES_PATH)/ranger/rc.conf","$(HOME)/.config/ranger/rc.conf")
 
