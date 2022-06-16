@@ -40,6 +40,8 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/zsh/zim/$(zimrc)","$(HOME)/$(zimrc)")
 	@$(call _ln,"$(DOTFILES_PATH)/todo/.todo.cfg","$(HOME)/.todo.cfg")
 	@$(call _ln,"$(DOTFILES_PATH)/ranger/rc.conf","$(HOME)/.config/ranger/rc.conf")
+	@$(call _ln,"$(DOTFILES_PATH)/espanso/config","$(HOME)/.config/espanso")
+	@$(call _ln,"$(DOTFILES_PATH)/espanso/match","$(HOME)/.config/espanso")
 
 xmobarrc := .xmobarrc
 xmonad_hs := xmonad.hs
