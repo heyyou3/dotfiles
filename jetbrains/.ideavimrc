@@ -25,3 +25,6 @@ nnoremap <leader>gl    :action Vcs.Show.Log<CR>
 vnoremap <leader>gl    :action Vcs.Show.Log<CR>
 
 imap jj <Esc>
+nnoremap <leader><C-[> <Esc>
+vnoremap <leader><C-[> <Esc>
+
