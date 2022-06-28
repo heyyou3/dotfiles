@@ -42,6 +42,7 @@ common_deploy:
 	@$(call _ln,"$(DOTFILES_PATH)/ranger/rc.conf","$(HOME)/.config/ranger/rc.conf")
 	@$(call _ln,"$(DOTFILES_PATH)/espanso/config","$(HOME)/.config/espanso")
 	@$(call _ln,"$(DOTFILES_PATH)/espanso/match","$(HOME)/.config/espanso")
+	@$(call _ln,"$(DOTFILES_PATH)/jetbrains/.ideavimrc","$(HOME)/.ideavimrc")
 
 xmobarrc := .xmobarrc
 xmonad_hs := xmonad.hs
