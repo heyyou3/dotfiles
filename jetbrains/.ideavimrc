@@ -1,3 +1,8 @@
+function! MapCancelKey(key)
+  execute 'nnoremap <leader>' . a:key . '<C-[> <Esc>'
+  execute 'vnoremap <leader>' . a:key . '<C-[> <Esc>'
+endfunction
+
 source ~/.intellimacs/spacemacs.vim
 
 " (Optional) Enable other Intellimacs modules
