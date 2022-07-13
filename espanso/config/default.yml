@@ -16,7 +16,6 @@
 # You can also specify the key variant, such as LEFT_CTRL, RIGHT_SHIFT, etc...
 # toggle_key: ALT
 # You can also disable the toggle key completely with
-# toggle_key: OFF
 
 # --- Injection Backend
 
@@ -38,4 +37,11 @@
 # clipboard_threshold: 100
 
 # For a list of all the available options, visit the official docs at: https://espanso.org/docs/
+auto_restart: false
+backend: Inject
+backspace_limit: 50
+key_delay: 10
+fast_inject: false
+inject_delay: 10
+show_notification: false
 
