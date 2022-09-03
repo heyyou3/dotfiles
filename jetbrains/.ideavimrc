@@ -15,6 +15,14 @@ source ~/.intellimacs/which-key.vim
 
 " (Optional) My own vim commands
 nnoremap Y y$
+nnoremap x "_x
+nnoremap X "_X
+nnoremap d "_d
+nnoremap D "_D
+nnoremap c "_c
+nnoremap C "_C
+nnoremap s "_s
+nnoremap S "_S
 
 " (Optional) Comma for major mode
 nmap , <leader>m
