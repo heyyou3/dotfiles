@@ -1,0 +1,8 @@
+matches:
+  - trigger: ";;shell.now"
+    replace: "{{host_machine_date}}"
+    vars:
+      - name: host_machine_date
+        type: date
+        params:
+          format: "%Y-%m-%d %H:%M:%S"

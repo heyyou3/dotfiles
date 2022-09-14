@@ -1,0 +1,3 @@
+matches:
+  - trigger: ";;go.println"
+    form: "fmt.Println(\"[[output]]\")"

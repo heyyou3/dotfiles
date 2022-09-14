@@ -1,0 +1,34 @@
+matches:
+  - trigger: ";;espanso.new"
+    replace: |
+      # https://espanso.org/docs/matches/basics/
+      matches:
+        - trigger: ""
+          replace: ""
+  - trigger: ";;espanso.replace"
+    replace: |
+      - trigger: ""
+        replace: ""
+  - trigger: ";;espanso.shell_extension"
+    replace: |
+      - trigger: ":ip"
+        replace: "\{\{output\}\}"
+        vars:
+          - name: output
+            type: shell
+            params:
+              cmd: "curl 'https://api.ipify.org'"
+  - trigger: ";;espanso.form"
+    replace: |
+      - trigger: ":rev"
+        replace: "{{reversed}}"
+        vars:
+          - name: form1
+            type: form
+            params:
+              layout: |
+                Reverse [[name]]
+          - name: reversed
+            type: shell
+            params:
+              cmd: "echo '{{form1.name}}' | rev"
