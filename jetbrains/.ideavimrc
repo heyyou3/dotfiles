@@ -35,5 +35,8 @@ vnoremap <leader>gl    :action Vcs.Show.Log<CR>
 nnoremap gd    :action SplitHorizontally\|action GotoDeclaration<CR>
 vnoremap gd    <Esc>:action SplitHorizontally\|action GotoDeclaration<CR>
 
+nnoremap <leader>, :action Switcher<CR>
+vnoremap <leader>, :action Switcher<CR>
+
 nnoremap <leader><C-[> <Esc>
 vnoremap <leader><C-[> <Esc>
