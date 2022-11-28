@@ -1,0 +1,16 @@
+# https://espanso.org/docs/matches/basics/
+matches:
+    - trigger: ";;rust.atcoder.new"
+      replace: |
+        use proconio::input;
+        use proconio::source::auto::AutoSource;
+
+        fn resolve() {
+            unimplemented!();
+        }
+
+        fn main() {
+            input! {}
+            println!("{}", resolve())
+        }
+

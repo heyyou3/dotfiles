@@ -1,0 +1,13 @@
+# https://espanso.org/docs/matches/basics/
+matches:
+    - trigger: ";;rust.test.new"
+      replace: |
+        #[cfg(test)]
+        mod module_test {
+            use super::*;
+            
+            #[test]
+            fn _test_case1() {
+                assert_eq!("", )
+            }
+        }
