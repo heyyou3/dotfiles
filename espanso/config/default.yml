@@ -40,5 +40,5 @@ search_shortcut: META+CTRL+SPACE
 # For a list of all the available options, visit the official docs at: https://espanso.org/docs/
 auto_restart: false
 backend: Clipboard
-paste_shortcut: "CTRL+V"
+paste_shortcut: "CTRL"
 preserve_clipboard: false
