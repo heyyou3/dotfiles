@@ -20,8 +20,8 @@ matches:
               cmd: "curl 'https://api.ipify.org'"
   - trigger: ";;espanso.form"
     replace: |
-      - trigger: ":rev"
-        replace: "{{reversed}}"
+      - trigger: ";;reversed"
+        replace: "\{\{reversed\}\}"
         vars:
           - name: form1
             type: form
@@ -31,4 +31,4 @@ matches:
           - name: reversed
             type: shell
             params:
-              cmd: "echo '{{form1.name}}' | rev"
+              cmd: "echo '\{\{form1.name\}\}' | rev"
