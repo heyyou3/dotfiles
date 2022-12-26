@@ -38,5 +38,8 @@ vnoremap gd    <Esc>:action SplitHorizontally\|action GotoDeclaration<CR>
 nnoremap <leader>, :action Switcher<CR>
 vnoremap <leader>, :action Switcher<CR>
 
+nnoremap <leader>= :action ReformatCode<CR>
+vnoremap <leader>= :action ReformatCode<CR>
+
 nnoremap <leader><C-[> <Esc>
 vnoremap <leader><C-[> <Esc>
