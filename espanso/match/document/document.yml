@@ -1,0 +1,8 @@
+matches:
+  - trigger: ";;doc.now"
+    replace: "{{host_machine_date}}\n"
+    vars:
+      - name: host_machine_date
+        type: date
+        params:
+          format: "%H:%M"
