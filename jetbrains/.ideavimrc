@@ -1,17 +1,14 @@
-function! MapCancelKey(key)
-  execute 'nnoremap <leader>' . a:key . '<C-[> <Esc>'
-  execute 'vnoremap <leader>' . a:key . '<C-[> <Esc>'
-endfunction
+let mapleader = "\<Space>"
 
-source ~/.intellimacs/spacemacs.vim
-
-" (Optional) Enable other Intellimacs modules
-source ~/.intellimacs/extra.vim
-source ~/.intellimacs/major.vim
-source ~/.intellimacs/hybrid.vim
-
-" (Optional) Enable which-key plugin
-source ~/.intellimacs/which-key.vim
+"source ~/.intellimacs/spacemacs.vim
+"
+"" (Optional) Enable other Intellimacs modules
+"source ~/.intellimacs/extra.vim
+"source ~/.intellimacs/major.vim
+"source ~/.intellimacs/hybrid.vim
+"
+"" (Optional) Enable which-key plugin
+"source ~/.intellimacs/which-key.vim
 
 " (Optional) My own vim commands
 nnoremap Y y$
@@ -24,22 +21,36 @@ nnoremap C "_C
 nnoremap s "_s
 nnoremap S "_S
 
-" (Optional) Comma for major mode
-nmap , <leader>m
-vmap , <leader>m
-
 " (Optional) Add/edit actions
-nnoremap <leader>gl    :action Vcs.Show.Log<CR>
-vnoremap <leader>gl    :action Vcs.Show.Log<CR>
 
-nnoremap gd    :action SplitHorizontally\|action GotoDeclaration<CR>
-vnoremap gd    <Esc>:action SplitHorizontally\|action GotoDeclaration<CR>
-
-nnoremap <leader>, :action Switcher<CR>
-vnoremap <leader>, :action Switcher<CR>
+nnoremap <leader>gd :action GotoDeclaration<CR>
+vnoremap <leader>gd <Esc>:action GotoDeclaration<CR>
 
 nnoremap <leader>= :action ReformatCode<CR>
 vnoremap <leader>= :action ReformatCode<CR>
 
 nnoremap <leader><C-[> <Esc>
 vnoremap <leader><C-[> <Esc>
+
+nnoremap <leader>hw :action HideAllWindows<CR>
+vnoremap <leader>hw :action HideAllWindows<CR>
+
+nnoremap / :action Replace<CR>
+vnoremap / :action Replace<CR>
+
+nnoremap <leader>/ :action FindInPath<CR>
+vnoremap <leader>/ :action FindInPath<CR>
+
+
+nnoremap <leader>ff :action GotoFile<CR>
+vnoremap <leader>ff :action GotoFile<CR>
+
+nnoremap <leader>db :action ToggleLineBreakpoint<CR>
+vnoremap <leader>db :action ToggleLineBreakpoint<CR>
+
+nnoremap <leader>ra :action Refactorings.QuickListPopupAction<CR>
+vnoremap <leader>ra :action Refactorings.QuickListPopupAction<CR>
+
+nnoremap <leader>ka :action Vcs.QuickListPopupAction<CR>
+vnoremap <leader>ka :action Vcs.QuickListPopupAction<CR>
+
