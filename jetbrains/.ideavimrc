@@ -41,7 +41,6 @@ vnoremap / :action Replace<CR>
 nnoremap <leader>/ :action FindInPath<CR>
 vnoremap <leader>/ :action FindInPath<CR>
 
-
 nnoremap <leader>ff :action GotoFile<CR>
 vnoremap <leader>ff :action GotoFile<CR>
 
@@ -53,4 +52,10 @@ vnoremap <leader>ra :action Refactorings.QuickListPopupAction<CR>
 
 nnoremap <leader>ka :action Vcs.QuickListPopupAction<CR>
 vnoremap <leader>ka :action Vcs.QuickListPopupAction<CR>
+
+nnoremap <leader>en :action GotoNextError<CR>
+vnoremap <leader>en :action GotoNextError<CR>
+
+nnoremap <leader>ep :action GotoPreviousError<CR>
+vnoremap <leader>ep :action GotoPreviousError<CR>
 
