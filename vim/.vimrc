@@ -83,8 +83,8 @@ function! LoadPlugins()
     Plug 'w0rp/ale'
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    Plug 'morhetz/gruvbox'
     " Plug 'edkolev/tmuxline.vim'
+    Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'vim-airline/vim-airline-themes'
   call plug#end()
 endfunction
@@ -100,7 +100,6 @@ call LoadPlugins()
 syntax on
 set t_Co=256
 set background=dark
-colorscheme gruvbox
 
 "let g:tmuxline_preset = {
 "  \'a'    : ['#{git_status}'],
@@ -111,8 +110,9 @@ colorscheme gruvbox
 "  \'y'    : ['#{pane_current_path}'],
 "  \'z'    : '#S'}
 "let g:tmuxline_powerline_separators = 1
+colorscheme dracula
 
-let g:airline_theme='gruvbox'
+let g:airline_theme='dracula'
 let g:airline_solarized_bg='dark'
 let g:airline_section_a = airline#section#create(['mode','','branch'])
 let g:airline#extensions#tabline#enabled = 1
