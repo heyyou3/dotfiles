@@ -75,7 +75,6 @@ function! LoadPlugins()
     Plug 'airblade/vim-gitgutter'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'elzr/vim-json'
-    Plug 'leafgarland/typescript-vim'
     Plug 'prabirshrestha/vim-lsp'
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-fugitive'
@@ -83,7 +82,6 @@ function! LoadPlugins()
     Plug 'w0rp/ale'
     Plug 'honza/vim-snippets'
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
-    " Plug 'edkolev/tmuxline.vim'
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'vim-airline/vim-airline-themes'
   call plug#end()
@@ -100,16 +98,6 @@ call LoadPlugins()
 syntax on
 set t_Co=256
 set background=dark
-
-"let g:tmuxline_preset = {
-"  \'a'    : ['#{git_status}'],
-"  \'c'    : [''],
-"  \'win'  : ['#I', '#W'],
-"  \'cwin' : ['#I', '#W', '#F'],
-"  \'x'    : '',
-"  \'y'    : ['#{pane_current_path}'],
-"  \'z'    : '#S'}
-"let g:tmuxline_powerline_separators = 1
 colorscheme dracula
 
 let g:airline_theme='dracula'
