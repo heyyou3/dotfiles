@@ -14,8 +14,9 @@ if [ "$(uname)" = 'Linux' ]; then
   source "$DOT_FILES_PATH/linux/rc.sh"
 fi
 
-if [ -f "$HOME/.org_sh" ]; then
-  source "$HOME/.org_sh"
+if [ -f "$DOT_FILES_PATH/.heyyou/not-shared" ]; then
+  source "$DOT_FILES_PATH/.heyyou/not-shared"
+  export BROWSER_BIN="$WSL_HOST_HOME/AppData/Local/Vivaldi/Application/vivaldi.exe"
 fi
 
 if [ -d "$HOME/.cargo" ]; then
