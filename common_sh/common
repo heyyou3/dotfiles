@@ -35,3 +35,4 @@ fi
 
 source "$DOT_FILES_PATH/common_sh/aliases"
 source "$DOT_FILES_PATH/common_sh/functions"
+eval "$(starship init zsh)"
