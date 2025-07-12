@@ -6,6 +6,10 @@ export STARSHIP_CONFIG=$DOT_FILES_PATH/.starship/starship.toml
 export TERM=xterm-256color
 export DIRENV_LOG_FORMAT=
 
+if [ -f "$DOT_FILES_PATH/.heyyou/not-shared" ]; then
+  source "$DOT_FILES_PATH/.heyyou/not-shared"
+fi
+
 if [ "$(uname)" = 'Darwin' ]; then
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 fi
@@ -13,10 +17,6 @@ fi
 if [ "$(uname)" = 'Linux' ]; then
   source "$DOT_FILES_PATH/linux/rc.sh"
   export BROWSER_BIN="$WSL_HOST_HOME/AppData/Local/Vivaldi/Application/vivaldi.exe"
-fi
-
-if [ -f "$DOT_FILES_PATH/.heyyou/not-shared" ]; then
-  source "$DOT_FILES_PATH/.heyyou/not-shared"
 fi
 
 if [ -d "$HOME/.cargo" ]; then
