@@ -8,9 +8,10 @@ try {
   if (line) {
     const url = String(line).match(/\((.*)\)/)?.[1];
     if (url) {
-      await $`${process.env['BROWSER_BIN']} ${url}`;
+      await $`nohup ${process.env['BROWSER_BIN']} ${url} > /dev/null 2>&1 &`;
     }
   }
+  process.on('exit', () => process.exit(0));
 } catch (err) {
-  // pass
+  process.on('exit', () => process.exit(1));
 }
