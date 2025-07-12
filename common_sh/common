@@ -16,7 +16,7 @@ fi
 
 if [ "$(uname)" = 'Linux' ]; then
   source "$DOT_FILES_PATH/linux/rc.sh"
-  export BROWSER_BIN="$WSL_HOST_HOME/AppData/Local/Vivaldi/Application/vivaldi.exe"
+  export BROWSER_BIN="$WSL_HOST_HOME/../../Program Files/Google/Chrome/Application/chrome.exe"
 fi
 
 if [ -d "$HOME/.cargo" ]; then
