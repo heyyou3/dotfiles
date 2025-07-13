@@ -1,2 +1,8 @@
 [terminal.shell]
 program = "/windows/system32/wsl.exe ~"
+
+[[keyboard.bindings]]
+key = "Space"
+mods = "Control"
+chars = "\u0000"
+
