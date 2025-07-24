@@ -59,9 +59,9 @@ background = "#282a36"
 import = ["./alacritty-windows.toml"] # Linux/macOS ではこのパスは存在しないか、読み込まれない
 
 [font]
-bold = { family = "PlemolJP35 Console", style = "Bold" }
-bold_italic = { family = "PlemolJP35 Console", style = "Bold Italic" }
-italic = { family = "PlemolJP35 Console", style = "Italic" }
-normal = { family = "PlemolJP35 Console", style = "Regular" }
+bold = { family = "PlemolJP35 Console NF", style = "Bold" }
+bold_italic = { family = "PlemolJP35 Console NF", style = "Bold Italic" }
+italic = { family = "PlemolJP35 Console NF", style = "Italic" }
+normal = { family = "PlemolJP35 Console NF", style = "Regular" }
 size = 14.0
 
