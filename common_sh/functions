@@ -125,3 +125,19 @@ ranger() {
   fi
 }
 
+y() {
+    # 一時ファイルを作成
+    local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+    
+    # yaziを起動し、終了時のパスを一時ファイルに書き込むよう指示
+    yazi --cwd-file="$tmp" "$@"
+    
+    # yazi終了後、一時ファイルにパスが書き込まれていればcdする
+    if [ -f "$tmp" ]; then
+        cd "$(cat "$tmp")"
+    fi
+    
+    # 一時ファイルを削除
+    rm -f "$tmp"
+}
+
