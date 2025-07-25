@@ -65,3 +65,6 @@ italic = { family = "PlemolJP35 Console NF", style = "Italic" }
 normal = { family = "PlemolJP35 Console NF", style = "Regular" }
 size = 14.0
 
+[window]
+option_as_alt = "Both"
+
