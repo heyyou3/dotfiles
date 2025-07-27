@@ -130,6 +130,19 @@ vim.api.nvim_create_user_command(
 )
 
 
+-- Custom command to copy file path and line number
+vim.api.nvim_create_user_command(
+  'CopyLocation',
+  function(opts)
+    local file_path = vim.fn.expand('%')
+    local line_number = opts.line1
+    local location = file_path .. ':' .. line_number
+    vim.fn.setreg('+', location)
+    vim.notify('Copied: ' .. location)
+  end,
+  { desc = 'Copy current file path and line number to clipboard', range = true }
+)
+
 --[[
 ================================================================================
   Plugin Manager (lazy.nvim)
