@@ -250,8 +250,8 @@ require("lazy").setup({
       opts = {
         workspaces = {
           {
-            name = "personal",
-            path = "/mnt/g/マイドライブ/obsidian",
+            name = "current-dir",
+            path = vim.fn.getcwd(),
           },
         },
         ui = {
