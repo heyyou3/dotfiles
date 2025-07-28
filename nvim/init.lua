@@ -11,6 +11,10 @@
 -- Environment variables
 vim.env.LANG = 'ja_JP'
 
+-- リーダーキーをスペースに設定
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- Options
 vim.opt.ambiwidth = 'double'
 vim.opt.autoindent = true
