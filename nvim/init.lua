@@ -336,6 +336,16 @@ require("telescope").setup({
 		borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
 
 		sorting_strategy = "ascending",
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--column",
+      "--hidden",
+      "--line-number",
+      "--no-heading",
+      "--smart-case",
+      "--with-filename",
+    },
 	},
 	pickers = {
 		find_files = {
