@@ -1,0 +1,6 @@
+os:
+  edit: 'nvr {{filename}}'
+  editAtLine: 'nvr --line={{line}} {{filename}}'
+  editAtLineAndWait: 'nvr --block --line={{line}} {{filename}}'
+  openDirInEditor: 'nvr {{dir}}'
+promptToReturnFromSubprocess: false
