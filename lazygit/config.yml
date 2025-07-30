@@ -4,3 +4,13 @@ os:
   editAtLineAndWait: 'nvr --block --line={{line}} {{filename}}'
   openDirInEditor: 'nvr {{dir}}'
 promptToReturnFromSubprocess: false
+customCommands:
+  - key: "<c-g>"
+    command: "gh pr view -w {{.SelectedLocalBranch.Name}}"
+    context: "localBranches"
+    description: "Open Github PR in browser"
+  - key: "<c-g>"
+    command: "gh pr view -w"
+    context: "commits"
+    description: "Open Github PR in browser"
+
