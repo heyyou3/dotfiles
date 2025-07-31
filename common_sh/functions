@@ -113,3 +113,7 @@ y() {
     rm -f "$tmp"
 }
 
+deH() {
+  eval "$(direnv hook zsh)"
+}
+
