@@ -3,6 +3,7 @@ os:
   editAtLine: 'nvr --line={{line}} {{filename}}'
   editAtLineAndWait: 'nvr --block --line={{line}} {{filename}}'
   openDirInEditor: 'nvr {{dir}}'
+  diff: 'nvr -d {{file1}} {{file2}}'
 promptToReturnFromSubprocess: false
 customCommands:
   - key: "<c-g>"
