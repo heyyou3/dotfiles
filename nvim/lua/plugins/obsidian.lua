@@ -12,6 +12,7 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     opts = {
+      disable_frontmatter = true,
       workspaces = {
         {
           name = "current-dir",
