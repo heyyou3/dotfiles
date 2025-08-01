@@ -15,7 +15,7 @@ customCommands:
     context: "commits"
     description: "Open Github PR in browser"
   - key: "<c-v>"
-    command: "git show {{.SelectedLocalCommit.Sha}} --patch > /tmp/lazygit_patch && nvr /tmp/lazygit_patch"
+    command: "git show {{.SelectedCommitRange.From}}^..{{.SelectedCommitRange.To}} --patch > /tmp/lazygit_patch && nvr /tmp/lazygit_patch"
     context: "commits"
     description: "Open patch in nvim-remote"
 
