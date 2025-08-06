@@ -30,6 +30,8 @@ return {
 						"--no-heading",
 						"--smart-case",
 						"--with-filename",
+						"--glob",
+						"!**/.git/*",
 					},
 				},
 				pickers = {
