@@ -16,6 +16,10 @@ vim.keymap.set("v", "<leader>ff", function()
   builtin.live_grep({ default_text = text })
 end, { desc = "Telescope live grep selection" })
 
+vim.keymap.set("n", "<leader>rr", function()
+  vim.cmd("e!")
+end, { desc = "Reload" })
+
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 vim.keymap.set("n", "<leader>ti", utils.insert_timestamp, { desc = "Insert current timestamp" })
 vim.keymap.set("n", "[d", builtin.lsp_definitions, { desc = "Telescope lsp_definitions"})
