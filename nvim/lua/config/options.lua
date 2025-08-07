@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- set options
+vim.g.editorconfig = true
 vim.opt.ambiwidth = "double"
 vim.opt.autoindent = true
 vim.opt.autoread = true
