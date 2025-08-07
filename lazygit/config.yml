@@ -26,3 +26,6 @@ customCommands:
     command: "git show {{.SelectedLocalCommit.Sha}}^1:{{.SelectedCommitFile.Name}} > /tmp/prev_$(basename {{.SelectedCommitFile.Name}}) && nvr -d /tmp/prev_$(basename {{.SelectedCommitFile.Name}}) $(git rev-parse --show-toplevel)/{{.SelectedCommitFile.Name}} && rm /tmp/prev_$(basename {{.SelectedCommitFile.Name}})"
     context: commitFiles
     description: Open commit diff in Neovim
+git:
+    autoFetch: false
+    autoRefresh: false
