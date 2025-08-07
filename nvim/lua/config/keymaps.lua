@@ -1,8 +1,11 @@
 local builtin = require("telescope.builtin")
 local utils = require("config.utils")
 vim.keymap.set("n", "<leader>dd", builtin.diagnostics, { desc = "Telescope diagnostics" })
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "<leader>;;", builtin.buffers, { desc = "Telescope buffers" })
 vim.keymap.set("n", "<leader>fp", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>xx", function()
+  vim.cmd("on")
+end, { desc = "Only buffer" })
 
 -- Live grep with empty input in normal mode
 vim.keymap.set("n", "<leader>ff", builtin.live_grep, { desc = "Telescope live grep" })
