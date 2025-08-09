@@ -5,6 +5,7 @@ vim.g.maplocalleader = " "
 
 -- set options
 vim.g.editorconfig = true
+vim.o.exrc = true
 vim.opt.ambiwidth = "double"
 vim.opt.autoindent = true
 vim.opt.autoread = true
@@ -16,6 +17,7 @@ vim.opt.expandtab = true
 vim.opt.fileencoding = "utf-8"
 vim.opt.fileencodings = "ucs-boms,utf-8,euc-jp,cp932"
 vim.opt.fileformats = "unix,dos,mac"
+vim.opt.hidden = true
 vim.opt.history = 5000
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
@@ -30,10 +32,9 @@ vim.opt.showcmd = true
 vim.opt.smartcase = true
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
+vim.opt.termguicolors = true -- Recommended for modern colorschemes
 vim.opt.updatetime = 100
 vim.opt.wildmenu = true
-vim.opt.hidden = true
-vim.opt.termguicolors = true -- Recommended for modern colorschemes
 
 -- enable filetype detection, plugins and indentation
 vim.cmd("filetype plugin indent on")
