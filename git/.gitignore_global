@@ -5,3 +5,4 @@ portable_dev_env
 .envrc
 shell.nix
 .node_globals
+.nvim.lua
