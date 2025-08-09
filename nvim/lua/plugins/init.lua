@@ -30,4 +30,7 @@ return {
 
   -- Telescope
   require("plugins.telescope"),
+
+  -- Task
+  require("plugins.task")
 }
