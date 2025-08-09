@@ -4,5 +4,6 @@
   autocrlf = input
   excludesfile = ~/.gitignore_global
   quotepath = false
+  editor = nvr
 [init]
   defaultBranch = main
