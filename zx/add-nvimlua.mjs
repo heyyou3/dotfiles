@@ -12,8 +12,8 @@ require("overseer").register_template({
             cmd = { "echo" },
             args = { file },
             components = {
-                { "on_output_quickfix", open = true },
-                { "on_exit_set_status" },
+                { "open_output", on_complete = "failure", direction = "vertical" },
+                "default",
             },
         }
     end,
