@@ -6,3 +6,4 @@ portable_dev_env
 shell.nix
 .node_globals
 .nvim.lua
+.heyyou
