@@ -14,5 +14,5 @@ alias t="$HOME/dotfiles/todo/todo.sh"
 alias tf='terraform'
 alias tiga='tig --all'
 alias tmreload='tmux source ~/.tmux.conf'
-alias vL='nvim --listen "/tmp/$(tmux display-message -p '#{window_name}')"'
+alias vL='nvim --listen "/tmp/$(tmux display-message -p '#{window_name}.nvim.socket')"'
 alias work='cd $(find $HOME/work -maxdepth 1 -mindepth 1 -type d | fzf)'

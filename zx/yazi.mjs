@@ -10,7 +10,7 @@ try {
 }
 
 if (window_name) {
-  $.env.NVIM_LISTEN_ADDRESS = `/tmp/${window_name}`;
+  $.env.NVIM_LISTEN_ADDRESS = `/tmp/${window_name}.nvim.socket`;
 }
 $.env.EDITOR = 'nvr';
 
