@@ -5,6 +5,7 @@
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dracula.nvim": { "branch": "master", "commit": "7fadc372bbb9638c19a18c2497167d854cdd6a19" },
   "gitsigns.nvim": { "branch": "main", "commit": "736f51d2bb684c06f39a2032f064d7244f549981" },
+  "hop.nvim": { "branch": "master", "commit": "2254e0b3c8054b9ee661c9be3cb201d4b3384d8e" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lualine.nvim": { "branch": "master", "commit": "a94fc68960665e54408fe37dcf573193c4ce82c9" },
   "modes.nvim": { "branch": "main", "commit": "69407cef8b8074db0c692abb9216cb123152ef46" },
