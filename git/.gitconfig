@@ -5,5 +5,11 @@
   excludesfile = ~/.gitignore_global
   quotepath = false
   editor = nvr
+  pager = delta --side-by-side
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  light = false
 [init]
   defaultBranch = main
