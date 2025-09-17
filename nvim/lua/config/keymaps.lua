@@ -30,3 +30,5 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 vim.keymap.set("n", "<leader>ti", utils.insert_timestamp, { desc = "Insert current timestamp" })
 vim.keymap.set("n", "[d", builtin.lsp_definitions, { desc = "Telescope lsp_definitions" })
 vim.keymap.set("n", "[r", builtin.lsp_references, { desc = "Telescope lsp_references" })
+vim.keymap.set({"n", "v"}, '<C-j>', '<cmd>HopChar1<CR>', { desc = "Jump" })
+
