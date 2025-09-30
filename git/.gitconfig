@@ -10,6 +10,8 @@
   diffFilter = delta --color-only
 [delta]
   navigate = true
-  light = false
+  dark = true
+  line-numbers = true
+  syntax-theme = "Nord"
 [init]
   defaultBranch = main
