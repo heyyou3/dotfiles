@@ -12,6 +12,6 @@
   navigate = true
   dark = true
   line-numbers = true
-  syntax-theme = "Nord"
+  syntax-theme = "Dracula"
 [init]
   defaultBranch = main
