@@ -5,3 +5,8 @@ vim.lsp.enable('lua_ls')
 local vtsls_opts = require('lsp.vtsls')
 vim.lsp.config('vtsls', vtsls_opts)
 vim.lsp.enable('vtsls')
+
+local gopls_opts = require('lsp.gopls')
+vim.lsp.config('gopls', gopls_opts)
+vim.lsp.enable('gopls')
+
