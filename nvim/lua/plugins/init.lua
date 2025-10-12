@@ -2,7 +2,7 @@
 -- You can add your plugins here
 -- Each plugin is a table, and you can add multiple plugins in a single file
 
-return {
+local plugins = {
   -- Colorscheme
   require("plugins.colorscheme"),
 
@@ -32,5 +32,16 @@ return {
   require("plugins.telescope"),
 
   -- Task
-  require("plugins.task")
+  require("plugins.task"),
 }
+
+local languages_path = vim.fn.stdpath "config" .. "/lua/plugins/languages"
+local lua_path = vim.fn.stdpath "config" .. "/lua"
+
+local files = vim.fn.glob(languages_path .. "/**/*.lua", true, true)
+for _, file in ipairs(files) do
+  local module_path = file:sub(#lua_path + 2):gsub(".lua", ""):gsub("/", ".")
+  table.insert(plugins, require(module_path))
+end
+
+return plugins
