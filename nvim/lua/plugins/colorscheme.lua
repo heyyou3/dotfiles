@@ -43,7 +43,6 @@ return {
             return opts
         end,
     },
-    { "nvim-treesitter/nvim-treesitter", branch = "master", lazy = false, build = ":TSUpdate" },
     {
         "Mofiqul/dracula.nvim",
         config = function()
