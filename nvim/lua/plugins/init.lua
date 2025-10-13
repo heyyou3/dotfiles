@@ -12,9 +12,6 @@ local plugins = {
   -- Git integration
   require("plugins.git"),
 
-  -- Utilities
-  require("plugins.utils"),
-
   -- Linting
   require("plugins.linting"),
 
@@ -24,9 +21,6 @@ local plugins = {
   -- LSP and Autocompletion
   require("plugins.lsp"),
   require("plugins.cmp"),
-
-  -- Obsidian
-  require("plugins.obsidian"),
 
   -- Telescope
   require("plugins.telescope"),
