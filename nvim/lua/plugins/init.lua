@@ -2,40 +2,22 @@
 -- You can add your plugins here
 -- Each plugin is a table, and you can add multiple plugins in a single file
 
-local plugins = {
-  -- Colorscheme
-  require("plugins.colorscheme"),
+local plugins = {}
 
-  -- UI Enhancements
-  require("plugins.ui"),
+local plugins_path = vim.fn.stdpath("config") .. "/lua/plugins"
+local lua_path = vim.fn.stdpath("config") .. "/lua"
 
-  -- Git integration
-  require("plugins.git"),
+-- Get all .lua files in the plugins directory and subdirectories
+local files = vim.fn.glob(plugins_path .. "/**/*.lua", true, true)
 
-  -- Linting
-  require("plugins.linting"),
-
-  -- Snippets
-  require("plugins.snippets"),
-
-  -- LSP and Autocompletion
-  require("plugins.lsp"),
-  require("plugins.cmp"),
-
-  -- Telescope
-  require("plugins.telescope"),
-
-  -- Task
-  require("plugins.task"),
-}
-
-local languages_path = vim.fn.stdpath "config" .. "/lua/plugins/languages"
-local lua_path = vim.fn.stdpath "config" .. "/lua"
-
-local files = vim.fn.glob(languages_path .. "/**/*.lua", true, true)
 for _, file in ipairs(files) do
+  -- Construct the module path from the file path
   local module_path = file:sub(#lua_path + 2):gsub(".lua", ""):gsub("/", ".")
-  table.insert(plugins, require(module_path))
+
+  -- Exclude this file (init.lua)
+  if module_path ~= "plugins.init" then
+    table.insert(plugins, require(module_path))
+  end
 end
 
 return plugins
