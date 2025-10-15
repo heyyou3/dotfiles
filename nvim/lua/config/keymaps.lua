@@ -11,7 +11,9 @@ vim.keymap.set("n", "<leader>xx", function()
 end, { desc = "Only buffer" })
 
 -- Live grep with empty input in normal mode
-vim.keymap.set("n", "<leader>ff", builtin.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>ff", function()
+    require("telescope").extensions.live_grep_args.live_grep_args()
+end, { desc = "Telescope live grep" })
 
 -- Live grep with visual selection in visual mode
 vim.keymap.set("v", "<leader>ff", function()
@@ -19,7 +21,7 @@ vim.keymap.set("v", "<leader>ff", function()
     vim.cmd('noau normal! "ay"')
     local text = vim.fn.getreg("a")
     text = text:gsub("\n", " ")
-    builtin.live_grep({ default_text = text })
+    require("telescope").extensions.live_grep_args.live_grep_args({ default_text = text })
 end, { desc = "Telescope live grep selection" })
 
 vim.keymap.set("n", "<leader>rr", function()
