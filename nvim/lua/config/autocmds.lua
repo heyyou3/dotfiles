@@ -48,3 +48,11 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "gitcommit",
   command = "DiffGitCached | wincmd x | resize 10",
 })
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+    pattern = "*",
+    callback = function()
+        vim.cmd("checktime")
+    end,
+    group = vim.api.nvim_create_augroup("AutoReload", { clear = true }),
+})
