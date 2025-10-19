@@ -1,12 +1,15 @@
-local lua_ls_opts = require('lsp.lua_ls')
-vim.lsp.config('lua_ls', lua_ls_opts)
-vim.lsp.enable('lua_ls')
+-- Modern LSP setup using lspconfig
 
-local vtsls_opts = require('lsp.vtsls')
-vim.lsp.config('vtsls', vtsls_opts)
-vim.lsp.enable('vtsls')
+local lspconfig = require('lspconfig')
 
-local gopls_opts = require('lsp.gopls')
-vim.lsp.config('gopls', gopls_opts)
-vim.lsp.enable('gopls')
+-- Setup for each language server
+-- The configuration is read from the corresponding file in this directory
 
+lspconfig.lua_ls.setup(require('lsp.lua_ls'))
+
+lspconfig.vtsls.setup(require('lsp.vtsls'))
+
+lspconfig.gopls.setup(require('lsp.gopls'))
+
+-- Note: The server name for lspconfig is 'terraformls', not 'terraform_ls'
+lspconfig.terraformls.setup(require('lsp.terraform_ls'))
