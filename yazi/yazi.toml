@@ -1,4 +1,5 @@
 [mgr]
+ratio = [4, 4, 0]
 show_hidden = true
 
 [opener]
