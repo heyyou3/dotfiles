@@ -14,22 +14,30 @@ return {
                 sections = {
                     lualine_a = { "branch" },
                     lualine_b = {
-                        "location",
+                        "diff",
                     },
                     lualine_c = {
-                        "diff",
-                        "filetype",
+                        {
+                            "filename",
+                            path = 1,
+                        },
+                    },
+                    lualine_x = {
                         {
                             "diagnostics",
                             source = { "nvim-lsp" },
                         },
                     },
-                    lualine_x = {},
                     lualine_y = {},
                     lualine_z = {},
                 },
                 inactive_sections = {
-                    lualine_a = {},
+                    lualine_a = {
+                        {
+                            "filename",
+                            path = 1,
+                        },
+                    },
                     lualine_b = {},
                     lualine_c = {},
                     lualine_x = {},
@@ -41,12 +49,6 @@ return {
                 extensions = {},
             }
             return opts
-        end,
-    },
-    {
-        "Mofiqul/dracula.nvim",
-        config = function()
-            vim.cmd.colorscheme("dracula")
         end,
     },
 }
