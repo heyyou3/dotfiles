@@ -5,13 +5,16 @@
   excludesfile = ~/.gitignore_global
   quotepath = false
   editor = nvr
-  pager = delta --side-by-side
+  pager = delta
 [interactive]
   diffFilter = delta --color-only
 [delta]
+  side-by-side = true
   navigate = true
   dark = true
   line-numbers = true
   syntax-theme = "Dracula"
+[diff]
+  context = 1
 [init]
   defaultBranch = main
