@@ -50,3 +50,20 @@ vim.keymap.set("n", "[d", builtin.lsp_definitions, { desc = "Telescope lsp_defin
 vim.keymap.set("n", "[r", builtin.lsp_references, { desc = "Telescope lsp_references" })
 vim.keymap.set({ "n", "v" }, "<C-j>", "<cmd>HopChar1<CR>", { desc = "Jump" })
 vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis<CR>", { desc = "Gitsigns diff" })
+
+-- Buffer operations (Ctrl+Shift)
+-- Note: Many terminals don't distinguish Ctrl+Shift+letter from Ctrl+letter.
+-- If these don't work distinctly, consider mapping terminal keybindings to send unique sequences.
+vim.keymap.set("n", "<C-S-x>", "<cmd>bdelete<CR>", { desc = "Buffer delete (Ctrl+Shift+X)" })
+vim.keymap.set("n", "<C-S-n>", "<cmd>bnext<CR>", { desc = "Next buffer (Ctrl+Shift+N)" })
+vim.keymap.set("n", "<C-S-p>", "<cmd>bprevious<CR>", { desc = "Previous buffer (Ctrl+Shift+P)" })
+
+-- Alacritty CSI u sequences for Ctrl+Shift+X/N/P
+vim.keymap.set("n", "<Esc>[120;6u", "<cmd>BufferDelete<CR>", { desc = "Buffer delete (CSI u)" })
+vim.keymap.set("n", "<Esc>[110;6u", "<cmd>BufferNext<CR>", { desc = "Next buffer (CSI u)" })
+vim.keymap.set("n", "<Esc>[112;6u", "<cmd>BufferPrevious<CR>", { desc = "Previous buffer (CSI u)" })
+
+vim.keymap.set("n", "<leader>m", ":Grapple toggle<cr>", { desc = "Grapple toggle tag" })
+vim.keymap.set("n", "<leader>M", ":Grapple toggle_tags<cr>", { desc = "Grapple open tags window" })
+vim.keymap.set("n", "<leader>n", ":Grapple cycle_tags next<cr>", { desc = "Grapple cycle next tag" })
+vim.keymap.set("n", "<leader>p", ":Grapple cycle_tags prev<cr>", { desc = "Grapple cycle previous tag" })

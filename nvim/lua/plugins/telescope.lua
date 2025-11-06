@@ -39,6 +39,11 @@ return {
                         "--glob",
                         "!**/.git/*",
                     },
+
+                    path_display = {
+                        "shorten",
+                        shorten = { len = 2, exclude = {2, -1} }
+                    },
                 },
                 pickers = {
                     find_files = {
