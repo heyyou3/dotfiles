@@ -1,0 +1,16 @@
+layout {
+    pane split_direction="vertical" {
+        pane size="20%" stacked=true {
+            pane command="lazygit"
+            pane command="yazi" expanded=true
+        }
+        pane size="70%" {
+            pane size="70%" command="nvr"
+            pane size="30%" split_direction="vertical" {
+                pane
+                pane
+            }
+        }
+    }
+}
+

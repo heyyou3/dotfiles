@@ -1,0 +1,17 @@
+theme "dracula"
+simplified_ui true
+show_startup_tips false
+
+keybinds {
+    normal clear-defaults=true {
+        bind "Alt a" { SwitchToMode "pane"; }
+        bind "Alt d" { Detach; }
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt l" { MoveFocus "Right"; }
+        bind "Alt s" { SwitchToMode "scroll"; }
+        bind "Alt t" { SwitchToMode "tab"; }
+        bind "Alt w" { SwitchToMode "session"; }
+    }
+}
