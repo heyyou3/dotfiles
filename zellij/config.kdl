@@ -11,7 +11,10 @@ keybinds {
         bind "Alt k" { MoveFocus "Up"; }
         bind "Alt l" { MoveFocus "Right"; }
         bind "Alt o" {
-            Run "zsh" "-c" "zx $HOME/dotfiles/zx/br.mjs"
+            Run "zsh" "-c" "zx $HOME/dotfiles/zx/br.mjs" {
+                close_on_exit true
+                floating true
+            }
         }
         bind "Alt s" { SwitchToMode "scroll"; }
         bind "Alt t" { SwitchToMode "tab"; }
