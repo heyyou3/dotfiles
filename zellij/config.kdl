@@ -17,4 +17,10 @@ keybinds {
         bind "Alt t" { SwitchToMode "tab"; }
         bind "Alt w" { SwitchToMode "session"; }
     }
+    pane {
+        bind "h" { Resize "Left"; }
+        bind "j" { Resize "Down"; }
+        bind "k" { Resize "Up"; }
+        bind "l" { Resize "Right"; }
+    }
 }
