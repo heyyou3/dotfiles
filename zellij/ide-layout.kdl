@@ -1,6 +1,6 @@
 layout {
     pane split_direction="vertical" {
-        pane size="20%" stacked=true {
+        pane size="30%" stacked=true {
             pane command="lazygit"
             pane command="yazi" expanded=true
         }
