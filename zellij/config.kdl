@@ -19,6 +19,7 @@ keybinds {
         bind "Alt s" { SwitchToMode "scroll"; }
         bind "Alt t" { SwitchToMode "tab"; }
         bind "Alt w" { SwitchToMode "session"; }
+        bind "Alt m" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
     }
     pane {
         bind "h" { Resize "Left"; }
