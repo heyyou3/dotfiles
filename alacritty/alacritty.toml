@@ -53,11 +53,6 @@ background = "#f1fa8c"
 foreground = "#f1fa8c"
 background = "#282a36"
 
-[general]
-# Windowsの場合
-# WSL2を利用しているなら、WindowsのAlacrittyからWSL2のシェルを起動
-import = ["./alacritty-windows.toml"] # Linux/macOS ではこのパスは存在しないか、読み込まれない
-
 [font]
 bold = { family = "HackGen Console NF", style = "Bold" }
 bold_italic = { family = "HackGen Console NF", style = "Bold Italic" }
@@ -67,5 +62,4 @@ size = 14.0
 
 [window]
 option_as_alt = "Both"
-startup_mode = "Fullscreen"
 
