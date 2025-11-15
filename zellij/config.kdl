@@ -11,7 +11,7 @@ keybinds {
         bind "Alt k" { MoveFocus "Up"; }
         bind "Alt l" { MoveFocus "Right"; }
         bind "Alt o" {
-            Run "zsh" "-c" "zx $HOME/dotfiles/zx/br.mjs" {
+            Run "zsh" "-c" "bmo $HOME/dotfiles/.heyyou/bookmarks.toml" {
                 close_on_exit true
                 floating true
             }
