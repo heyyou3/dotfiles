@@ -12,7 +12,21 @@ return {
                     component_separators = "",
                 },
                 sections = {
-                    lualine_a = { "branch" },
+                    lualine_a = {
+                        {
+                            function()
+                                if _G.submode_status then
+                                    return _G.submode_status()
+                                end
+                                return ""
+                            end,
+                            cond = function()
+                                return _G.submode_status and _G.submode_status() ~= ""
+                            end,
+                            color = { fg = "#ff5555", gui = "bold" },
+                        },
+                        "branch"
+                    },
                     lualine_b = {
                         "diff",
                     },
