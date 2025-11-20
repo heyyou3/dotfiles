@@ -7,3 +7,4 @@ shell.nix
 .node_globals
 .nvim.lua
 .heyyou
+.phpactor.json
