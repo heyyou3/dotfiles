@@ -10,17 +10,18 @@ return {
             local vtsls_opts = require("lsp.vtsls")
             local gopls_opts = require("lsp.gopls")
             local terraform_opts = require("lsp.terraform_ls")
+            local phpactor_opts = require("lsp.phpactor")
 
             -- Configure servers
             vim.lsp.config("lua_ls", lua_ls_opts)
             vim.lsp.config("vtsls", vtsls_opts)
             vim.lsp.config("gopls", gopls_opts)
             vim.lsp.config("terraformls", terraform_opts) -- Use 'terraformls' as the server name
-
             vim.lsp.enable("lua_ls")
             vim.lsp.enable("vtsls")
             vim.lsp.enable("gopls")
             vim.lsp.enable("terraformls")
+            vim.lsp.enable("phpactor")
         end,
     },
 }

@@ -10,9 +10,12 @@ return {
                     enable = true,
                 },
                 ensure_installed = {
+                    "blade",
                     "go",
+                    "html",
                     "javascript",
                     "lua",
+                    "php",
                     "php",
                     "python",
                     "sql",
