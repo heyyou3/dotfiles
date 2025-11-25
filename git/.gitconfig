@@ -1,8 +1,8 @@
 [include]
-  path = ~/.gitconfig_os
+  path = ~/dotfiles/.heyyou/gitconfig
 [core]
   autocrlf = input
-  excludesfile = ~/.gitignore_global
+  excludesfile = ~/dotfiles/git/ignore
   quotepath = false
   editor = nvr
   pager = delta
