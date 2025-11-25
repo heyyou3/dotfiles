@@ -9,6 +9,7 @@ export DIRENV_LOG_FORMAT=
 if [ -f "$DOT_FILES_PATH/.heyyou/not-shared" ]; then
   source "$DOT_FILES_PATH/.heyyou/not-shared"
 fi
+export ZELLIJ_SOCKET_DIR=$HOME
 
 if [ "$(uname)" = 'Darwin' ]; then
   export HOMEBREW_CASK_OPTS="--appdir=/Applications"
