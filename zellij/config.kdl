@@ -6,6 +6,7 @@ session_serialization false
 keybinds {
     normal clear-defaults=true {
         bind "Alt a" { SwitchToMode "pane"; }
+        bind "Alt e" { TogglePaneEmbedOrFloating; }
         bind "Alt d" { Detach; }
         bind "Alt h" { MoveFocus "Left"; }
         bind "Alt j" { MoveFocus "Down"; }
