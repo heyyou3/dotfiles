@@ -1,4 +1,4 @@
-theme "dracula"
+theme "catppuccin-mocha"
 simplified_ui true
 show_startup_tips false
 session_serialization false

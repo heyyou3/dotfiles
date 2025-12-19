@@ -1,5 +1,6 @@
 [include]
   path = ~/dotfiles/.heyyou/gitconfig
+  path = ~/dotfiles/git/catppuccin.gitconfig
 [core]
   autocrlf = input
   excludesfile = ~/dotfiles/git/ignore
@@ -13,7 +14,7 @@
   navigate = true
   dark = true
   line-numbers = true
-  syntax-theme = "Dracula"
+  features = catppuccin-mocha
 [diff]
   context = 1
 [init]
