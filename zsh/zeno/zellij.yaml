@@ -1,0 +1,6 @@
+snippets:
+  - name: zellij-run
+    snippet: ~/dotfiles/scripts/run-zellij.sh
+  - name: zellij-run-stacked
+    snippet: zellij run --stacked --
+
