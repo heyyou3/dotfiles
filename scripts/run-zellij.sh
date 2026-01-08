@@ -7,9 +7,9 @@ set -e
 SESSION_NAME=$(basename "$(pwd)")
 
 # Set environment variables
-export EDITOR="nvr"
 export SESSION_NAME
 export NVIM_LISTEN_ADDRESS="/tmp/${SESSION_NAME}.socket"
+export EDITOR="nvim --server $NVIM_LISTEN_ADDRESS --remote"
 
 # Define the path to the Zellij layout, expanding the home directory tilde
 ZELLIJ_LAYOUT_PATH="$HOME/dotfiles/zellij/ide-layout.kdl"
