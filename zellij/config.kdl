@@ -23,6 +23,9 @@ keybinds {
         bind "Alt w" { SwitchToMode "session"; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt m" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        bind "Alt i" {
+            WriteChars "$HOME/dotfiles/scripts/dump.sh\u{000D}";
+        }
     }
     pane {
         bind "h" { Resize "Left"; }

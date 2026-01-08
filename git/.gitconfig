@@ -5,7 +5,7 @@
   autocrlf = input
   excludesfile = ~/dotfiles/git/ignore
   quotepath = false
-  editor = nvr
+  editor = nvim
   pager = delta
 [interactive]
   diffFilter = delta --color-only
