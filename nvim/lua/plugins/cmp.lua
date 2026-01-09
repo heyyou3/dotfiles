@@ -27,7 +27,14 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" }, -- Add luasnip source
-                    { name = "buffer" },
+                    {
+                        name = "buffer",
+                        option = {
+                            get_bufnrs = function()
+                                return vim.api.nvim_list_bufs()
+                            end,
+                        },
+                    },
                     { name = "path" },
                 }),
                 mapping = cmp.mapping.preset.insert({
