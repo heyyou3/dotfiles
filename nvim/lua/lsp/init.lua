@@ -1,0 +1,6 @@
+vim.lsp.enable("gopls")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("phpactor")
+vim.lsp.enable("terraform_ls")
+vim.lsp.enable("vtsls")
+vim.lsp.enable("pyright")
