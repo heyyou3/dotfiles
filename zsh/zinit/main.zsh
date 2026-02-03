@@ -20,7 +20,7 @@ zinit ice lucid depth"1" blockf
 zinit light yuki-yano/zeno.zsh
 
 # if defined load the configuration file from there
-# export ZENO_HOME=~/.config/zeno
+export ZENO_HOME=~/dotfiles/zsh/zeno
 
 # if disable deno cache command when plugin loaded
 # export ZENO_DISABLE_EXECUTE_CACHE_COMMAND=1
