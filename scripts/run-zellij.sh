@@ -23,5 +23,5 @@ fi
 # Execute Zellij with the specified layout.
 # The 'exec' command replaces the shell process with the zellij process,
 # ensuring that all signals are passed correctly to zellij.
-zellij -l "$ZELLIJ_LAYOUT_PATH"
+zellij -n "$ZELLIJ_LAYOUT_PATH" -s "$SESSION_NAME"
 
