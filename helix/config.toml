@@ -1,0 +1,8 @@
+theme = "catppuccin_mocha"
+
+[editor]
+shell = ["zsh", "-i", "-c"]
+
+[editor.word-completion]
+enable = true
+trigger-length = 3
