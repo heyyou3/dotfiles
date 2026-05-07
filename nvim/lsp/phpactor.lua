@@ -1,6 +1,6 @@
 return {
     cmd = { "phpactor", "language-server" },
     filetypes = { "php" },
-    settings = {
-    },
+    root_markers = { "composer.json", ".git" },
+    settings = {},
 }
