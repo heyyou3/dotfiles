@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on   = ["<C-o>"]
+run  = 'shell "$HOME/dotfiles/scripts/yazi-open-in-helix.sh \"$0\"" --confirm'
+desc = "Open hovered file in the helix pane"

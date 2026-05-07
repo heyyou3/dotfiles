@@ -3,16 +3,22 @@ layout {
         pane size="30%" stacked=true {
             pane command="lazygit"
             pane command="yazi" expanded=true
+            pane command="gh" {
+                args "dash"
+                expanded true
+            }
+            pane command="lazydocker" {
+                expanded true
+            }
         }
-        pane size="70%" {
-            pane size="70%" command="nvim" {
-                args "--server" "$NVIM_LISTEN_ADDRESS" "--remote"
+        pane size="40%" {
+            pane command="hx" {
                 focus true
             }
-            pane size="30%" split_direction="vertical" {
-                pane
-                pane
-            }
+        }
+        pane size="30%" stacked=true {
+            pane command="claude" {}
+            pane
         }
     }
 }
