@@ -13,4 +13,10 @@ setopt EXTENDED_HISTORY
 
 source "$DOT_FILES_PATH/common_sh/common"
 source "$DOT_FILES_PATH/zsh/zinit/main.zsh"
+source <(fzf --zsh)
 
+alias gam="/Users/heyyou/bin/gam7/gam"
+
+if [[ $- == *i* ]] && command -v fish >/dev/null; then
+    exec fish
+fi
