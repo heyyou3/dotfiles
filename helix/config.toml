@@ -1,7 +1,15 @@
 theme = "catppuccin_mocha"
 
 [editor]
-shell = ["zsh", "-i", "-c"]
+shell = ["fish", "-i", "-c"]
+auto-format = false
+
+[editor.file-picker]
+hidden = false
+git-ignore = false
+git-global = false
+git-exclude = false
+parents = false
 
 [editor.word-completion]
 enable = true
