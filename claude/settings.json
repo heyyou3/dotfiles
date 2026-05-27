@@ -1,0 +1,119 @@
+{
+  "model": "opus",
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Edit",
+      "Write",
+      "Read"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(rmdir:*)",
+      "Bash(git push:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean:*)",
+      "Bash(git commit --amend:*)",
+      "Bash(git branch -d:*)",
+      "Bash(git branch -D:*)",
+      "Bash(git checkout --:*)",
+      "Bash(git restore:*)",
+      "Bash(git rebase:*)",
+      "Bash(terraform apply:*)",
+      "Bash(terraform destroy:*)",
+      "Bash(pulumi up:*)",
+      "Bash(pulumi destroy:*)",
+      "Bash(dd:*)",
+      "Bash(mkfs:*)",
+      "Bash(shred:*)",
+      "Bash(sudo:*)",
+      "Bash(shutdown:*)",
+      "Bash(reboot:*)",
+      "Bash(halt:*)",
+      "Bash(killall:*)",
+      "Bash(pkill:*)",
+      "Bash(crontab -r:*)",
+      "Bash(git filter-branch:*)",
+      "Bash(git gc:*)",
+      "Bash(git reflog expire:*)",
+      "Bash(docker rm:*)",
+      "Bash(docker rmi:*)",
+      "Bash(docker volume rm:*)",
+      "Bash(docker system prune:*)",
+      "Bash(docker compose down:*)",
+      "Bash(kubectl delete:*)",
+      "Bash(kubectl drain:*)",
+      "Bash(helm uninstall:*)",
+      "Bash(helm delete:*)",
+      "Bash(npm publish:*)",
+      "Bash(yarn publish:*)",
+      "Bash(pnpm publish:*)",
+      "Bash(cargo publish:*)",
+      "Bash(gem push:*)",
+      "Bash(twine upload:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/dangerous-command-guard.sh"
+          },
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/commit-gate.sh"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/review-gate.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"cwd\": \"'\"$(pwd)\"'\", \"notification_type\": \"stop\"}' | ~/.claude/hooks/notify.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test -f ~/dotfiles/ai-agent/AGENTS.md && cat ~/dotfiles/ai-agent/AGENTS.md || true"
+          }
+        ]
+      }
+    ]
+  },
+  "effortLevel": "medium",
+  "theme": "dark-ansi",
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  }
+}

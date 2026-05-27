@@ -1,0 +1,21 @@
+version: '3'
+
+tasks:
+  deploy:claude:
+    desc: Claude Code の agents/commands/hooks/settings を ~/.claude に symlink する
+    cmds:
+      - mkdir -p ~/.claude/agents ~/.claude/commands ~/.claude/hooks
+      - ln -sfn {{.ROOT_DIR}}/claude/agents/reviewer.md ~/.claude/agents/reviewer.md
+      - ln -sfn {{.ROOT_DIR}}/claude/agents/tester.md ~/.claude/agents/tester.md
+      - ln -sfn {{.ROOT_DIR}}/claude/agents/security-reviewer.md ~/.claude/agents/security-reviewer.md
+      - ln -sfn {{.ROOT_DIR}}/claude/commands/review.md ~/.claude/commands/review.md
+      - ln -sfn {{.ROOT_DIR}}/claude/hooks/review-gate.sh ~/.claude/hooks/review-gate.sh
+      - ln -sfn {{.ROOT_DIR}}/claude/hooks/dangerous-command-guard.sh ~/.claude/hooks/dangerous-command-guard.sh
+      - ln -sfn {{.ROOT_DIR}}/claude/hooks/commit-gate.sh ~/.claude/hooks/commit-gate.sh
+      - ln -sfn {{.ROOT_DIR}}/claude/hooks/notify.sh ~/.claude/hooks/notify.sh
+      - ln -sfn {{.ROOT_DIR}}/claude/settings.json ~/.claude/settings.json
+
+  agent-team:
+    desc: AIエージェントチーム(worker + reviewer)の Zellij セッションを起動する
+    cmds:
+      - zellij --layout {{.ROOT_DIR}}/zellij/agent-team-layout.kdl
