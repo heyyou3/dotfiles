@@ -2,9 +2,9 @@ version: '3'
 
 tasks:
   deploy:claude:
-    desc: Claude Code の agents/commands/hooks/settings を ~/.claude に symlink する
+    desc: Claude Code の agents/commands/hooks/settings を ~/.claude に、起動ランチャーを ~/bin に symlink する
     cmds:
-      - mkdir -p ~/.claude/agents ~/.claude/commands ~/.claude/hooks
+      - mkdir -p ~/.claude/agents ~/.claude/commands ~/.claude/hooks ~/bin
       - ln -sfn {{.ROOT_DIR}}/claude/agents/reviewer.md ~/.claude/agents/reviewer.md
       - ln -sfn {{.ROOT_DIR}}/claude/agents/tester.md ~/.claude/agents/tester.md
       - ln -sfn {{.ROOT_DIR}}/claude/agents/security-reviewer.md ~/.claude/agents/security-reviewer.md
@@ -15,6 +15,8 @@ tasks:
       - ln -sfn {{.ROOT_DIR}}/claude/hooks/load-context.sh ~/.claude/hooks/load-context.sh
       - ln -sfn {{.ROOT_DIR}}/claude/hooks/notify.sh ~/.claude/hooks/notify.sh
       - ln -sfn {{.ROOT_DIR}}/claude/settings.json ~/.claude/settings.json
+      - ln -sfn {{.ROOT_DIR}}/claude/bin/engineer ~/bin/engineer
+      - ln -sfn {{.ROOT_DIR}}/claude/bin/business ~/bin/business
 
   worker:engineer:
     desc: engineer プロファイルで Claude Code を起動する(レビューゲート有効)

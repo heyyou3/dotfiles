@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec env CLAUDE_WORKER_MODE=engineer claude "$@"
