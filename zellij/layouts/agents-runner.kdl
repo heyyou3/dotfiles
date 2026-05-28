@@ -1,0 +1,11 @@
+// agents-runner — 常駐 runner ループを走らせる zellij session 用 layout
+// 起動: zellij -s agents-runner -n ~/dotfiles/zellij/layouts/agents-runner.kdl
+layout {
+  cwd "/Users/heyyou/work/ai-agents"
+  tab name="runner" {
+    pane {
+      command "bash"
+      args "-lc" "exec /Users/heyyou/dotfiles/scripts/agents-task-runner.sh --loop"
+    }
+  }
+}

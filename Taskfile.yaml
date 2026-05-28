@@ -32,3 +32,21 @@ tasks:
     desc: AIエージェントチーム(worker + reviewer)の Zellij セッションを起動する
     cmds:
       - zellij --layout {{.ROOT_DIR}}/zellij/agent-team-layout.kdl
+
+  agents-runner:start:
+    desc: agents-task-runner 常駐 zellij session(agents-runner)を起動する
+    cmds:
+      - |
+        if zellij list-sessions --no-formatting --short 2>/dev/null | grep -Fxq agents-runner; then
+          echo "agents-runner already running — attach with: zellij attach agents-runner"
+        else
+          zellij -s agents-runner -n {{.ROOT_DIR}}/zellij/layouts/agents-runner.kdl
+        fi
+
+  agents-runner:status:
+    desc: agents-task-runner の zellij session と state/sessions の中身を表示する
+    cmds:
+      - echo "--- zellij sessions ---"
+      - zellij list-sessions --no-formatting --short 2>/dev/null || true
+      - echo "--- state/sessions ---"
+      - ls -la $HOME/work/ai-agents/.heyyou/state/sessions 2>/dev/null || echo "(none)"
