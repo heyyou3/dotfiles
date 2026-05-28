@@ -16,9 +16,17 @@ file_path=$(printf '%s' "$input" | jq -r '.tool_input.file_path // ""')
 # file_path を持たないツール呼び出しは対象外
 [ -z "$file_path" ] && exit 0
 
-# 許可リスト: .heyyou/ 配下のみ(設計・レビュー・状態ファイルの作業領域)
+# パストラバーサル防止: 許可 glob は .. を正規化しないため、memory/.. や .heyyou/.. 経由で
+# 本体ファイル(gate スクリプト自身を含む)を素通り編集できてしまう。許可判定の手前で .. を拒否する。
+case "$file_path" in
+  *..*) deny "review-gate: パスに .. を含むため安全側で拒否します" ;;
+esac
+
+# 許可リスト: .heyyou/ 配下(作業領域)と Claude auto memory ストア。
+# memory は repo 本体ではなく Claude 自身の記憶領域のため未レビューでも素通りさせる。
 case "$file_path" in
   .heyyou/*|*/.heyyou/*) exit 0 ;;
+  */.claude/projects/*/memory/*) exit 0 ;;
 esac
 
 # ゲート検査
