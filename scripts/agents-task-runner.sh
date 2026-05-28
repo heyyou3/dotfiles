@@ -140,19 +140,19 @@ write_layout() {
   local name="$1" profile="$2"
   local task_rel="tasks/doing/$profile/$name.md"
   local layout_path="$LAYOUT_DIR/$name.kdl"
+  # prompt は KDL double-quote と shell single-quote の二重エスケープに乗せるため
+  # '/"/\\/改行 を含めない契約。<name> はサニタイズ済、<profile> は固定文字列、
+  # 指示本文も同様にこの 4 文字を使わずに書く(rev7 / hotfix design 参照)。
   local prompt="${task_rel} を読み、本文の指示を実行してください。完了したら必ず: (1) このファイルを tasks/done/${profile}/${name}.md に mv (2) .heyyou/state/sessions/${name}.json を削除 (3) /exit。途中で人間判断が必要になったら mv も削除も /exit もせず停止してください。"
-  # kdl に展開する値は name (^[a-zA-Z0-9_-]+$ で検証済) / profile (固定文字列) / WORK (起動環境制約) のみ。
-  # md 本文はここに混ぜない(claude が Read ツールで取り込む)。args 拡張時もこの3つ以外を入れないこと。
+  # zellij 0.43 では pane { env { ... } } 構文が無効なので、bash -lc 経由で
+  # WORKER_PROFILE を export する。args は KDL の複数引数渡し(2 トークン分け)で書く。
   cat >"$layout_path" <<KDL
 layout {
   cwd "$WORK"
   tab name="claude" {
     pane {
-      command "claude"
-      args "$prompt"
-      env {
-        WORKER_PROFILE "$profile"
-      }
+      command "bash"
+      args "-lc" "WORKER_PROFILE=$profile exec claude '$prompt'"
     }
   }
 }
