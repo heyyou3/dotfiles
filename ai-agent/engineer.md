@@ -99,6 +99,19 @@ deny される。差分レビューは `reviews/<slug>.diff.md` に出力され 
 - 「PR を作成する場合のルール」のセルフレビュー(品質5観点)は PR 作成直前の最終確認。
   段階が異なるため二度手間にしない。
 
+# subagent 起動時のルール
+
+- worker が **ファイル編集を伴う subagent** を起動する場合(例: 実装作業を別の
+  subagent に任せる、複数 subagent を並列で走らせて編集させる)は、Task 呼び出しに
+  `isolation: "worktree"` を指定して git worktree 上で隔離して作業させる。
+  - 理由: 複数 subagent が同時に同じ作業ツリーを編集すると、未コミット差分が衝突する。
+- 読み取り専用の subagent(Explore / reviewer / tester / security-reviewer 等、
+  ファイルを書き換えないもの)では `isolation` の指定は不要。
+- worker 自身(メインセッション)の編集は単独実行のため worktree 隔離の対象外。
+  並行性の問題は subagent 並列起動時にのみ発生する。
+- worktree 上の変更は subagent 終了時に自動回収される(差分が無ければ削除、ある
+  場合はパスとブランチが結果に返る)。worker 側で取り込み判断を行う。
+
 # Terraform のルール
 
 - plan の結果は省力せずにすべてを見せること
