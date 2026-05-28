@@ -12,8 +12,19 @@ tasks:
       - ln -sfn {{.ROOT_DIR}}/claude/hooks/review-gate.sh ~/.claude/hooks/review-gate.sh
       - ln -sfn {{.ROOT_DIR}}/claude/hooks/dangerous-command-guard.sh ~/.claude/hooks/dangerous-command-guard.sh
       - ln -sfn {{.ROOT_DIR}}/claude/hooks/commit-gate.sh ~/.claude/hooks/commit-gate.sh
+      - ln -sfn {{.ROOT_DIR}}/claude/hooks/load-context.sh ~/.claude/hooks/load-context.sh
       - ln -sfn {{.ROOT_DIR}}/claude/hooks/notify.sh ~/.claude/hooks/notify.sh
       - ln -sfn {{.ROOT_DIR}}/claude/settings.json ~/.claude/settings.json
+
+  worker:engineer:
+    desc: engineer プロファイルで Claude Code を起動する(レビューゲート有効)
+    cmds:
+      - CLAUDE_WORKER_MODE=engineer claude
+
+  worker:business:
+    desc: business プロファイルで Claude Code を起動する(雑務向け・レビューゲート無効)
+    cmds:
+      - CLAUDE_WORKER_MODE=business claude
 
   agent-team:
     desc: AIエージェントチーム(worker + reviewer)の Zellij セッションを起動する

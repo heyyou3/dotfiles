@@ -8,6 +8,9 @@ deny() {
   exit 0
 }
 
+# business モードでは Design Doc 強制ゲートを課さない(雑務に儀式は不要)。
+[ "${CLAUDE_WORKER_MODE:-engineer}" = business ] && exit 0
+
 command -v jq >/dev/null 2>&1 || deny "review-gate: jq が無いため安全側で拒否します"
 
 input=$(cat)

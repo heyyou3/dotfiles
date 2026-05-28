@@ -15,6 +15,9 @@ deny() {
   exit 0
 }
 
+# business モードではコミット前レビューゲートを課さない(雑務に儀式は不要)。
+[ "${CLAUDE_WORKER_MODE:-engineer}" = business ] && exit 0
+
 command -v jq >/dev/null 2>&1 || deny "commit-gate: jq が無いため安全側で拒否します"
 cmd=$(jq -r '.tool_input.command // ""')
 
