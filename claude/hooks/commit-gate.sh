@@ -58,7 +58,7 @@ check_verdict() {
   [ "$verdict" = "approved" ] || deny "commit-gate: ${label}が approved ではありません (slug=$slug, verdict=${verdict:-なし})"
 }
 
-check_verdict "$root/.heyyou/reviews/${slug}.diff.md" "reviewer 差分レビュー(reviews/${slug}.diff.md)"
-check_verdict "$root/.heyyou/security/${slug}.md" "security-reviewer(security/${slug}.md)"
+check_verdict "$root/.heyyou/tasks/${slug}/reviewer/diff-review.md" "reviewer 差分レビュー(tasks/${slug}/reviewer/diff-review.md)"
+check_verdict "$root/.heyyou/tasks/${slug}/security-reviewer/report.md" "security-reviewer(tasks/${slug}/security-reviewer/report.md)"
 
 exit 0

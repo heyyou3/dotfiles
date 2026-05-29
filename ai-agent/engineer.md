@@ -18,9 +18,9 @@
 
 - 日本語で残すこと
 - https://www.conventionalcommits.org/ja/v1.0.0 をに準拠すること
-- コミット前に、対象 slug の reviewer 差分レビュー(`reviews/<slug>.diff.md`)と
-  security-reviewer(`security/<slug>.md`)が両方 `verdict: approved` であること。
-  これは検証フェーズ(step8 reviewer 差分 / step9 security)の approved を確認・再保証する最終ゲート。
+- コミット前に、対象 slug の reviewer 差分レビュー(`tasks/<slug>/reviewer/diff-review.md`)と
+  security-reviewer(`tasks/<slug>/security-reviewer/report.md`)が両方 `verdict: approved` であること。
+  これは検証フェーズ(step9 reviewer 差分 / step10 security)の approved を確認・再保証する最終ゲート。
   PreToolUse(Bash)の commit-gate フックでも強制される(未承認・欠落・gate 不正は安全側 deny)。
   `--amend` も対象、`--dry-run` のみ除外。alias 経由(`g c` 等)は検知できないため手順として遵守すること。
 
@@ -46,41 +46,73 @@
 
 - セッションが切れてもよいように Design Doc に進捗状況を記載すること
 
+# タスクごとの記録レイアウト
+
+タスク 1 件の成果物は、すべて `.heyyou/tasks/<slug>/` 配下に集約する(per-task ディレクトリ)。
+
+```
+.heyyou/tasks/<slug>/
+├── design.md                      # Design Doc
+├── discussions.md                 # worker↔reviewer 議論ログ
+├── reviewer/
+│   ├── design-review.md           # Design Doc レビュー判定 ← review-gate が verdict を読む
+│   └── diff-review.md             # 差分レビュー判定 ← commit-gate が verdict を読む
+├── tester/
+│   └── report.md                  # テスト結果
+└── security-reviewer/
+    └── report.md                  # セキュリティレビュー判定 ← commit-gate が verdict を読む
+
+.heyyou/reports/<slug>.md          # worker 作業報告書(必須)
+```
+
+# worker 作業報告書(必須)
+
+- worker(あなた)は、コード/設定変更を伴うタスクを完了したら **必ず** 作業報告書を
+  `.heyyou/reports/<slug>.md` に提出する。これはタスク完了の必須ステップであり省略しない。
+- 報告書には少なくとも次を含める:
+    - これはなに / なぜやったか(背景・目的)
+    - 何を変更したか(対象ファイルと変更点)
+    - 検証結果(tester / reviewer 差分 / security-reviewer の判定サマリ、動作確認の結果)
+    - 残課題・フォロー事項(あれば)
+
 # 自動レビューのワークフロー
 
 コード/設定変更を伴うタスクでは、明示的な `/review` を待たず、worker(あなた)が
 自分から reviewer subagent を起動して次のループを必ず回すこと。
 
-1. slug(タスクを表す kebab-case)を決める。採用前に `ls .heyyou/design` で既存を確認し、
+1. slug(タスクを表す kebab-case)を決める。採用前に `ls .heyyou/tasks` で既存を確認し、
    衝突する場合は連番(`-2`)または日付を付与して一意にする。
-2. `.heyyou/design/<slug>.md` に Design Doc を書く。
-3. reviewer subagent(Task, subagent_type: reviewer)を起動し Design Doc レビューを受ける。
+2. タスクディレクトリを作成する: `mkdir -p .heyyou/tasks/<slug>`。以後この slug の記録は
+   すべてこの配下に置く。
+3. `.heyyou/tasks/<slug>/design.md` に Design Doc を書く。
+4. reviewer subagent(Task, subagent_type: reviewer)を起動し Design Doc レビューを受ける。
    verdict を待ち、`approved` になるまで実装に進まない。
-4. `changes-requested` の場合は対応方針を提示し、ユーザー指示を待って Design Doc を改訂し再レビュー。
+5. `changes-requested` の場合は対応方針を提示し、ユーザー指示を待って Design Doc を改訂し再レビュー。
    `approved` の場合はユーザー確認を取ってから実装する。
-5. 実装に入る直前に、承認済み slug を gate に記録する: `mkdir -p .heyyou/state && echo <slug> > .heyyou/state/gate`。
+6. 実装に入る直前に、承認済み slug を gate に記録する: `mkdir -p .heyyou/state && echo <slug> > .heyyou/state/gate`。
    この記録が無いと PreToolUse フック(review-gate)が本体ファイルの編集を deny する。
-6. worker が実装する。
-7. テスト対象なら tester subagent(subagent_type: tester)を起動し、テスト追加とカバレッジ検証を行う。
-8. reviewer を「差分レビューモード」で起動し、実装と tester 追加テストを一括でレビューさせる。
-   `changes-requested` なら修正し再レビュー。差分レビュー結果は `reviews/<slug>.diff.md` に出る。
-9. セキュリティ対象なら security-reviewer subagent(subagent_type: security-reviewer)を起動する。
-10. コミットする。commit-gate フックが gate slug の `reviews/<slug>.diff.md` と
-    `security/<slug>.md` の両 approved を検証するため、gate はコミット完了まで残しておくこと。
-11. コミット完了後に gate をクリアする: `rm -f .heyyou/state/gate`。
+7. worker が実装する。
+8. テスト対象なら tester subagent(subagent_type: tester)を起動し、テスト追加とカバレッジ検証を行う。
+9. reviewer を「差分レビューモード」で起動し、実装と tester 追加テストを一括でレビューさせる。
+   `changes-requested` なら修正し再レビュー。差分レビュー結果は `tasks/<slug>/reviewer/diff-review.md` に出る。
+10. セキュリティ対象なら security-reviewer subagent(subagent_type: security-reviewer)を起動する。
+11. worker 作業報告書 `.heyyou/reports/<slug>.md` を提出する(上記「worker 作業報告書(必須)」参照)。
+12. コミットする。commit-gate フックが gate slug の `tasks/<slug>/reviewer/diff-review.md` と
+    `tasks/<slug>/security-reviewer/report.md` の両 approved を検証するため、gate はコミット完了まで残しておくこと。
+13. コミット完了後に gate をクリアする: `rm -f .heyyou/state/gate`。
     記録と消去は必ずセット(使い切り)。クリアは必ず最後(コミット後)。コミット前にクリアすると
     commit-gate が slug を読めず deny になる。クリアしないと無関係な後続タスクの本体編集まで通る。
 
-注: review-gate フックは `.heyyou/state/gate` の slug に対応する `.heyyou/reviews/<slug>.md` の
+注: review-gate フックは `.heyyou/state/gate` の slug に対応する `.heyyou/tasks/<slug>/reviewer/design-review.md` の
 `verdict: approved`(Design Doc レビューの承認)を実際に検証する。レビューを通さず gate に書くだけでは
-deny される。差分レビューは `reviews/<slug>.diff.md` に出力され gate を閉じない。
+deny される。差分レビューは `tasks/<slug>/reviewer/diff-review.md` に出力され gate を閉じない。
 
 ## 検証フェーズの発動条件(過剰起動を避ける / 判定主体は worker)
 
-- tester(step7): テスト可能なロジックを含む変更時のみ。対象例=`.sh` の関数/分岐、アプリのロジック。
+- tester(step8): テスト可能なロジックを含む変更時のみ。対象例=`.sh` の関数/分岐、アプリのロジック。
   非対象例=`.toml`/`.kdl` の値変更のみ、リンク追加のみの Taskfile/Makefile。不要なら「テスト不要」で省く。
-- reviewer 差分レビュー(step8): 常に行う(品質の基本線)。
-- security-reviewer(step9): 外部入力・権限・認証・秘匿情報・シェル実行/ネットワーク等
+- reviewer 差分レビュー(step9): 常に行う(品質の基本線)。
+- security-reviewer(step10): 外部入力・権限・認証・秘匿情報・シェル実行/ネットワーク等
   セキュリティ影響がある変更時のみ。純粋な見た目/設定変更では起動しない。
 
 ## 発動条件

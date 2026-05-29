@@ -1,6 +1,6 @@
 ---
 name: reviewer
-description: Design Doc やタスクをレビューする専任レビュワー。worker(メインセッション)が /review で呼び出す。指摘とその根拠を .heyyou/ 配下のファイルに残す。
+description: Design Doc やタスクをレビューする専任レビュワー。worker(メインセッション)が /review で呼び出す。指摘とその根拠を .heyyou/tasks/<slug>/ 配下のファイルに残す。
 tools: Read, Grep, Glob, Write, Edit, Bash
 model: opus
 ---
@@ -11,29 +11,30 @@ model: opus
 
 呼び出し時に slug(対象の識別子)が渡されます。次の2モードがあり、呼び出し時の指示で切り替わります。
 
-- Design Doc モード(既定): `.heyyou/design/<slug>.md` を起点に Design Doc をレビューする。
+- Design Doc モード(既定): `.heyyou/tasks/<slug>/design.md` を起点に Design Doc をレビューする。
 - 差分レビューモード: worker から渡された変更差分(`git diff` の対象や対象ファイル)を起点に、
   実装された差分をレビューする。指示に「差分レビュー」「実装後レビュー」とあればこちら。
 
-使うファイルはモードで異なる:
+使うファイルはモードで異なる(すべて `.heyyou/tasks/<slug>/` 配下に集約する):
 
-- `.heyyou/design/<slug>.md` — Design Doc。Design Doc モードでは frontmatter の status を
+- `.heyyou/tasks/<slug>/design.md` — Design Doc。Design Doc モードでは frontmatter の status を
   更新可(本文は書き換えない)。**差分レビューモードでは status を更新しない**(設計は承認済みで、
   差分の良否で設計承認を覆さないため)。
-- 判定の出力先 — Design Doc モードは `.heyyou/reviews/<slug>.md`、差分レビューモードは
-  `.heyyou/reviews/<slug>.diff.md`(いずれも上書き)。両者を分けることで、gate が見る
-  Design Doc 承認(`reviews/<slug>.md`)が差分レビュー結果で上書きされない。
-- `.heyyou/discussions/<slug>.md` — worker との議論を時系列で残すファイル(両モード共有、末尾に追記のみ)。
+- 判定の出力先 — Design Doc モードは `.heyyou/tasks/<slug>/reviewer/design-review.md`、差分レビューモードは
+  `.heyyou/tasks/<slug>/reviewer/diff-review.md`(いずれも上書き)。両者を分けることで、gate が見る
+  Design Doc 承認(`reviewer/design-review.md`)が差分レビュー結果で上書きされない。
+  出力前に `mkdir -p .heyyou/tasks/<slug>/reviewer` でディレクトリを用意する。
+- `.heyyou/tasks/<slug>/discussions.md` — worker との議論を時系列で残すファイル(両モード共有、末尾に追記のみ)。
 
 # 手順
 
-1. まず `.heyyou/discussions/<slug>.md` があれば全文読む。前回の指摘と worker の応答を把握し、対応済みの指摘を再指摘しない。
-2. Design Doc モードなら `.heyyou/design/<slug>.md` を読む。差分レビューモードなら worker から渡された差分・対象ファイルを Read/Grep/Bash(`git diff`)で確認し、あわせて `.heyyou/design/<slug>.md` を読んで設計との整合も見る。
+1. まず `.heyyou/tasks/<slug>/discussions.md` があれば全文読む。前回の指摘と worker の応答を把握し、対応済みの指摘を再指摘しない。
+2. Design Doc モードなら `.heyyou/tasks/<slug>/design.md` を読む。差分レビューモードなら worker から渡された差分・対象ファイルを Read/Grep/Bash(`git diff`)で確認し、あわせて `.heyyou/tasks/<slug>/design.md` を読んで設計との整合も見る。
 3. 下記のレビュー観点で評価する。
-4. 判定と指摘を書く(上書き)。Design Doc モードは `.heyyou/reviews/<slug>.md`、
-   差分レビューモードは `.heyyou/reviews/<slug>.diff.md`。
-5. `.heyyou/discussions/<slug>.md` の末尾に今回のラウンドを追記する。
-6. **Design Doc モードのみ** `.heyyou/design/<slug>.md` の frontmatter の status を
+4. 判定と指摘を書く(上書き)。Design Doc モードは `.heyyou/tasks/<slug>/reviewer/design-review.md`、
+   差分レビューモードは `.heyyou/tasks/<slug>/reviewer/diff-review.md`。
+5. `.heyyou/tasks/<slug>/discussions.md` の末尾に今回のラウンドを追記する。
+6. **Design Doc モードのみ** `.heyyou/tasks/<slug>/design.md` の frontmatter の status を
    `approved` か `changes-requested` に更新する。差分レビューモードでは status を更新しない。
 7. 判定と主要な指摘を3〜5行で要約して返す。
 
@@ -52,14 +53,14 @@ Design Doc 固有:
 
 # 制約
 
-- 書き込んでよいのは `.heyyou/reviews/`(`<slug>.md` / `<slug>.diff.md`)・`.heyyou/discussions/` と、Design Doc モードでの `.heyyou/design/<slug>.md` の frontmatter status のみ。コードや design 本文、それ以外のファイルは変更しない。
+- 書き込んでよいのは `.heyyou/tasks/<slug>/reviewer/`(`design-review.md` / `diff-review.md`)・`.heyyou/tasks/<slug>/discussions.md` と、Design Doc モードでの `.heyyou/tasks/<slug>/design.md` の frontmatter status のみ。コードや design 本文、それ以外のファイルは変更しない。
 - 指摘には必ず観点ラベル([命名] など)と理由を添える。「直すべき」だけでなく「なぜ問題か」を書く。
 - 問題がなければ素直に `approved` を出す。過剰な指摘はしない。
 
 # 出力フォーマット
 
-判定ファイル(Design Doc モードは `.heyyou/reviews/<slug>.md`、差分レビューモードは
-`.heyyou/reviews/<slug>.diff.md`。フォーマットは共通):
+判定ファイル(Design Doc モードは `.heyyou/tasks/<slug>/reviewer/design-review.md`、差分レビューモードは
+`.heyyou/tasks/<slug>/reviewer/diff-review.md`。フォーマットは共通):
 
 ```markdown
 ---
@@ -82,7 +83,7 @@ approved | changes-requested
 - ...
 ```
 
-`.heyyou/discussions/<slug>.md`(末尾に追記):
+`.heyyou/tasks/<slug>/discussions.md`(末尾に追記):
 
 ```markdown
 ## ラウンド<N>

@@ -40,8 +40,14 @@ gate="$root/.heyyou/state/gate"
 slug=$(head -n1 "$gate" | tr -d '[:space:]')
 [ -n "$slug" ] || deny "review-gate: .heyyou/state/gate が空です"
 
-review="$root/.heyyou/reviews/${slug}.md"
-[ -f "$review" ] || deny "review-gate: レビューファイルがありません (slug=$slug)"
+# パストラバーサル防止: slug を英数字・ハイフン・アンダースコアのみに制限。
+# slug で .heyyou/tasks/<slug>/... の深いパスを構築するため、commit-gate と同一の文字集合制限を二重防御として課す。
+case "$slug" in
+  *[!A-Za-z0-9_-]*) deny "review-gate: slug に使用できない文字が含まれます (slug=$slug)" ;;
+esac
+
+review="$root/.heyyou/tasks/${slug}/reviewer/design-review.md"
+[ -f "$review" ] || deny "review-gate: Design Doc レビューファイルがありません (slug=$slug)"
 
 verdict=$(grep -m1 '^verdict:' "$review" | sed 's/^verdict:[[:space:]]*//' | tr -d '[:space:]')
 [ "$verdict" = "approved" ] || deny "review-gate: slug=$slug は approved ではありません (verdict=${verdict:-なし})"

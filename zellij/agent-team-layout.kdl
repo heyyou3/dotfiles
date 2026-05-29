@@ -5,7 +5,7 @@ layout {
         }
         pane size="35%" command="bash" {
             // .heyyou/ の作業ディレクトリを用意し、共有ファイルを眺めるための watcher ペイン
-            args "-lc" "mkdir -p .heyyou/design .heyyou/reviews .heyyou/discussions && yazi .heyyou"
+            args "-lc" "mkdir -p .heyyou/tasks .heyyou/reports && yazi .heyyou"
         }
     }
 }
