@@ -89,23 +89,27 @@
    verdict を待ち、`approved` になるまで実装に進まない。
 5. `changes-requested` の場合は対応方針を提示し、ユーザー指示を待って Design Doc を改訂し再レビュー。
    `approved` の場合はユーザー確認を取ってから実装する。
-6. 実装に入る直前に、承認済み slug を gate に記録する: `mkdir -p .heyyou/state && echo <slug> > .heyyou/state/gate`。
-   この記録が無いと PreToolUse フック(review-gate)が本体ファイルの編集を deny する。
+6. 実装に入る直前に、承認済み slug を**このセッションの** gate に記録する:
+   `mkdir -p .heyyou/state/gates && echo <slug> > .heyyou/state/gates/$CLAUDE_CODE_SESSION_ID`。
+   gate はセッション別ファイル(key = `$CLAUDE_CODE_SESSION_ID`)なので、並行する別セッションの
+   gate と競合しない。この記録が無いと PreToolUse フック(review-gate)が本体ファイルの編集を deny する。
 7. worker が実装する。
 8. テスト対象なら tester subagent(subagent_type: tester)を起動し、テスト追加とカバレッジ検証を行う。
 9. reviewer を「差分レビューモード」で起動し、実装と tester 追加テストを一括でレビューさせる。
    `changes-requested` なら修正し再レビュー。差分レビュー結果は `tasks/<slug>/reviewer/diff-review.md` に出る。
 10. セキュリティ対象なら security-reviewer subagent(subagent_type: security-reviewer)を起動する。
 11. worker 作業報告書 `.heyyou/reports/<slug>.md` を提出する(上記「worker 作業報告書(必須)」参照)。
-12. コミットする。commit-gate フックが gate slug の `tasks/<slug>/reviewer/diff-review.md` と
+12. コミットする。commit-gate フックがこのセッションの gate slug の `tasks/<slug>/reviewer/diff-review.md` と
     `tasks/<slug>/security-reviewer/report.md` の両 approved を検証するため、gate はコミット完了まで残しておくこと。
-13. コミット完了後に gate をクリアする: `rm -f .heyyou/state/gate`。
+13. コミット完了後に gate をクリアする: `rm -f .heyyou/state/gates/$CLAUDE_CODE_SESSION_ID`。
     記録と消去は必ずセット(使い切り)。クリアは必ず最後(コミット後)。コミット前にクリアすると
-    commit-gate が slug を読めず deny になる。クリアしないと無関係な後続タスクの本体編集まで通る。
+    commit-gate が slug を読めず deny になる。クリアしないと同一セッションの無関係な後続タスクの本体編集まで通る。
 
-注: review-gate フックは `.heyyou/state/gate` の slug に対応する `.heyyou/tasks/<slug>/reviewer/design-review.md` の
-`verdict: approved`(Design Doc レビューの承認)を実際に検証する。レビューを通さず gate に書くだけでは
-deny される。差分レビューは `tasks/<slug>/reviewer/diff-review.md` に出力され gate を閉じない。
+注: review-gate フックは、このセッションの gate(`.heyyou/state/gates/$CLAUDE_CODE_SESSION_ID`)の slug に
+対応する `.heyyou/tasks/<slug>/reviewer/design-review.md` の `verdict: approved`(Design Doc レビューの承認)を
+実際に検証する。gate のキーは worker・フック双方が env `CLAUDE_CODE_SESSION_ID` で解決するため一致する。
+レビューを通さず gate に書くだけでは deny される。差分レビューは `tasks/<slug>/reviewer/diff-review.md` に
+出力され gate を閉じない。
 
 ## 検証フェーズの発動条件(過剰起動を避ける / 判定主体は worker)
 

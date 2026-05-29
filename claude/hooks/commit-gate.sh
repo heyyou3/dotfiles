@@ -19,7 +19,9 @@ deny() {
 [ "${CLAUDE_WORKER_MODE:-engineer}" = business ] && exit 0
 
 command -v jq >/dev/null 2>&1 || deny "commit-gate: jq が無いため安全側で拒否します"
-cmd=$(jq -r '.tool_input.command // ""')
+# session_id も同じ入力から取得するため、stdin を一度だけ取り込んでから各値を取り出す。
+input=$(cat)
+cmd=$(printf '%s' "$input" | jq -r '.tool_input.command // ""')
 
 # git commit 検知。git のあと(`-c key=val` 等のトークンを挟んでも可)に
 # サブコマンド commit が「直前が空白・直後が空白/終端」で現れる場合のみ対象。
@@ -36,13 +38,24 @@ if grep -Eq '(^|[[:space:]])--dry-run([[:space:]]|=|$)' <<<"$stripped" \
   exit 0
 fi
 
-# ゲート検査
+# セッション別 gate: worker と同じ env CLAUDE_CODE_SESSION_ID を第一参照し、無ければ stdin の
+# session_id にフォールバック(両者は同一セッション UUID)。並行セッションは別々の gate を使う。
+session_key="${CLAUDE_CODE_SESSION_ID:-}"
+[ -n "$session_key" ] || session_key=$(printf '%s' "$input" | jq -r '.session_id // ""')
+# 空/欠落の明示弾き(後段の *[!..]* は空文字を弾けない)。
+[ -n "$session_key" ] || deny "commit-gate: セッション識別子が取得できません (env CLAUDE_CODE_SESSION_ID / stdin session_id とも空)"
+# パストラバーサル防止: gates/<key> の深いパスを構築するため key を英数字・ハイフン・アンダースコアのみに制限。
+case "$session_key" in
+  *[!A-Za-z0-9_-]*) deny "commit-gate: セッション識別子に使用できない文字が含まれます" ;;
+esac
+
+# ゲート検査(セッション別 gate ファイル)
 root="${CLAUDE_PROJECT_DIR:-$PWD}"
-gate="$root/.heyyou/state/gate"
-[ -f "$gate" ] || deny "commit-gate: .heyyou/state/gate がありません。レビュー承認後に slug を記録してください"
+gate="$root/.heyyou/state/gates/$session_key"
+[ -f "$gate" ] || deny "commit-gate: このセッションの gate がありません。レビュー承認後に .heyyou/state/gates/\$CLAUDE_CODE_SESSION_ID へ slug を記録してください"
 
 slug=$(head -n1 "$gate" | tr -d '[:space:]')
-[ -n "$slug" ] || deny "commit-gate: .heyyou/state/gate が空です"
+[ -n "$slug" ] || deny "commit-gate: このセッションの gate が空です"
 
 # パストラバーサル防止: slug を英数字・ハイフン・アンダースコアのみに制限。
 # `/` や `..` を弾き、.heyyou/ 外の任意 approved ファイルを参照されないようにする。

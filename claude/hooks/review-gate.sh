@@ -32,18 +32,30 @@ case "$file_path" in
   */.claude/projects/*/memory/*) exit 0 ;;
 esac
 
-# ゲート検査
+# セッション別 gate: worker と同じ env CLAUDE_CODE_SESSION_ID を第一参照し、無ければ stdin の
+# session_id にフォールバック(両者は同一セッション UUID)。worker/hook が同じ env を見るため、
+# env がある限り key は必ず一致する。並行セッションは別々の gate ファイルを使うため競合しない。
+session_key="${CLAUDE_CODE_SESSION_ID:-}"
+[ -n "$session_key" ] || session_key=$(printf '%s' "$input" | jq -r '.session_id // ""')
+# 空/欠落の明示弾き(後段の *[!..]* は不正文字の有無判定で空文字を弾けない)。値は埋め込まない。
+[ -n "$session_key" ] || deny "review-gate: セッション識別子が取得できません (env CLAUDE_CODE_SESSION_ID / stdin session_id とも空)"
+# パストラバーサル防止: gates/<key> の深いパスを構築するため key を英数字・ハイフン・アンダースコアのみに制限。
+case "$session_key" in
+  *[!A-Za-z0-9_-]*) deny "review-gate: セッション識別子に使用できない文字が含まれます" ;;
+esac
+
+# ゲート検査(セッション別 gate ファイル)
 root="${CLAUDE_PROJECT_DIR:-$PWD}"
-gate="$root/.heyyou/state/gate"
-[ -f "$gate" ] || deny "未承認: reviewer の approved がありません。Design Doc を書きレビューを通し、approved 後に .heyyou/state/gate へ slug を記録してください"
+gate="$root/.heyyou/state/gates/$session_key"
+[ -f "$gate" ] || deny "未承認: このセッションの gate がありません。Design Doc を書きレビューを通し、approved 後に .heyyou/state/gates/\$CLAUDE_CODE_SESSION_ID へ slug を記録してください"
 
 slug=$(head -n1 "$gate" | tr -d '[:space:]')
-[ -n "$slug" ] || deny "review-gate: .heyyou/state/gate が空です"
+[ -n "$slug" ] || deny "review-gate: このセッションの gate が空です"
 
 # パストラバーサル防止: slug を英数字・ハイフン・アンダースコアのみに制限。
-# slug で .heyyou/tasks/<slug>/... の深いパスを構築するため、commit-gate と同一の文字集合制限を二重防御として課す。
+# slug で .heyyou/tasks/<slug>/... の深いパスを構築するため、commit-gate と同一の文字集合制限を二重防御として課す。値は埋め込まない。
 case "$slug" in
-  *[!A-Za-z0-9_-]*) deny "review-gate: slug に使用できない文字が含まれます (slug=$slug)" ;;
+  *[!A-Za-z0-9_-]*) deny "review-gate: slug に使用できない文字が含まれます" ;;
 esac
 
 review="$root/.heyyou/tasks/${slug}/reviewer/design-review.md"
