@@ -3,6 +3,15 @@
 エンジニアリング作業(設計・実装・レビュー・コミット/PR・IaC)に固有の手続き。
 共通ルールは core.md を参照。
 
+# 開発ツールの導入手順
+
+- 方針は core.md「開発ツールの導入(Nix を使う)」に従う(`brew install` しない / `.heyyou/flake.nix` に集約)。
+- 実装中にツールが不足したら:
+    1. `.heyyou/flake.nix` の `devShell.packages` を確認する。
+    2. 無ければ nixpkgs のパッケージ名を `packages` に追記する。
+    3. `nix flake lock "path:$HOME/dotfiles/.heyyou"` で lock を更新し、
+       `nix develop "path:$HOME/dotfiles/.heyyou"` で使う。
+
 # コードを生成するときのルール
 
 - コメントは最小限で残す
