@@ -70,10 +70,14 @@ Claude Code を使い、ローカルに「作業者(worker)」と「レビュワ
     reviewer/diff-review.md      # reviewer の差分判定(上書き) ← commit-gate が読む
     tester/report.md             # tester の結果
     security-reviewer/report.md  # security-reviewer の判定 ← commit-gate が読む
-  reports/<slug>.md              # worker 作業報告書(必須)
+  reports/<slug>.md              # worker 作業報告書(必須・全モード共通)
 ```
 
 `.heyyou/` はエージェントチームの作業領域とし、対象プロジェクトの `.gitignore` に追加する(コミット要否は利用者判断)。
+
+作業報告書 `reports/<slug>.md` は engineer / business の**全モード共通の必須成果物**で、コード変更を伴わない
+レビュー・調査でも作成する(定義は `ai-agent/core.md`「作業報告書(必須・全モード共通)」。
+`tasks/<slug>/` を作らない business 作業でも slug を付けて提出する)。
 
 ### frontmatter ステータス遷移
 

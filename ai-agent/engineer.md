@@ -71,18 +71,18 @@
 └── security-reviewer/
     └── report.md                  # セキュリティレビュー判定 ← commit-gate が verdict を読む
 
-.heyyou/reports/<slug>.md          # worker 作業報告書(必須)
+.heyyou/reports/<slug>.md          # worker 作業報告書(必須・定義は core.md)
 ```
 
 # worker 作業報告書(必須)
 
-- worker(あなた)は、コード/設定変更を伴うタスクを完了したら **必ず** 作業報告書を
-  `.heyyou/reports/<slug>.md` に提出する。これはタスク完了の必須ステップであり省略しない。
-- 報告書には少なくとも次を含める:
-    - これはなに / なぜやったか(背景・目的)
+- 報告書の基本ルール(提出先 `.heyyou/reports/<slug>.md`・対象/対象外・slug 採番・最低限の記載項目)は
+  core.md「作業報告書(必須・全モード共通)」に従う。ここでは engineer モード固有の点だけを補足する。
+- engineer モードでは、**コード/設定変更を伴うタスクに限らず**、レビューのみ・調査・設計検討など
+  実質的な作業を完了したら必ず報告書を提出する(report の要否と review-gate/commit-gate の発動は別判断)。
+- engineer モードでは core の最低限項目に加え、該当する場合は次を含める:
     - 何を変更したか(対象ファイルと変更点)
     - 検証結果(tester / reviewer 差分 / security-reviewer の判定サマリ、動作確認の結果)
-    - 残課題・フォロー事項(あれば)
 
 # 自動レビューのワークフロー
 
@@ -107,7 +107,8 @@
 9. reviewer を「差分レビューモード」で起動し、実装と tester 追加テストを一括でレビューさせる。
    `changes-requested` なら修正し再レビュー。差分レビュー結果は `tasks/<slug>/reviewer/diff-review.md` に出る。
 10. セキュリティ対象なら security-reviewer subagent(subagent_type: security-reviewer)を起動する。
-11. worker 作業報告書 `.heyyou/reports/<slug>.md` を提出する(上記「worker 作業報告書(必須)」参照)。
+11. worker 作業報告書 `.heyyou/reports/<slug>.md` を提出する(定義は core.md、engineer 固有の補足は
+    上記「# worker 作業報告書(必須)」参照)。
 12. コミットする。commit-gate フックがこのセッションの gate slug の `tasks/<slug>/reviewer/diff-review.md` と
     `tasks/<slug>/security-reviewer/report.md` の両 approved を検証するため、gate はコミット完了まで残しておくこと。
 13. コミット完了後に gate をクリアする: `rm -f .heyyou/state/gates/$CLAUDE_CODE_SESSION_ID`。
