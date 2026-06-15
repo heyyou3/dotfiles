@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# reviewer の approved を得るまで本体コード/設定ファイルの編集を拒否する PreToolUse フック。
+# 不具合時(jq無し・パース失敗・gate不正)はすべて安全側 deny に倒す。
+set -uo pipefail
+
+deny() {
+  printf '%s' "{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"$1\"}}"
+  exit 0
+}
+
+# business モードでは Design Doc 強制ゲートを課さない(雑務に儀式は不要)。
+[ "${CLAUDE_WORKER_MODE:-engineer}" = business ] && exit 0
+
+command -v jq >/dev/null 2>&1 || deny "review-gate: jq が無いため安全側で拒否します"
+
+input=$(cat)
+file_path=$(printf '%s' "$input" | jq -r '.tool_input.file_path // ""')
+
+# file_path を持たないツール呼び出しは対象外
+[ -z "$file_path" ] && exit 0
+
+# パストラバーサル防止: 許可 glob は .. を正規化しないため、memory/.. や .heyyou/.. 経由で
+# 本体ファイル(gate スクリプト自身を含む)を素通り編集できてしまう。許可判定の手前で .. を拒否する。
+case "$file_path" in
+  *..*) deny "review-gate: パスに .. を含むため安全側で拒否します" ;;
+esac
+
+# 許可リスト: .heyyou/ 配下(作業領域)と Claude auto memory ストア。
+# memory は repo 本体ではなく Claude 自身の記憶領域のため未レビューでも素通りさせる。
+case "$file_path" in
+  .heyyou/*|*/.heyyou/*) exit 0 ;;
+  */.claude/projects/*/memory/*) exit 0 ;;
+esac
+
+# セッション別 gate: worker と同じ env CLAUDE_CODE_SESSION_ID を第一参照し、無ければ stdin の
+# session_id にフォールバック(両者は同一セッション UUID)。worker/hook が同じ env を見るため、
+# env がある限り key は必ず一致する。並行セッションは別々の gate ファイルを使うため競合しない。
+session_key="${CLAUDE_CODE_SESSION_ID:-}"
+[ -n "$session_key" ] || session_key=$(printf '%s' "$input" | jq -r '.session_id // ""')
+# 空/欠落の明示弾き(後段の *[!..]* は不正文字の有無判定で空文字を弾けない)。値は埋め込まない。
+[ -n "$session_key" ] || deny "review-gate: セッション識別子が取得できません (env CLAUDE_CODE_SESSION_ID / stdin session_id とも空)"
+# パストラバーサル防止: gates/<key> の深いパスを構築するため key を英数字・ハイフン・アンダースコアのみに制限。
+case "$session_key" in
+  *[!A-Za-z0-9_-]*) deny "review-gate: セッション識別子に使用できない文字が含まれます" ;;
+esac
+
+# ゲート検査(セッション別 gate ファイル)
+root="${CLAUDE_PROJECT_DIR:-$PWD}"
+gate="$root/.heyyou/state/gates/$session_key"
+[ -f "$gate" ] || deny "未承認: このセッションの gate がありません。Design Doc を書きレビューを通し、approved 後に .heyyou/state/gates/\$CLAUDE_CODE_SESSION_ID へ slug を記録してください"
+
+slug=$(head -n1 "$gate" | tr -d '[:space:]')
+[ -n "$slug" ] || deny "review-gate: このセッションの gate が空です"
+
+# パストラバーサル防止: slug を英数字・ハイフン・アンダースコアのみに制限。
+# slug で .heyyou/tasks/<slug>/... の深いパスを構築するため、commit-gate と同一の文字集合制限を二重防御として課す。値は埋め込まない。
+case "$slug" in
+  *[!A-Za-z0-9_-]*) deny "review-gate: slug に使用できない文字が含まれます" ;;
+esac
+
+review="$root/.heyyou/tasks/${slug}/reviewer/design-review.md"
+[ -f "$review" ] || deny "review-gate: Design Doc レビューファイルがありません (slug=$slug)"
+
+verdict=$(grep -m1 '^verdict:' "$review" | sed 's/^verdict:[[:space:]]*//' | tr -d '[:space:]')
+[ "$verdict" = "approved" ] || deny "review-gate: slug=$slug は approved ではありません (verdict=${verdict:-なし})"
+
+exit 0

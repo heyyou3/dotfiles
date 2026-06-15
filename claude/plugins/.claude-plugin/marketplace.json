@@ -1,0 +1,14 @@
+{
+  "name": "heyyou-dotfiles",
+  "description": "heyyou の dotfiles 内ローカル marketplace。Design Doc 駆動の自動レビュー/ゲート系プラグインを配布する。",
+  "owner": {
+    "name": "heyyou"
+  },
+  "plugins": [
+    {
+      "name": "heyyou",
+      "source": "./heyyou",
+      "description": "heyyou ハーネス(review-gate / commit-gate / reviewer・tester・security-reviewer / モード別コンテキスト注入)"
+    }
+  ]
+}

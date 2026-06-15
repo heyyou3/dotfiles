@@ -1,0 +1,8 @@
+{
+  "name": "heyyou",
+  "description": "heyyou ハーネス: Design Doc 駆動の review-gate / commit-gate と reviewer・tester・security-reviewer サブエージェント、モード別コンテキスト注入をまとめたプラグイン",
+  "version": "1.0.0",
+  "author": {
+    "name": "heyyou"
+  }
+}
