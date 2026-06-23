@@ -1,6 +1,63 @@
 version: '3'
 
 tasks:
+  deploy:
+    desc: OS を判定して dotfiles 一式を symlink 展開する(common + OS別 + claude)
+    deps:
+      - deploy:common
+      - deploy:claude
+    cmds:
+      - task: deploy:linux
+        platforms: [linux]
+      - task: deploy:macos
+        platforms: [darwin]
+
+  deploy:common:
+    desc: OS 共通の dotfiles を $HOME / ~/.config に symlink する
+    cmds:
+      - mkdir -p ~/.config/alacritty ~/.config/espanso ~/.gemini
+      # --- $HOME 直下 / 個別ファイル ---
+      - ln -sfn {{.ROOT_DIR}}/bash/.bash_profile ~/.bash_profile
+      - ln -sfn {{.ROOT_DIR}}/bash/.bashrc ~/.bashrc
+      - ln -sfn {{.ROOT_DIR}}/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
+      - ln -sfn {{.ROOT_DIR}}/git/.gitconfig ~/.gitconfig
+      - ln -sfn {{.ROOT_DIR}}/tig/.tigrc ~/.tigrc
+      - ln -sfn {{.ROOT_DIR}}/tmux/.tmux.conf ~/.tmux.conf
+      - ln -sfn {{.ROOT_DIR}}/vim/.vimrc ~/.vimrc
+      - ln -sfn {{.ROOT_DIR}}/zsh/.zshrc ~/.zshrc
+      - ln -sfn {{.ROOT_DIR}}/zsh/.zshenv ~/.zshenv
+      - ln -sfn {{.ROOT_DIR}}/zsh/zim/.zimrc ~/.zimrc
+      - ln -sfn {{.ROOT_DIR}}/todo/.todo.cfg ~/.todo.cfg
+      - ln -sfn {{.ROOT_DIR}}/espanso/config ~/.config/espanso/config
+      - ln -sfn {{.ROOT_DIR}}/espanso/match ~/.config/espanso/match
+      - ln -sfn {{.ROOT_DIR}}/jetbrains/.ideavimrc ~/.ideavimrc
+      # --- XDG: ディレクトリごと symlink(ツール全体を repo で管理)---
+      - ln -sfn {{.ROOT_DIR}}/fish ~/.config/fish
+      - ln -sfn {{.ROOT_DIR}}/helix ~/.config/helix
+      - ln -sfn {{.ROOT_DIR}}/kitty ~/.config/kitty
+      - ln -sfn {{.ROOT_DIR}}/lazygit ~/.config/lazygit
+      - ln -sfn {{.ROOT_DIR}}/nvim ~/.config/nvim
+      - ln -sfn {{.ROOT_DIR}}/yazi ~/.config/yazi
+      - ln -sfn {{.ROOT_DIR}}/zellij ~/.config/zellij
+      - ln -sfn {{.ROOT_DIR}}/bat ~/.config/bat
+      - ln -sfn {{.ROOT_DIR}}/gemini/themes ~/.gemini/themes
+
+  deploy:linux:
+    desc: Linux 固有の dotfiles(xmonad/xmobar/fcitx/rofi)を symlink する
+    cmds:
+      - mkdir -p ~/.xmonad ~/.config/fcitx ~/.config/rofi
+      - ln -sfn {{.ROOT_DIR}}/linux/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
+      - ln -sfn {{.ROOT_DIR}}/linux/.xmobarrc ~/.xmobarrc
+      - ln -sfn {{.ROOT_DIR}}/linux/fcitx/config ~/.config/fcitx/config
+      - ln -sfn {{.ROOT_DIR}}/linux/.config/rofi/config.rasi ~/.config/rofi/config.rasi
+
+  deploy:macos:
+    desc: macOS 固有の dotfiles(karabiner / aerospace)を symlink する
+    cmds:
+      - mkdir -p ~/.config/karabiner
+      - ln -sfn {{.ROOT_DIR}}/macos/karabiner.json ~/.config/karabiner/karabiner.json
+      - ln -sfn {{.ROOT_DIR}}/aerospace/.aerospace.toml ~/.aerospace.toml
+
   deploy:claude:
     desc: Claude Code の agents/commands/hooks/settings を ~/.claude に、起動ランチャーを ~/bin に symlink する
     cmds:
@@ -17,6 +74,37 @@ tasks:
       - ln -sfn {{.ROOT_DIR}}/claude/settings.json ~/.claude/settings.json
       - ln -sfn {{.ROOT_DIR}}/claude/bin/engineer ~/bin/engineer
       - ln -sfn {{.ROOT_DIR}}/claude/bin/business ~/bin/business
+
+  install:dev-tools:
+    desc: 開発ワークフロー用の CLI ツールを nix profile 経由でインストールする(非 NixOS 向け / 冪等)
+    vars:
+      NIX_PKGS: >-
+        neovim helix tmux zellij fish zsh
+        starship yazi bat tree
+        gh ghq lazygit tig delta
+        fzf fd ripgrep
+        jq direnv go-task gnumake wget
+        go nodejs zx
+    cmds:
+      - |
+        feats="nix-command flakes"
+        installed="$(nix profile list --extra-experimental-features "$feats" 2>/dev/null | grep '^Flake attribute:')"
+        failed=""
+        for pkg in {{.NIX_PKGS}}; do
+          if printf '%s\n' "$installed" | grep -qE "\.${pkg}\$"; then
+            echo "skip (already installed): ${pkg}"
+            continue
+          fi
+          echo "installing: ${pkg}"
+          if ! nix profile install --extra-experimental-features "$feats" "nixpkgs#${pkg}"; then
+            echo "FAILED: ${pkg}" >&2
+            failed="${failed} ${pkg}"
+          fi
+        done
+        if [ -n "$failed" ]; then
+          echo "install failed for:${failed}" >&2
+          exit 1
+        fi
 
   worker:engineer:
     desc: engineer プロファイルで Claude Code を起動する(レビューゲート有効)
