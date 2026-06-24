@@ -1,13 +1,3 @@
-# Setup fzf
-# ---------
-if [[ ! "$PATH" == "*$HOME/.fzf/bin*" ]]; then
-  export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
-fi
-
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.bash" 2> /dev/null
-
-# Key bindings
-# ------------
-source "$HOME/.fzf/shell/key-bindings.bash"
+# fzf shell integration
+# nix 導入の fzf を使うため、旧 git インストーラの ~/.fzf/shell/*.bash は参照しない
+command -v fzf >/dev/null && eval "$(fzf --bash)"

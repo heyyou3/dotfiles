@@ -37,4 +37,7 @@ source "$DOT_FILES_PATH/common_sh/functions"
 if [ -f "$DOT_FILES_PATH/.heyyou/not-shared" ]; then
   source "$DOT_FILES_PATH/.heyyou/not-shared"
 fi
-eval "$(starship init zsh)"
+# zsh のときだけ zsh 用 init。bash は bashrc で bash 用 init 済み
+if [ -n "$ZSH_VERSION" ]; then
+  eval "$(starship init zsh)"
+fi
