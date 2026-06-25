@@ -135,7 +135,7 @@ try {
   await fs.writeFile(tmpfile, content);
 
   // 3. Open the file in an editor using spawn
-  const editor = process.env.EDITOR || 'nvim';
+  const editor = process.env.EDITOR || 'hx';
   
   await spawnEditor(editor, tmpfile);
 

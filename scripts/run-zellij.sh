@@ -9,7 +9,7 @@ SESSION_NAME=$(basename "$(pwd)")
 # Set environment variables
 export SESSION_NAME
 export NVIM_LISTEN_ADDRESS="/tmp/${SESSION_NAME}.socket"
-export EDITOR="$HOME/dotfiles/scripts/editor.sh"
+export EDITOR="hx"
 
 # Define the path to the Zellij layout, expanding the home directory tilde
 ZELLIJ_LAYOUT_PATH="$HOME/dotfiles/zellij/ide-layout.kdl"
