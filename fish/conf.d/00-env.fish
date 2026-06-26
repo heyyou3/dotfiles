@@ -16,8 +16,12 @@ if test -d $HOME/.cargo
 end
 
 if test -d $HOME/.nix-profile
-    set -gx PATH /nix/var/nix/profiles/default/bin $PATH
-    set -gx PATH $HOME/.nix-profile/bin $PATH
+    # nix develop の中では dev shell の PATH を優先する。
+    # nix-profile を prepend すると flake 固定版が profile 版に隠される(jq/gh 等の drift)。
+    if not set -q IN_NIX_SHELL
+        set -gx PATH /nix/var/nix/profiles/default/bin $PATH
+        set -gx PATH $HOME/.nix-profile/bin $PATH
+    end
     set -gx LOCALE_ARCHIVE (readlink ~/.nix-profile/lib/locale)/locale-archive
 end
 
