@@ -4,7 +4,7 @@ show_hidden = true
 
 [opener]
 edit = [
-	{ run = '$EDITOR "$@"', block = true, for = "unix" },
+	{ run = '$HOME/dotfiles/scripts/yazi-open-in-helix.sh "$@"', block = false, for = "unix" },
 	{ run = "%EDITOR% %*",  block = true, for = "windows" },
 ]
 
