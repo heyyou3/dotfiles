@@ -4,7 +4,7 @@ show_hidden = true
 
 [opener]
 edit = [
-	{ run = '$EDITOR "$@"', block = false, for = "unix" },
+	{ run = '$EDITOR "$@"', block = true, for = "unix" },
 	{ run = "%EDITOR% %*",  block = true, for = "windows" },
 ]
 
