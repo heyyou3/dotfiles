@@ -1,5 +1,9 @@
-# markdown の LSP は marksman のみを使う(wikilink 補完/定義ジャンプ/rename のため)。
-# marksman の language-server 定義自体は Helix のデフォルトを利用するのでここでは再定義しない。
+# markdown の LSP は markdown-oxide のみを使う(wikilink 補完/定義ジャンプ/rename のため)。
+# marksman は .heyyou 規模の vault でインデックス中にクラッシュ(MailboxProcessor timeout)するため
+# Rust 製で大規模 vault を捌ける markdown-oxide に切替。command 定義は Helix デフォルトを使うので再定義しない。
 [[language]]
 name = "markdown"
-language-servers = ["marksman"]
+language-servers = ["markdown-oxide"]
+# .heyyou を vault root と認識させる root マーカー(superset)。
+# 無いと Helix が workspace root を安定して決められず oxide の vault 検出が不安定になる。
+roots = [".moxide.toml", ".obsidian", ".marksman.toml"]
