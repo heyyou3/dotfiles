@@ -1,0 +1,5 @@
+# markdown の LSP は marksman のみを使う(wikilink 補完/定義ジャンプ/rename のため)。
+# marksman の language-server 定義自体は Helix のデフォルトを利用するのでここでは再定義しない。
+[[language]]
+name = "markdown"
+language-servers = ["marksman"]
