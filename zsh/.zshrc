@@ -13,7 +13,8 @@ setopt EXTENDED_HISTORY
 
 source "$DOT_FILES_PATH/common_sh/common"
 source "$DOT_FILES_PATH/zsh/zinit/main.zsh"
-source <(fzf --zsh)
+# 旧 fzf(shell 統合フラグ非対応)では統合を読み込まない
+source <(fzf --zsh 2>/dev/null)
 
 alias gam="/Users/heyyou/bin/gam7/gam"
 
