@@ -31,6 +31,16 @@ if [ -d "$HOME/go" ]; then
   export GO111MODULE=on
 fi
 
+# mise(プロジェクト単位のツールバージョン管理)。nix profile の PATH 追加より後に置く:
+# mise が管理するツールは mise 側を優先し、管理しないツール(gh / yazi / ntfy)は nix profile から引く。
+if command -v mise >/dev/null 2>&1; then
+  if [ -n "$ZSH_VERSION" ]; then
+    eval "$(mise activate zsh)"
+  elif [ -n "$BASH_VERSION" ]; then
+    eval "$(mise activate bash)"
+  fi
+fi
+
 source "$DOT_FILES_PATH/common_sh/aliases"
 source "$DOT_FILES_PATH/common_sh/functions"
 
