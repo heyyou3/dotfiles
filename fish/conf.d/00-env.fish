@@ -25,6 +25,11 @@ if test -d $HOME/.nix-profile
     set -gx LOCALE_ARCHIVE (readlink ~/.nix-profile/lib/locale)/locale-archive
 end
 
+if test -d $HOME/.local/share/mise/shims
+    # 末尾追記: nix-profile 等の既存解決順を変えず、他に無い go/gcloud だけを解決させる。
+    set -gx PATH $PATH $HOME/.local/share/mise/shims
+end
+
 if test -d $HOME/go
     set -gx GOBIN $HOME/go/bin
     set -gx GO111MODULE on
