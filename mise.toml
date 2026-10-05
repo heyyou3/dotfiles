@@ -1,0 +1,116 @@
+[tasks.deploy]
+description = "OS を判定して dotfiles 一式を symlink 展開する(common + OS別 + claude)"
+depends = ["deploy:common", "deploy:claude"]
+run = '''
+case "$(uname -s)" in
+  Linux) mise run deploy:linux ;;
+  Darwin) mise run deploy:macos ;;
+esac
+'''
+
+[tasks."deploy:common"]
+description = "OS 共通の dotfiles を $HOME / ~/.config に symlink する"
+run = [
+  "mkdir -p ~/.config/alacritty ~/.config/espanso ~/.config/mise ~/.gemini",
+  # --- $HOME 直下 / 個別ファイル ---
+  "ln -sfn {{config_root}}/bash/.bash_profile ~/.bash_profile",
+  "ln -sfn {{config_root}}/bash/.bashrc ~/.bashrc",
+  "ln -sfn {{config_root}}/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml",
+  "ln -sfn {{config_root}}/git/.gitconfig ~/.gitconfig",
+  "ln -sfn {{config_root}}/tig/.tigrc ~/.tigrc",
+  "ln -sfn {{config_root}}/tmux/.tmux.conf ~/.tmux.conf",
+  "ln -sfn {{config_root}}/vim/.vimrc ~/.vimrc",
+  "ln -sfn {{config_root}}/zsh/.zshrc ~/.zshrc",
+  "ln -sfn {{config_root}}/zsh/.zshenv ~/.zshenv",
+  "ln -sfn {{config_root}}/zsh/zim/.zimrc ~/.zimrc",
+  "ln -sfn {{config_root}}/todo/.todo.cfg ~/.todo.cfg",
+  "ln -sfn {{config_root}}/espanso/config ~/.config/espanso/config",
+  "ln -sfn {{config_root}}/espanso/match ~/.config/espanso/match",
+  "ln -sfn {{config_root}}/jetbrains/.ideavimrc ~/.ideavimrc",
+  "ln -sfn {{config_root}}/mise_config/config.toml ~/.config/mise/config.toml",
+  # --- XDG: ディレクトリごと symlink(ツール全体を repo で管理)---
+  "ln -sfn {{config_root}}/fish ~/.config/fish",
+  "ln -sfn {{config_root}}/helix ~/.config/helix",
+  "ln -sfn {{config_root}}/kitty ~/.config/kitty",
+  "ln -sfn {{config_root}}/lazygit ~/.config/lazygit",
+  "ln -sfn {{config_root}}/nvim ~/.config/nvim",
+  "ln -sfn {{config_root}}/yazi ~/.config/yazi",
+  "ln -sfn {{config_root}}/zellij ~/.config/zellij",
+  "ln -sfn {{config_root}}/bat ~/.config/bat",
+  "ln -sfn {{config_root}}/gemini/themes ~/.gemini/themes",
+]
+
+[tasks."deploy:linux"]
+description = "Linux 固有の dotfiles(xmonad/xmobar/fcitx/rofi)を symlink する"
+run = [
+  "mkdir -p ~/.xmonad ~/.config/fcitx ~/.config/rofi",
+  "ln -sfn {{config_root}}/linux/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs",
+  "ln -sfn {{config_root}}/linux/.xmobarrc ~/.xmobarrc",
+  "ln -sfn {{config_root}}/linux/fcitx/config ~/.config/fcitx/config",
+  "ln -sfn {{config_root}}/linux/.config/rofi/config.rasi ~/.config/rofi/config.rasi",
+]
+
+[tasks."deploy:macos"]
+description = "macOS 固有の dotfiles(karabiner / aerospace)を symlink する"
+run = [
+  "mkdir -p ~/.config/karabiner",
+  "ln -sfn {{config_root}}/macos/karabiner.json ~/.config/karabiner/karabiner.json",
+  "ln -sfn {{config_root}}/aerospace/.aerospace.toml ~/.aerospace.toml",
+]
+
+[tasks."deploy:claude"]
+description = "Claude Code の agents/commands/hooks/settings を ~/.claude に、起動ランチャーを ~/bin に symlink する"
+run = [
+  "mkdir -p ~/.claude/agents ~/.claude/commands ~/.claude/hooks ~/bin",
+  "ln -sfn {{config_root}}/claude/agents/reviewer.md ~/.claude/agents/reviewer.md",
+  "ln -sfn {{config_root}}/claude/agents/tester.md ~/.claude/agents/tester.md",
+  "ln -sfn {{config_root}}/claude/agents/security-reviewer.md ~/.claude/agents/security-reviewer.md",
+  "ln -sfn {{config_root}}/claude/commands/review.md ~/.claude/commands/review.md",
+  "ln -sfn {{config_root}}/claude/hooks/review-gate.sh ~/.claude/hooks/review-gate.sh",
+  "ln -sfn {{config_root}}/claude/hooks/dangerous-command-guard.sh ~/.claude/hooks/dangerous-command-guard.sh",
+  "ln -sfn {{config_root}}/claude/hooks/commit-gate.sh ~/.claude/hooks/commit-gate.sh",
+  "ln -sfn {{config_root}}/claude/hooks/load-context.sh ~/.claude/hooks/load-context.sh",
+  "ln -sfn {{config_root}}/claude/hooks/notify.sh ~/.claude/hooks/notify.sh",
+  "ln -sfn {{config_root}}/claude/settings.json ~/.claude/settings.json",
+  "ln -sfn {{config_root}}/claude/bin/engineer ~/bin/engineer",
+  "ln -sfn {{config_root}}/claude/bin/business ~/bin/business",
+]
+
+[tasks."install:dev-tools"]
+description = "mise のグローバル設定(mise_config/config.toml)にある CLI ツールをインストールする(冪等。先に mise run deploy で設定を symlink しておく)"
+run = "mise install"
+
+[tasks."worker:engineer"]
+description = "engineer プロファイルで Claude Code を起動する(レビューゲート有効)"
+run = "CLAUDE_WORKER_MODE=engineer claude"
+raw = true
+
+[tasks."worker:business"]
+description = "business プロファイルで Claude Code を起動する(雑務向け・レビューゲート無効)"
+run = "CLAUDE_WORKER_MODE=business claude"
+raw = true
+
+[tasks.agent-team]
+description = "AIエージェントチーム(worker + reviewer)の Zellij セッションを起動する"
+run = "zellij --layout {{config_root}}/zellij/agent-team-layout.kdl"
+raw = true
+
+[tasks."agents-runner:start"]
+description = "agents-task-runner 常駐 zellij session(agents-runner)を起動する"
+raw = true
+run = '''
+if zellij list-sessions --no-formatting --short 2>/dev/null | grep -Fxq agents-runner; then
+  echo "agents-runner already running — attach with: zellij attach agents-runner"
+else
+  zellij -s agents-runner -n {{config_root}}/zellij/layouts/agents-runner.kdl
+fi
+'''
+
+[tasks."agents-runner:status"]
+description = "agents-task-runner の zellij session と state/sessions の中身を表示する"
+run = [
+  'echo "--- zellij sessions ---"',
+  "zellij list-sessions --no-formatting --short 2>/dev/null || true",
+  'echo "--- state/sessions ---"',
+  'ls -la $HOME/work/ai-agents/.heyyou/state/sessions 2>/dev/null || echo "(none)"',
+]

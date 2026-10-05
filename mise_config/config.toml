@@ -1,0 +1,44 @@
+# mise のユーザーグローバル設定(~/.config/mise/config.toml に symlink)。
+# dotfiles で使う CLI ツールはすべてここで入れる(brew / sudo 不要、ユーザーのホーム配下で完結)。
+# 版を固定するのはシェル起動・認証・プロンプト表示で自動実行されるものだけ。それ以外は latest。
+# latest は GitHub API で解決するため、未認証のレート制限(403)で mise install が落ちたら GITHUB_TOKEN=$(gh auth token) をコマンドの前に付けて再実行する(export しない)。
+[tools]
+# git の credential helper から自動実行される
+github-cli = "2.102.0"
+# プロンプト表示ごとに実行される
+starship = "1.26.0"
+# 対話シェル起動ごとに zsh / bash から exec される。
+# mise registry に無いため公式 GitHub Release を直接使う。OS ごとに asset を指定しないとソース tarball を拾う。
+# macOS の .app.zip は fish-<ver>.app/ ごと展開されるため strip_components で 1 段剥がし、.app 内の CLI を PATH に出す。
+"github:fish-shell/fish-shell" = { version = "4.9.3", platforms = {
+  macos-arm64 = { asset_pattern = "fish-*.app.zip", strip_components = 1, bin_path = "Contents/Resources/base/usr/local/bin" },
+  macos-x64 = { asset_pattern = "fish-*.app.zip", strip_components = 1, bin_path = "Contents/Resources/base/usr/local/bin" },
+  linux-x64 = { asset_pattern = "fish-*-linux-x86_64.tar.xz" },
+  linux-arm64 = { asset_pattern = "fish-*-linux-aarch64.tar.xz" },
+} }
+
+neovim = "latest"
+helix = "latest"
+tmux = "latest"
+zellij = "latest"
+yazi = "latest"
+bat = "latest"
+ghq = "latest"
+lazygit = "latest"
+delta = "latest"
+fzf = "latest"
+fd = "latest"
+ripgrep = "latest"
+jq = "latest"
+direnv = "latest"
+go = "latest"
+node = "latest"
+
+# --- mise registry に無いツール ---
+"npm:zx" = "latest"
+"github:binwiederhier/ntfy" = "latest"
+# ranger は uvx 経由だと起動スクリプトが壊れる(SyntaxError)ため pipx 本体で入れる。
+# pipx の venv は python の版に依存するので python は固定する(上げると ranger の入れ直しが必要)。
+python = "3.13"
+pipx = "latest"
+"pipx:ranger-fm" = { version = "latest", uvx = false }

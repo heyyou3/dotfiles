@@ -3,7 +3,6 @@
 portable_dev_env
 .SpaceVim.d
 .envrc
-shell.nix
 .node_globals
 .nvim.lua
 .heyyou

@@ -72,16 +72,7 @@ git_init() {
 split_tmux_pane() {
   cwd="`tmux display -p \"#{pane_current_path}\"`"
   tmux select-pane -t "bottom-right"
-  if ! [ -z "$IN_NIX_SHELL" ]; then
-    tmux split-pane -c "$cwd" "nix-shell --run zsh"
-  else
-    tmux split-pane -c "$cwd"
-  fi
-}
-
-set_project_nix() {
-  echo 'use_nix' >> ./.envrc
-  touch ./shell.nix
+  tmux split-pane -c "$cwd"
 }
 
 mkpk() {
@@ -91,7 +82,7 @@ mkpk() {
 
 ranger() {
   if [ -z "$RANGER_LEVEL" ]; then
-    $HOME/.nix-profile/bin/ranger "$@"
+    command ranger "$@"
   else
     exit
   fi

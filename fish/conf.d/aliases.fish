@@ -6,7 +6,6 @@ alias g git
 alias less 'less -X'
 alias lg lazygit
 alias neofetchos 'neofetch --disable cpu memory gpu resolution'
-alias nixsrz 'nix-shell --run fish'
 alias py python3
 alias pyc 'python3 -c'
 alias rr ranger
