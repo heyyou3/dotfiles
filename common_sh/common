@@ -20,19 +20,12 @@ if [ -d "$HOME/.cargo" ]; then
   export PATH=$HOME/.cargo/bin:$PATH
 fi
 
-if [ -d "$HOME/.nix-profile" ]; then
-  export PATH=/nix/var/nix/profiles/default/bin:$PATH
-  export PATH=$HOME/.nix-profile/bin:$PATH
-  export LOCALE_ARCHIVE="$(readlink ~/.nix-profile/lib/locale)/locale-archive"
-fi
-
 if [ -d "$HOME/go" ]; then
   export GOBIN=$HOME/go/bin
   export GO111MODULE=on
 fi
 
-# mise(プロジェクト単位のツールバージョン管理)。nix profile の PATH 追加より後に置く:
-# mise が管理するツールは mise 側を優先し、管理しないツール(gh / yazi / ntfy)は nix profile から引く。
+# mise(CLI ツールとプロジェクト単位のバージョン管理)。グローバル設定は mise_config/config.toml。
 if command -v mise >/dev/null 2>&1; then
   if [ -n "$ZSH_VERSION" ]; then
     eval "$(mise activate zsh)"
@@ -48,6 +41,7 @@ if [ -f "$DOT_FILES_PATH/.heyyou/not-shared" ]; then
   source "$DOT_FILES_PATH/.heyyou/not-shared"
 fi
 # zsh のときだけ zsh 用 init。bash は bashrc で bash 用 init 済み
-if [ -n "$ZSH_VERSION" ]; then
+# starship 未導入の環境でも起動時にエラーを出さないようガードする(fish 側と揃える)
+if [ -n "$ZSH_VERSION" ] && command -v starship >/dev/null; then
   eval "$(starship init zsh)"
 fi

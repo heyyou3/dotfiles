@@ -21,7 +21,13 @@
   defaultBranch = main
 [credential "https://github.com"]
   helper = 
-  helper = !$HOME/.nix-profile/bin/gh auth git-credential
+  # mise のグローバル設定の gh を使う。-C "$HOME" はカレントリポジトリの mise.toml(未 trust / 別版 pin)を読ませないため。
+  # PATH 上の mise / gh にはフォールバックしない: 共有 Mac では他ユーザーが書ける PATH(/opt/homebrew/bin)に偽 gh を置かれるとトークンを渡してしまうため。
+  # MISE_AUTO_INSTALL=0 で認証の途中に gh のダウンロードを走らせず即失敗させる(導入は mise run install:dev-tools)。
+  helper = "!f() { g=$(MISE_AUTO_INSTALL=0 \"$HOME/.local/bin/mise\" -C \"$HOME\" which gh) || exit 1; exec \"$g\" auth git-credential \"$@\"; }; f"
 [credential "https://gist.github.com"]
   helper = 
-  helper = !$HOME/.nix-profile/bin/gh auth git-credential
+  # mise のグローバル設定の gh を使う。-C "$HOME" はカレントリポジトリの mise.toml(未 trust / 別版 pin)を読ませないため。
+  # PATH 上の mise / gh にはフォールバックしない: 共有 Mac では他ユーザーが書ける PATH(/opt/homebrew/bin)に偽 gh を置かれるとトークンを渡してしまうため。
+  # MISE_AUTO_INSTALL=0 で認証の途中に gh のダウンロードを走らせず即失敗させる(導入は mise run install:dev-tools)。
+  helper = "!f() { g=$(MISE_AUTO_INSTALL=0 \"$HOME/.local/bin/mise\" -C \"$HOME\" which gh) || exit 1; exec \"$g\" auth git-credential \"$@\"; }; f"

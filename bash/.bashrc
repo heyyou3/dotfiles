@@ -7,7 +7,10 @@ source "$DOT_FILES_PATH/common_sh/common"
 source "$DOT_FILES_PATH/bash/git-prompt.sh"
 source "$DOT_FILES_PATH/bash/git-completion"
 
-eval "$(starship init bash)"
+# starship 未導入の環境でも起動時にエラーを出さないようガードする(fish 側と揃える)
+if command -v starship >/dev/null; then
+  eval "$(starship init bash)"
+fi
 
 # 常用シェルは fish。bash でも対話ログイン時は fish へ exec する(zsh/.zshrc と同じ)
 if [[ $- == *i* ]] && command -v fish >/dev/null; then

@@ -15,19 +15,9 @@ if test -d $HOME/.cargo
     set -gx PATH $HOME/.cargo/bin $PATH
 end
 
-if test -d $HOME/.nix-profile
-    # nix develop の中では dev shell の PATH を優先する。
-    # nix-profile を prepend すると flake 固定版が profile 版に隠される(jq/gh 等の drift)。
-    if not set -q IN_NIX_SHELL
-        set -gx PATH /nix/var/nix/profiles/default/bin $PATH
-        set -gx PATH $HOME/.nix-profile/bin $PATH
-    end
-    set -gx LOCALE_ARCHIVE (readlink ~/.nix-profile/lib/locale)/locale-archive
-end
-
 if test -d $HOME/.local/share/mise/shims
-    # 末尾追記: nix-profile 等の既存解決順を変えず、他に無い go/gcloud だけを解決させる。
-    set -gx PATH $PATH $HOME/.local/share/mise/shims
+    # 先頭に置く: mise が CLI ツールの主たる供給元なので、共有 brew(/opt/homebrew/bin、他ユーザー所有)等の同名ツールより優先させる。
+    set -gx PATH $HOME/.local/share/mise/shims $PATH
 end
 
 if test -d $HOME/go
