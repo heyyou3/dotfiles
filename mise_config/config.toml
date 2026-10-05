@@ -1,0 +1,8 @@
+# mise のユーザーグローバル設定(~/.config/mise/config.toml に symlink)。
+# 共有 Mac で brew/sudo に頼らず、CLI をユーザーのホーム配下に入れるために使う。
+[tools]
+github-cli = "latest"
+# mise registry に fish が無いため公式 GitHub Release を直接使う。
+# 素の自動選択だとソース tarball を拾うので macOS 用 .app.zip を指定し、.app 内の CLI を PATH に出す。
+# Linux 機は NixOS で fish を nix 管理しているため macOS 限定。
+"github:fish-shell/fish-shell" = { version = "latest", asset_pattern = "fish-*.app.zip", bin_path = "Contents/Resources/base/usr/local/bin", os = ["macos"] }
