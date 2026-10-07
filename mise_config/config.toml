@@ -42,3 +42,5 @@ node = "latest"
 python = "3.13"
 pipx = "latest"
 "pipx:ranger-fm" = { version = "latest", uvx = false }
+# heyyou の hook が timeout に使う(uutils の multicall: `coreutils timeout`)。worktree はワークスペース外でも動くためグローバルに置く
+coreutils = "latest"
