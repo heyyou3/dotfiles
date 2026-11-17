@@ -45,5 +45,12 @@ keybinds {
             }
             SwitchToMode "Normal"
         }
+        bind "y" {
+            Run "fish" "-c" "tbx; or read -n1 -P '何かキーを押すと閉じます'" {
+                close_on_exit true
+                floating true
+            }
+            SwitchToMode "Normal"
+        }
     }
 }
