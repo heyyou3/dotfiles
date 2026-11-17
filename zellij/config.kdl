@@ -37,4 +37,13 @@ keybinds {
         bind "Shift k" { MovePane "Up"; }
         bind "Shift l" { MovePane "Right"; }
     }
+    session {
+        bind "b" {
+            Run "fish" "-c" "tbj; or read -n1 -P '何かキーを押すと閉じます'" {
+                close_on_exit true
+                floating true
+            }
+            SwitchToMode "Normal"
+        }
+    }
 }
